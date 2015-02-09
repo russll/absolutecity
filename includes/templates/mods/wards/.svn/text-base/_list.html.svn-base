@@ -1,0 +1,67 @@
+<div id="id_srch_res_list">
+    <div id="id_div_search_wards">
+	{if $wards_list}
+	{if $wl}
+        <div class="cl_srch_list">
+            <h2><span>{if 3000 < $cnt_people}>3000{elseif 1000 < $cnt_people && 3000 > $cnt_people}>1000{else}{$cnt_people}{/if}</span>Wards/branches</h2>
+	    {if 1000 < $cnt_people}
+            <div class="attention-box">More than {if 3000 < $cnt_people}3000{elseif 1000 < $cnt_people && 3000 > $cnt_people}1000{/if} wards found, you can use filters to refine your search</div>
+	    {/if}
+	    {foreach item=i from=$wl key=pk}
+            <div class="box002">
+                <div class="post-box">
+                    <div class="b-awatar"><a href="{$siteAdr}wards/id{$i.id}"><img src="{if $i.ward_stake_img}{$fImgDir}wards/info/{$ui.fpath}/s/s_{$i.ward_stake_img}{else}{$imgDir}no_photo_ward_m66.png{/if}"  /></a></div>
+                    <div class="post-title2"><b><a href="{$siteAdr}wards/id{$i.id}"> {if !empty($i.title)}{$i.title}{else}{$i.ward_title}{/if}</a> {if $i.id != $UserInfo.stake_id && $i.id != $UserInfo.ward_id}(<a href="javascript: oWWall.SHConfirmPopup( 1, 'id_confirm_wards_popup', {$i.id} );">Set as my ward</a>){/if}</b></div>
+                    <p>{if !empty($i.id_parent)} {$i.ward_title} {else} &nbsp {/if}</p>
+                </div>
+            </div>
+	    {/foreach}
+        </div>
+
+	{if ($pcnt+$rcnt) < $cnt_wards}
+        <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+            <a href="javascript: void(0);" class="cl_search_pagging{if $nwall}2{/if}" pname="wards" pcnt=" {$pcnt+$rcnt}" rcnt="{$rcnt}" >More <img src="{$imgDir}arr01.gif" alt=""  /></a>
+        </div>
+	{/if}
+	{else}
+        <h2><span></span>Wards</h2>
+        <div class="box001">
+            <div class="post-box">
+		There aren't any wards
+            </div>
+        </div>
+    {/if}
+{/if}
+    </div>
+</div>
+
+{if $whatch_list}
+<span id="adi_srch">
+{if $wtl}
+    <div class="cl_srch_list adi_srch">
+        <h2>Wards Watching</h2>
+	    {foreach key=k item=i from=$wtl}
+        <div class="box002">
+            <div class="post-box">
+                <div class="b-awatar">
+                    <a href="{$siteAdr}wards/id{$i.wid}"><img src="{if $i.ward_stake_img}{$fImgDir}wards/info/{$ui.fpath}/s/s_{$i.ward_stake_img}{else}{$imgDir}no_photo_ward_m66.png{/if}"  /></a>
+                </div>
+
+                <div class="post-title2">
+                    <b><a href="{$siteAdr}wards/id{$i.wid}">{$i.ward_title}</a> (from {$i.start_date})</b>
+                </div>
+                <p>{$i.stake_title}</p>
+            </div>
+        </div>
+	    {/foreach}
+    </div>
+{else}
+    <h2>Wards Watching</h2>
+    <div class="box001">
+        <div class="post-box">
+	    You aren't watching any wards
+        </div>
+    </div>
+    {/if}
+</span>
+{/if}

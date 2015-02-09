@@ -1,0 +1,98 @@
+<script type="text/javascript" src="/j/Classes/Users.js"></script>
+
+<div class="content">
+    <div id="leftbar">
+        <h1 style="font-size: 14px;">Find ward/stake</h1>
+    </div>
+    <div id="rightbar">
+        <div class="infobox">
+            <form method="post" action="{$siteAdr}base/ward/search/">
+                {if $id}
+                <input type="hidden" name="id" value="{$id}" />
+                {/if}
+
+				{if $errs}
+                <font color="#990000">
+                    {foreach key=k item=i from=$errs}
+                    - {$i}<br />
+                    {/foreach}
+                </font><br />
+                {/if}
+
+				<p>
+				<table>
+					<tr>
+						<td>Search String</td><td><input type="text" name="fm[search]" value="{$fm.search}"/><input type="submit" value="Find" /><br/></td>
+					</tr>
+
+					<tr>
+						<td>Status</td><td><select name="fm[stype]">
+						<option value="all" {if $fm.stype == 'all' || !$fm.stype}selected="selected"{/if}>All</option>
+						<option value="moderated" {if $fm.stype == 'moderated'}selected="selected"{/if}>Moderated only</option>
+						<option value="unmoderated" {if $fm.stype == 'unmoderated'}selected="selected"{/if}>Unmoderated only</option>
+					</select></td>
+					</tr>
+				</table>
+				</p>
+
+				{if $pl}<br/>
+				<p>Found {$rcnt}:</p>
+					<table class="table01">
+					<tr>
+						<th width="10%" align="center">Type</th>
+						<th width="30%">Title</th>
+						<th width="14%">Location</th>
+						<th width="10%">Information</th>
+						<th width="15%" colspan="3">Actions</th>
+					</tr>
+					{foreach key=k item=i from=$pl}
+					<tr class="td01">
+						<td class="green-txt" align="center"><b>{if $i.ward_type==1}S{else}W{/if}</b></td>
+						<td class="green-txt"><a href="{$siteAdr}base/ward/edit/?id={$i.id}">{$i.title}</a></td>
+						<td class="green-txt">({$i.city}{if $i.region}, {$i.region}{/if}, {$i.country})</td>
+						<td class="green-txt">{$i.more}</td>
+
+						<td class="green-txt"><a href="{$siteAdr}base/ward/edit/?id={$i.id}"><img src="{$imgDir}ico/icon_edit.gif" alt="Change" /></a></td>
+						<td class="green-txt">
+							<a title="Moderate" style="cursor:pointer" onclick="$.ajax({ldelim}url: '{$siteAdr}base/ward/mod/?id={$i.id}', success: function(data){ldelim} $('#imstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '1' ? 'green' : 'green_l') +'.gif'); $('#rimstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '0' ? 'red' : 'red_l') +'.gif');{rdelim}{rdelim})"><img id="imstat{$i.id}" src="{$imgDir}ico/status_{if $i.moderated == 1}green{else}green_l{/if}.gif" alt="Change Moder" /></a>
+							<a title="Moderate" style="cursor:pointer" onclick="$.ajax({ldelim}url: '{$siteAdr}base/ward/mod/?id={$i.id}', success: function(data){ldelim} $('#imstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '1' ? 'green' : 'green_l') +'.gif'); $('#rimstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '0' ? 'red' : 'red_l') +'.gif'); {rdelim}{rdelim})"><img id="rimstat{$i.id}" src="{$imgDir}ico/status_{if $i.moderated == 0}red{else}red_l{/if}.gif" alt="Change Moder" /></a>
+						</td>
+						<td class="green-txt"><a href="javascript: CGo('{$siteAdr}base/ward/del/?id={$i.id}', 'Do you want to delete page?');"><img src="{$imgDir}ico/icon_del.gif" alt="Delete" /></a></td>
+						
+					</tr>
+					{/foreach}
+					</table>
+						<div style="margin-left:150px;">{$pagging}</div>
+				{elseif $notfound}
+				<p style="padding:10px;"><u>Sorry, nothing found.</u></p>
+				{/if}
+				
+
+
+
+<!--                {if !$id}
+                <p id="wi"{if !$fm.ward_type || 1==$fm.ward_type} style="display:none;"{/if}>
+                    <select {if 2 == $fm.ward_type} name="fm[id_parent]" {/if}>
+                    {foreach key=k item=i from=$wards}
+                    <option value="{$i.id}"{if $i.id==$fm.id_parent} selected="selected"{/if}>{$i.title} ({$i.city}{if $i.region}, {$i.region}{/if}, {$i.country})</option>
+                    {/foreach}
+                    </select>
+                    <textarea style="display:block; margin-top: 5px;" name="fm[more]">{if $fm.more}{$fm.more}{/if}</textarea>
+                </p>
+                {else}
+                 <input type="hidden" name="fm[id_parent]" value="{$fm.id_parent}">
+                 Information<br>
+                 <textarea style="display:block; margin-top: 5px;" name="fm[more]">{if $fm.more}{$fm.more}{/if}</textarea>
+                 {/if}
+                <p>Title<br /><input class="txt" type="text" name="fm[title]" value="{$fm.title}"  /></p>
+                <p>Location (please use autocomplete <b>only</b>)<br /><input class="txt loc" type="text" name="fm[location]" value="{if $fm.location}{$fm.location}{else}{$fm.city}{if $fm.region}, {$fm.region}{/if}{if $fm.country}, {$fm.country}{/if}{/if}"  /></p>
+                
+                <p><input type="button" value="Отмена" onclick="Go('{$siteAdr}base/ward/{if $fm.cid}?cid={$fm.cid}{/if}');" /> <input type="submit" value="Сохранить" /></p>-->
+            </form>
+        </div>
+
+    </div>
+</div>
+<script language="javascript">
+oUsers.InitCityComplete('loc');
+</script>

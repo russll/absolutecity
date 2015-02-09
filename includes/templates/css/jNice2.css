@@ -1,0 +1,43 @@
+*:first-child+html button[type]{width:1;} /* IE7 */
+/* -------------
+ * Selects
+ * ------------- */
+.jNiceWrapper select {border:none;margin:0;padding:0;font-family:Arial, Helvetica, sans-serif;font-size:12px;}
+
+.jNiceSelectWrapper {height: 23px;left:0px;top:0px;z-index:10;position:absolute;float:left;}
+
+.jNiceWrapper iframe {position:absolute;z-index:1;width:100%;left:0px;top:0px;}
+
+.jNiceSelectWrapper .jNiceSelectText{height:23px;line-height:22px;padding:0px 3px;background: url(/i/input_left2.gif) no-repeat left center;float:none;position:absolute;z-index:100;left:0;color:#666666;font-family:Arial, Helvetica, sans-serif;font-size:12px;overflow:hidden;width:100%;}
+
+.jNiceSelectWrapper .jNiceSelectOpen {width: 22px;height: 23px;background: url(/i/select_right2.gif) no-repeat center center;z-index:100;display:block;position:absolute;right:0;}
+*html .jNiceSelectWrapper .jNiceSelectOpen {right:-4px;top:0px}
+
+.jNiceSelectWrapper ul {background:#fff;top:20px;border:solid 1px #dedcc7;position:absolute;left:0;list-style:none;display: none;margin:0;padding:0;z-index:9999;width:98%;overflow-x:hidden;overflow-y:auto;height:200px}
+	
+*html .jNiceSelectWrapper ul li{padding:0;margin:0}
+
+.jNiceSelectWrapper ul a {color:#0099CC;display:block;padding:5px;text-decoration:none;color:#666666;font-family:Arial, Helvetica, sans-serif;font-size:12px;text-align:left;font-weight:normal;}
+
+*html .jNiceSelectWrapper ul a {padding:0}
+
+.jNiceSelectWrapper ul a:hover { background:#EDEDED; }
+.jNiceSelectWrapper ul a.selected {background: #EDEDED;}
+
+.jNiceFocus { border: dotted 1px #666666; }
+
+.jNiceHidden {opacity:0;z-index:-1;position:relative;}
+.jNiceWrapper {position:relative;vertical-align:top;}
+.jNiceWrapper input {outline:none;moz-outline:none;}
+
+
+
+
+.sw100{width:100px}
+.sw85{width:55px}
+.sw45{width:55px}
+
+.jNice{float:left;margin:0 6px 0 0 !important;}
+
+		
+		

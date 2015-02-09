@@ -1,0 +1,22 @@
+{if $fa}
+<table class="table01">
+    <tr>
+	    <td class="tdxa">Удалить</td>
+		<td class="tdxa">Заголовок</td>
+		<td class="tdxa">Тип</td>
+		<td class="tdxa">Открыть</td>
+		<td class="tdx">N/A in RU</td>
+		<td class="tdx">N/A in EN</td>
+    </tr>		
+{foreach key=k item=i from=$fa}
+    <tr>
+	    <td class="tdx"><input type="checkbox" name="fm[delf][{if $i.2}{$i.2}{else}{$i.0}{/if}]" value="1" /></td>
+        <td class="tdx"><input type="text" style="width:150px;" name="fm[ofname][{if $i.2}{$i.2}{else}{$i.0}{/if}]" value="{$i.1}" /></td>
+        <td class="tdx">{if ('.jpg'==$i.3 || '.jpeg'==$i.3 || '.gif'==$i.3 || '.png'==$i.3)}Изображение{elseif '.mp3'==$i.3}аудио{elseif '.flv'==$i.3}видео{else}{/if}</td>
+        <td class="tdx"><a href="/files/images/{$i.1}{$i.3}" target="_blank"><img src="{$imgDir}ico/icon_safe.gif" alt="Открыть" border="0" /></a></td>
+        <td class="tdx">{if $i.2}<input type="checkbox" name="fm[no_ru][{if $i.2}{$i.2}{else}{$i.0}{/if}]" value="1"{if $i.4} checked="checked"{/if} />{/if}</td>
+        <td class="tdx">{if $i.2}<input type="checkbox" name="fm[no_en][{if $i.2}{$i.2}{else}{$i.0}{/if}]" value="1"{if $i.5} checked="checked"{/if} />{/if}</td>
+	</tr>    
+{/foreach}
+</table>
+{/if}

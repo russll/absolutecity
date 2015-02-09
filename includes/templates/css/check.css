@@ -1,0 +1,6 @@
+.jNiceCheckbox {background: transparent url(/i/check_off.gif) no-repeat center top;height: 18px;width: 18px;position:absolute;left:0px;top:0px;z-index:2;cursor:pointer;}
+.jNiceChecked {background: transparent url(/i/check_on.gif) no-repeat center top;}
+
+.jNiceHidden {opacity:0;z-index:-1;position:relative;}
+.jNiceWrapper {position:relative;vertical-align:top;}
+.jNiceWrapper input {outline:none;moz-outline:none;}

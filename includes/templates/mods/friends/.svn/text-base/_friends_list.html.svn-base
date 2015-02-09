@@ -1,0 +1,28 @@
+{foreach item=fr from=$ar_friends key=frk}
+<div class="box001">
+    <div class="post-box">
+        <div class="post-box-bg00" style="min-height: 40px">
+            <div class="b-awatar"><a href="{$siteAdr}users/id{$i.uid}" {* onclick="javascript: $('#id_dropbox_fr_{$fr.uid}').slideToggle('slow');" *}><img src="{if $fr.image}{$fImgDir}users/{$fr.fpath}/s/s_{$fr.image}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="" /></a></div>
+
+            <div class="post-title2"><b><a href="{$siteAdr}id{$fr.uid}">{if $fr.first_name || $fr.last_name}{$fr.first_name} {$fr.last_name}{else}{$fr.public_name}{/if}</a></b></div>
+        </div>
+        <br />
+        <div id="id_dropbox_fr_{$fr.uid}" class="dropbox00" style="position: absolute">
+            <div class="dropbox00-left">
+                <div class="dropbox00-right">
+                    <ul><li><a href="{$siteAdr}id{$fr.uid}">Send a message</a></li></ul>
+                    <p><a href="javascript: void(0);" onclick="javascript: oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$fr.uid}'); $('#id_dropbox_fr_{$fr.uid}').hide();">Unfriend</a></p>
+                    {*<p><a href="#">Hide member’s entries</a></p>
+                    <p><a href="#">Report this user</a></p>*}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/foreach}
+
+{if ($pcnt+$rcnt) < $cnt_ar_friends}
+<div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+    <a href="javascript: void(0);" onclick="javascript: oFriends.GetFrList( '{$pcnt+$rcnt}', '{$rcnt}' );">More <img src="/i/arr01.gif"  /></a>
+</div>
+{/if}

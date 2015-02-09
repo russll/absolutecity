@@ -1,0 +1,47 @@
+				<input id="aid" type="hidden" value="{$pi.aid}" />
+				<input id="pid" type="hidden" value="{$pi.id}" />
+							
+				<div class="gallery">
+					<a id="id_arr_left" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgContent( {$ai.aid}, {$pimg} );" class="pre" style="visibility: hidden;"><img src="{$imgDir}gal_arr_left.png"  /></a>
+					<a id="id_arr_right" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgContent( {$ai.aid}, {$nimg} );" class="next" style="visibility: hidden;"><img src="{$imgDir}gal_arr_right.png"  /></a>
+					<div>
+						<ul>
+							<li style="width: 100%; text-align: center;"><a href="javascript: void(0);" {if $nimg}onclick="javascript: oAlbums.ReloadImgContent( {$ai.aid}, {$nimg} );"{/if}><img id="id_img_b"{if $pi.fpath=='link'} style="visibility: hidden" onload="oAlbums.ResizeUrlImage({if $pimg}{$pimg}{else}''{/if},{if $nimg}{$nimg}{else}''{/if});"{/if} src="{if $pi.fpath=='link'}{$pi.img}{else}{$fImgDir}{if 2 == $ai.type}{if 'Wall' == $ai.name}wall/{elseif 'Inbox' == $ai.name}inbox/{elseif 'Journal' == $ai.name}journal/{elseif 'Mission' == $ai.name}mission/wall/{elseif 'Ward' == $ai.name}wards/wall/{/if}{else}albums/{/if}{$pi.fpath}/n/n_{$pi.img}{/if}"  /></a></li>
+						</ul>
+					</div>
+				</div>
+
+				{if $pi.descr}
+				<div class="gal-add">
+					<p>{$pi.descr}</p>
+				</div>
+				{/if}
+				
+				<div class="gal-add">
+				<form id="id_img_com_frm" action="{$siteAdr}id{$ui.uid}/albums/id{$ai.aid}/id{$pi.id}/geteditphotoajax/?rtype=com" method="post">
+					<div><textarea id="id_photo_com_text" name="CI[text]"></textarea></div>
+					<p><a href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgBoxCom( 2, '{$ai.aid}', '{$pi.id}' );"><img src="{$imgDir}btn_add_com.gif" /></a></p>
+				</form>
+				</div>
+				
+				<div class="gal-comment">
+					{if $cnt_img_com}<h2>{$cnt_img_com} comments</h2>{/if}			
+					<ul id="id_img_box_com" class="recomment">
+					{if $ar_img_com}
+					{foreach item=i key=k from=$ar_img_com}
+						<li><a href="{$siteAdr}id{$i.user_id}"><img src="{if $i.image}{$fImgDir}users/{$i.user_fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+							<div>
+							<p><a href="#">{$i.text}</p>
+							<p><span>{html_tmpl_time val=$i.dt type=1}</span></p>
+							</div>
+						</li>
+					{/foreach}
+					<li>
+						<a class="prev" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgBoxCom( 1, '{$ai.aid}', '{$pi.id}', '{$fcnt}', 2 );" {if 0 == $fcnt} style="visibility: hidden;" {/if}>previous</a>
+						<a class="next" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgBoxCom( 1, '{$ai.aid}', '{$pi.id}', '{$fcnt}', 1 );" {if $cnt_img_com <= ($fcnt + $pcnt)} style="visibility: hidden;" {/if} >next</a>
+					</li>
+					{else}
+						<li>There aren't any comments</li>
+					{/if}
+					</ul>
+				</div>

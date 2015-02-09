@@ -1,0 +1,80 @@
+<div id="id_srch_res_list">
+    <div id="id_div_search_missions">
+        {if $ml}
+        <div class="cl_srch_list">
+            <h2><span>{if 3000 < $cnt_missions}>3000{elseif 1000 < $cnt_missions && 3000 > $cnt_missions}>1000{else}{$cnt_missions}{/if}</span>Missions</h2>
+            {if 1000 < $cnt_missions}
+            <div class="attention-box">More than {if 3000 < $cnt_missions}3000{elseif 1000 < $cnt_missions && 3000 > $cnt_missions}1000{/if} missions found, you can use filters to refine your search</div>
+            {/if}
+
+            {foreach item=i from=$ml key=pk}
+            <div class="box002">
+                <div class="post-box">
+                    <div class="b-awatar"><a href="{$siteAdr}id{$ui.uid}/mission/id{$i.id}"><img
+                            src="{if $i.mission_img}{$fImgDir}mission/info/{$ui.fpath}/s/s_{$i.mission_img}{else}{$imgDir}no_photo_ward_m66.png{/if}"/></a>
+                    </div>
+                    <div class="post-title2">
+                        <b><a href="{$siteAdr}id{$ui.uid}/mission/id{$i.id}" id="mtl_{$i.id}">{if $i.country && $i.city}{$i.country}, {$i.city}{if $i.region}, {$i.region}{/if}{else}{$i.title}{/if}</a> </b><br>
+                        {if $nwall && !$i.served}
+                        <a href="javascript:void(0);"
+                           onclick="$('#mis_name').html($('#mtl_{$i.id}').text());oMWall.SHConfirmPopup( 1, 'id_confirm_mission_popup', {$i.id} );"
+                           style="float:right;">Served this mission?</a>
+                        {/if}
+                    </div>
+                    <p> &nbsp </p>
+
+                </div>
+            </div>
+            {/foreach}
+        </div>
+
+        {if ($pcnt+$rcnt) < $cnt_missions}
+        <div id="id_div_show_more_mes_missions" class="more-box" align="center"
+             style="margin-left: 0px; padding-left: 0px;">
+            <a href="javascript: void(0);" class="cl_search_pagging{if $nwall}2{/if}" pname="missions"
+               pcnt=" {$pcnt+$rcnt}" rcnt="{$rcnt}">More <img src="{$imgDir}arr01.gif"/></a>
+        </div>
+        {/if}
+    </div>
+    {else}
+    {if $IS_USER}
+    <h2><span></span>Missions</h2>
+
+    <div class="box001">
+        <div class="post-box">There aren't any missions</div>
+    </div>
+    {else}
+    <h2><span></span>We're sorry, this member hasn't yet selected their mission</h2>
+    {/if}
+    {/if}
+</div>
+
+{if $whatch_list}
+{if $wtl}
+<div class="cl_srch_list adi_srch">
+    <h2>Missions Watching</h2>
+    {foreach key=k item=i from=$wtl}
+    <div class="box002">
+        <div class="post-box">
+            <div class="b-awatar">
+                <a href="{$siteAdr}mission/id{$i.mission_id}"><img
+                        src="{if $i.mission_img}{$fImgDir}mission/info/{$ui.fpath}/s/s_{$i.mission_img}{else}{$imgDir}no_photo_ward_m66.png{/if}"
+                        alt=""/></a>
+            </div>
+            <div class="post-title2">
+                <b><a href="{$siteAdr}mission/id{$i.mission_id}">{if $i.country && $i.city}{$i.country}, {$i.city}{if $i.region}, {$i.region}{/if}{else}{$i.mission_title}{/if}</a> <br/>(from {$i.start_date})</b>
+            </div>
+        </div>
+    </div>
+    {/foreach}
+</div>
+<div style="clear:both;height:10px;">&nbsp;</div>
+{else}
+<h2>Missions Watching</h2>
+<div class="box001">
+    <div class="post-box">
+        There aren't any missions watching
+    </div>
+</div>
+{/if}
+{/if}

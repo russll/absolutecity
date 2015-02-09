@@ -1,0 +1,38 @@
+<h2>Forgot Your Password?</h2>
+    {if !$send}
+        <div style="margin: 10px 0 0 10px;">
+            Enter your email address below. Instructions on how to change your password will be sent to your email address.
+
+        {if $forgoterr}<br />
+            {section name = i loop = $forgoterr}
+	        {if $forgoterr[i] == 2}
+                <br /><font color="red" style="font-size:13px;">- Please specify correct email</font>
+	        {elseif $forgoterr[i] == 3}
+                <br /><font color="red" style="font-size:13px;">- this email address doesn't exist in our system</font>
+            {/if}
+	        {/section}
+	    {/if}
+        </div>
+             
+   
+    <form id="ForgotForm" action="/security/users/forgot" method="post">
+    <div class="reg-form">
+        <table style="margin: 0px; padding: 0px;">
+            <tr>
+                <td><label>Your email address:</label></td>
+                <td><p><input id="email" type="text" name="UserInfo[email]" value="{$UserInfo.email}" class="txt" /></p>
+                    
+                </td>
+                <td><input type="submit" id="p_save" value="Continue" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+    {else}
+        <div style="margin: 10px 0 0 10px;font-size:13px;">
+        An email with the password change instructions was sent to {$email}.<br />
+        You should receive it shortly.<br />
+        Please follow the link in the email to change your password.<br />
+        </div>
+    {/if}
+

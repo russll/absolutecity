@@ -1,0 +1,47 @@
+<div class="content">
+	<div id="leftbar">
+	  <h1>&nbsp; <input type="button" value=" Add city " onclick="Go('{$siteAdr}base/geo/Edit');" /></h1>
+       
+	</div>
+
+	<div id="rightbar">
+        <div style="padding-bottom:10px;">
+
+            Country:
+            <select name="iso2" id="iso2" style="width:200px;" onchange="Go('{$siteAdr}base/geo/indexadmin?iso2='+$('#iso2').val());">
+                <option value="">All countries</option>
+                {foreach key=k item=i from=$countries}
+                <option value="{$k}"{if $k==$iso2} selected="selected"{/if}>{$i}</option>
+                {/foreach}
+            </select>
+            Search city: <input type="text" id="str" name="str" value="{$str}" />
+            <input type="button" value="Search" onclick="Go('{$siteAdr}base/geo/indexadmin?str='+$('#str').val());" />
+            {if $str}<a href="{$siteAdr}base/geo/indexadmin">Clear</a>{/if}
+        </div>
+
+		<table class="table01">
+            <tr>
+                <th width="25%">Name</th>
+				<th width="25%">Country</th>
+				<th width="20%">Region/State</th>
+				<th width="10%"></th>
+				<th style="text-align:center; font-weight: normal;">Actions</th>
+			</tr>
+			{foreach key=k item=i from=$pl}
+			<tr class="td01">
+			 	<td>{$i.name}</td>
+                <td>{$i.country}</td>
+				<td>{$i.subdiv}</td>
+                <td></td>
+                <td style="text-align:center">
+                    <a href="javascript: CGo('{$siteAdr}base/geo/del/?id={$i.city_id}', 'Do yo want to delete this city?');" style="color: #004A79;">Delete</a>
+                    | <a href="{$siteAdr}base/geo/edit/?id={$i.city_id}">Edit</a>
+                </td>
+			</tr>
+            {/foreach}
+
+		</table>
+		{$pagging}
+
+	</div>
+</div>

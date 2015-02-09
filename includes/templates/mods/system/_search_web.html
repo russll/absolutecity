@@ -1,0 +1,108 @@
+<div id="id_div_search_wards">
+
+<h2>Web search</h2>
+    
+            {foreach name=_ad key=k item=i from=$ad_top.link}
+            {assign var="ov" value=$smarty.foreach._ad.iteration-1}
+                <div class="box002">
+                    {if $k == 0}
+                    <p style="text-align:right;color:#324373; font-size: 10px;">Sponsored results</p>
+                    {/if}
+                    <div class="post-box">
+                        <div class="post-box-bg00" style="min-height: 40px;">
+                            <div class="post-title2" style="margin-left:0px;">
+                                <b><a href="{$i}" target="_blank" style="color:#2200c1;">{$ad_top.title[$ov]}</a></b>
+                            </div>
+                            <p style="padding-left:0px;">{$ad_top.descr[$ov]}</p>
+                            <p style="padding-left:0px;"><a href="{$i}" target="_blank" style="color:#0e774a;">{$ad_top.location[$ov]}</a></p>
+                        </div>
+                    </div>
+                </div>
+            {/foreach}
+
+            {if $ad_top.link|@count < 4}
+                {foreach name=_ad2 key=k item=i from=$ad_right.link}
+                {assign var="ov" value=$smarty.foreach._ad2.iteration-1}
+                <div class="box002">
+                    <div class="post-box">
+                        <div class="post-box-bg00" style="min-height: 40px;">
+                            <div class="post-title2" style="margin-left:0px;">
+                                <b><a href="{$i}" target="_blank" style="color:#2200c1;">{$ad_right.title[$ov]}</a></b>
+                            </div>
+                            <p style="padding-left:0px;">{$ad_right.descr[$ov]}</p>
+                            <p style="padding-left:0px;"><a href="{$i}" target="_blank" style="color:#0e774a;">{$ad_right.location[$ov]}</a></p>
+                        </div>
+                    </div>
+                </div>
+                {/foreach}
+            {/if}
+
+        {foreach name=_res key=k item=i from=$results.link}
+        {assign var="ov" value=$smarty.foreach._res.iteration-1}
+        <div class="box002">
+        <div class="post-box">
+            <div class="post-box-bg00" style="min-height: 40px;">
+                <div class="post-title2" style="margin-left:0px;">
+                    <b>
+                        <!--a href="http://google.com{$i}" target="_blank" style="color:#2200c1;">{$results.title[$ov]}</a-->
+                        <a href="{$i}" target="_blank" style="color:#2200c1;">{$results.title[$ov]}</a>
+                    </b>
+                </div>
+                <p style="padding-left:0px;">{$results.descr[$ov]}</p>
+                <!--p style="padding-left:0px;"><a href="http://google.com{$i}" target="_blank" style="color:#0e774a;">{$results.location[$ov]}</a></p-->
+                <p style="padding-left:0px;"><a href="{$i}" target="_blank" style="color:#0e774a;">{$results.location[$ov]}</a></p>
+            </div>
+        </div>
+        </div>
+        {/foreach}
+
+
+    <div style="padding-top:5px; padding-right: 10px;padding-bottom:10px;">
+        {if $pages}
+        <table style="font-size:13px;margin-left:60px;font-weight:bold;">
+        <tr>
+            <td style="width: 50px;">Pages:</td>
+            {if $previos!=-1}
+            <td style="width: 20px;">
+		       <a href="{$siteAdr}base/search/web?q={$q}&page={$previos}"><<</a>
+            </td>
+            {/if}
+            <td>
+                     {assign var="ii" value=0}
+                     {if $page == 0}
+                         <span class="gray">1</span>
+                         <a href="{$siteAdr}base/search/web?q={$q}&page=20">2</a>
+                     {/if}
+                     {foreach name=_res key=k item=i from=$pages}
+                        {if 14 > $ii}
+                            <a href="{$siteAdr}base/search/web?q={$q}&page={$i}">{$i/10+1}</a>
+                            {if $pg == ($i/10+2)}
+                                <span class="gray">{$pg}</span>
+                            {/if}
+                            {assign var="ii" value=$ii+1}
+                        {/if}
+                    {/foreach}
+
+			</td>
+			<td{if $next!=-1} style="width: 25px; padding-left:8px;"{/if}>
+			    {if $next!=-1}<a href="{$siteAdr}base/search/web?q={$q}&page={$next}">>></a>{/if}
+			</td>
+		</tr>
+		</table>
+        {else}
+            <p style="margin-left:20px;">
+                Your search {if $q} - <b>{$q}</b> - {/if} did not match any documents.
+                <br/>
+
+                Suggestions:<br/><br/>
+
+                * Make sure all words are spelled correctly.<br/>
+                * Try different keywords.<br/>
+                * Try more general keywords.<br/>
+
+            </p>
+        {/if}
+	</div>
+
+    
+</div>

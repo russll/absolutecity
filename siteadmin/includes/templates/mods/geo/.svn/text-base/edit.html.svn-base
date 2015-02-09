@@ -1,0 +1,36 @@
+<div class="content">
+	<div id="leftbar">
+	  <h1>{if $id}Edit{else}Add{/if} city</h1>
+
+	</div>
+	<div id="rightbar">
+	  <div class="infobox">
+		<form method="post" action="{$siteAdr}base/geo/edit">
+        {if $id}
+        <input type="hidden" name="id" value="{$id}" />
+        {/if}
+
+		{if $errs}
+            <font color="#990000">
+            {foreach key=k item=i from=$errs}
+             - {$i}<br />
+            {/foreach}
+			</font><br />
+        {/if}
+
+        <p>Name<br /><input class="txt" type="text" name="fm[name]" value="{$fm.name}"  /></p>
+        <p>Country<br />
+             <select name="fm[iso2_cntr]" id="iso2" style="width:200px;">
+                {foreach key=k item=i from=$countries}
+                <option value="{$k}"{if $k==$fm.iso2_cntr} selected="selected"{/if}>{$i}</option>
+                {/foreach}
+            </select>
+        </p>
+        <p>Subdivision (State code or region code, for example "AL" for Alabama)<br />
+            <input class="txt" type="text" name="fm[subdivision]" value="{$fm.subdivision}"  /></p>
+
+
+        <p><input type="button" value="Cancel" onclick="Go('{$siteAdr}base/geo/indexadmin');" /> <input type="submit" value="Save" /></p>
+      </div>
+    </div>
+</div>

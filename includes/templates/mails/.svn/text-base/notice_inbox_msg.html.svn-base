@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>{if $info.user_first_name || $info.user_last_name} {$info.user_first_name} {$info.user_last_name} {else} {$info.user_public_name} {/if} posted a message on your Wall on inZion </title>
+	</head>
+	<body>
+		<br /><br />
+
+		Dear
+			{if $u_rec.gender == 2}
+				Sister
+			{elseif $u_rec.gender == 2}
+				Brother
+			{/if}
+
+			{if $u_rec.first_name || $u_rec.last_name}
+				{$u_rec.first_name} {$u_rec.last_name}
+			{else}
+				{$u_rec.public_name}
+			{/if},
+		<br />
+
+		{if $info.user_first_name || $info.user_last_name}
+			{$info.user_first_name} {$info.user_last_name}
+		{else}
+			{$info.user_public_name}
+		{/if}
+			sent you a message on inZion:
+		<br />
+
+		{if $info.msg}
+			<i>"{$info.msg}"</i><br />
+		{/if}
+        
+		To see your Inbox, please follow the link below or copy and paste the link into your browser:
+
+		<br /><br />
+
+		<a href="{$siteroot}inbox/">{$siteroot}inbox/</a>
+
+		<br /><br />
+
+		Thank you,
+		
+		<br /><br />
+
+		inZion Team
+
+		<br /><br /><br />
+
+        PLEASE DONATE! Even $1 makes a difference! Our service is FREE to our members and we intend to keep it that way. However, we rely on member donations to help us with development and operating costs, and to enable us to improve inZion.com and add new features.  If you would like to make a contribution, please click the link below:
+        <br />
+		<a href="http://inzion.com/donate.html ">http://inzion.com/donate.html</a>
+<br />
+Thank you for your support from all of us at <a href="http://inzion.com/">inZion</a>.
+		<br />
+		<br />
+		<br />
+	</body>
+</html>

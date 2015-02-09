@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/ssergy/InZion/!svn/ver/588/siteadmin/includes/classes/Model/Geografy
+END
+GeoIPCity.dat
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Geografy/GeoIPCity.dat
+END
+geoipcity.inc
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Geografy/geoipcity.inc
+END
+geoipregionvars.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Geografy/geoipregionvars.php
+END
+GeoIP.dat
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Geografy/GeoIP.dat
+END
+geoip.inc
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Geografy/geoip.inc
+END
+Main.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/ssergy/InZion/!svn/ver/588/siteadmin/includes/classes/Model/Geografy/Main.class.php
+END

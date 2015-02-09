@@ -1,0 +1,32 @@
+<script type="text/javascript" src="/j/Classes/Users.js"></script>
+
+<div class="content">
+    <div id="leftbar">
+        <h1 style="font-size: 14px;">{if $id}Edit{else}Add{/if} mission</h1>
+    </div>
+    <div id="rightbar">
+        <div class="infobox">
+            <form method="post" action="{$siteAdr}base/mission/edit/">
+                {if $id}
+                <input type="hidden" name="id" value="{$id}" />
+                {/if}
+
+				{if $errs}
+                <font color="#990000">
+                    {foreach key=k item=i from=$errs}
+                    - {$i}<br />
+                    {/foreach}
+                </font><br />
+                {/if}
+                <p>Title<br /><input class="txt" type="text" name="fm[title]" value="{$fm.title}"  /></p>
+                <p>Location (please use autocomplete <b>only</b>)<br /><input class="txt loc" type="text" name="fm[location]" value="{if $fm.location}{$fm.location}{else}{$fm.city}{if $fm.region}, {$fm.region}{/if}{if $fm.country}, {$fm.country}{/if}{/if}"  /></p>
+                
+                <p><input type="button" value="Отмена" onclick="Go('{$siteAdr}base/ward/{if $fm.cid}?cid={$fm.cid}{/if}');" /> <input type="submit" value="Сохранить" /></p>
+            </form>
+        </div>
+
+    </div>
+</div>
+<script language="javascript">
+oUsers.InitCityComplete('loc');
+</script>

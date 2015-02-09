@@ -1,0 +1,10 @@
+<span class="edit-info" id="interest_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsInterest();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+    {if $ui.interests}
+        {foreach key=k item=i from=$ui.interests}
+        <tr><td width="150"><label>{$i.title}</label></td><td>{$i.story|nl2br|dlong}</td><td style="width:25px;"></td></tr>
+        {/foreach}
+    {else}
+    <tr><td width="150"><label>None</label></td><td>&nbsp;</td></tr>
+    {/if}
+</table>

@@ -1,0 +1,65 @@
+			{if $al_sys}
+				<div id="id_albums_system_list" class="cl_albums_lists">
+					<h2><span></span>System Albums</h2>
+					{foreach item=i from=$al_sys key=ak}
+					{if 'Inbox' != $i.name || ('Inbox' == $i.name && $IS_USER)}
+					<div class="box002">
+						<div class="post-box" style="min-height: 45px">
+							{if ($i.name == 'Wall' && $ui.global.news == 0) || ($i.name == 'Journal' && $ui.global.notes == 0)}
+								<div class="b-awatar"><img src="{$imgDir}no_photo_m66.jpg" alt="" style="width: 66px; height: 66px;"/></div>
+								<div class="post-title2"><b>{$i.name}</b></div>
+								<p>This section is set to private</p>
+							{else}
+								<div class="b-awatar"><a href="{$siteAdr}id{$i.uid}/albums/id{$i.aid}"><img src="{if $i.img.img}{if $i.img.fpath=='link'}{$i.img.img}{else}{$fImgDir}{if 2 == $i.type}{if 'Wall' == $i.name}wall/{elseif 'Journal' == $i.name}journal/{elseif 'Inbox' == $i.name}inbox/{elseif 'Mission' == $i.name}mission/wall/{elseif 'Ward' == $i.name}wards/wall/{/if}{else}albums/{/if}{$i.img.fpath}/m/m_{$i.img.img} {/if}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="" style="width: 66px; height: 66px;"/></a></div>
+								<div class="post-title2"><b><a href="{$siteAdr}id{$i.uid}/albums/id{$i.aid}">{$i.name}</a></b></div>
+								{if $i.descr}<p><b>Description:</b> {$i.descr}</p>{/if}
+							{/if}
+						</div>
+					</div>
+					{/if}
+					{/foreach}
+				</div>
+			{/if}
+			<div id="id_albums_user_list" class="cl_albums_lists">
+				{if $al && $ui.global.photos}
+					<div class="cl_srch_list">
+						<h2>User's Albums</h2>
+						<div id="id_new_alb_list" class="box002"></div>
+						<span id="all_alb_list">
+						{foreach item=i from=$al key=ak}
+							<div id="id_albums_el_1_{$i.aid}" aid="{$i.aid}" class="box002 cl_albums_list" onMouseOver="$('#id_albums_el_1_{$i.aid} .cl_del_link').show();" onMouseOut="$('.cl_albums_list .cl_del_link').hide();">
+								<div class="post-box" style="min-height: 45px">
+									<div class="b-awatar">
+										<a href="{$siteAdr}id{$i.uid}/albums/id{$i.aid}">
+											<img src="{if $i.img.img}{if $i.img.fpath=='link'}{$i.img.img}{else}{$fImgDir}{if 2 == $i.type}{if 'Wall' == $i.name}wall/{elseif 'Journal' == $i.name}journal/{elseif 'Mission' == $i.name}mission/wall/{elseif 'Ward' == $i.name}wards/wall/{/if}{else}albums/{/if}{$i.img.fpath}/m/m_{$i.img.img} {/if}{else}{$imgDir}no_photo_m66.jpg{/if}"
+													alt="" style="width: 66px; height: 66px;" />
+										</a>
+									</div>
+
+									<div class="post-title2 max398">
+										<b><a href="{$siteAdr}id{$i.uid}/albums/id{$i.aid}">{$i.name}</a></b> {if $i.aptype > 0}<small style="color:gray;">(Shared for {$i.aptype_t})</small>{/if}
+									</div>
+									<p><b>Created:</b> {if $i.created} {$i.created} {else} &nbsp; {/if}</p>
+									{if $i.descr}<p><b>Description:</b> {$i.descr}</p>{/if}
+									{if $i.location}<p><b>Location:</b> {$i.location}</p>{/if}
+									{if $i.cnt_img}<p><b>Photos:</b> {$i.cnt_img}</p>{/if}
+									{assign var=asname value=$i.name}
+									{if $IS_USER}<span class="cl_del_link" aid="{$i.aid}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oAlbums.DelAlbum( {$i.aid}, {$i.type} );', 'Please confirm you want to delete album \'{html_str_format str=$asname|truncate:30}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</div>
+							</div>
+						{/foreach}
+						</span>
+					</div>
+				{elseif !$ui.global.photos}
+					<div class="cl_srch_list">
+						<h2><span></span>User's Albums</h2>
+						<div id="id_new_alb_list" class="box002"></div>
+						<div class="box001"><div class="post-box"><center><h3>This section is set to private</h3></center></div></div>
+					</div>
+				{else}
+					<div class="cl_srch_list">
+						<h2><span></span>User's Albums</h2>
+						<div id="id_new_alb_list" class="box002"></div>
+						<div class="box001"><div class="post-box">{if IS_USER}You don't have any albums{else}This member doesn't have any albums{/if}</div></div>
+					</div>
+				{/if}
+			</div>

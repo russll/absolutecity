@@ -1,0 +1,8 @@
+{section name=si loop=$ai}
+<li><a href="{$siteAdr}id{$ai[si].uid}"><img src="{if $ai[si].image}{$fImgDir}users/{$ai[si].fpath}/a/a_{$ai[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+	<div>
+	<p><a href="{$siteAdr}id{$ai[si].uid}">{if $ai[si].first_name || $ai[si].last_name}{$ai[si].first_name} {$ai[si].last_name}{else}{$ai[si].public_name}{/if}</a> {if $ai[si].story}{$ai[si].story|nl2br}{/if}</p>
+	<p><span>{html_tmpl_time val=$ai[si].pdate type=1}</span></p>
+	</div>
+</li>
+{/section}

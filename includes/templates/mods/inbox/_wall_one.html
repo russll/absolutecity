@@ -1,0 +1,35 @@
+
+<div id="id_wall_mes_{$mai.id}">
+    <div class="{if $UserInfo.uid == $mai.uid} message-box {else} message-box {/if}" aid="{$mai.id}">
+        <p><span>{html_tmpl_time val=$mai.pdate type=1} </span></p>
+
+            {if $UserInfo.uid == $mai.uid}
+                <i><img src="{$imgDir}snoska_own.gif" alt=""  /></i>
+            {/if}
+        <!--div class="btext_img"><a href="{$siteAdr}id{$mai.uid}"><img src="{if $mai.image}{$fImgDir}users/{$mai.fpath}/s/s_{$mai.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 42px; height: 42px;"  /></a></div-->
+        <div{if $UserInfo.uid != $mai.uid} class="light"{/if}>
+            <!--i><img src="{$imgDir}snoska.gif" alt=""  /></i-->
+            {if $UserInfo.uid != $mai.uid}
+            <i><img src="{$imgDir}snoska_other.gif" alt=""  /></i>
+            {/if}
+
+	    {if $mai.story} {$mai.story} {/if}
+	    {if 3 == $mai.mtype}
+            <p>&nbsp;<a href="{$mai.l_url}" target="_blank">{if $mai.l_url_label}{$mai.l_url_label}{else}{$mai.l_url}{/if}</a></p>
+	    {elseif 4 == $mai.mtype}
+            <p style="vertical-align: top; margin: none; padding: none;">
+                {if $mai.p_url}<em><a href="{$siteAdr}id{$ui.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id}"><img src="{$mai.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+	        {if $mai.p_path}
+	            {if $mai.p_img_1}<em><a href="{if $mai.p_img_aid && $mai.p_img_1_id}{$siteAdr}id{$ui.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$mai.p_path}/{$mai.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {if $mai.p_img_2}<em><a href="{if $mai.p_img_aid && $mai.p_img_2_id}{$siteAdr}id{$ui.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_2_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$mai.p_path}/{$mai.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {if $mai.p_img_3}<em><a href="{if $mai.p_img_aid && $mai.p_img_3_id}{$siteAdr}id{$ui.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$mai.p_path}/{$mai.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		{/if}
+            </p>
+	    {elseif 5 == $mai.mtype}
+            <p style="" align="left">
+	        {if $mai.v_code}<object width="200" height="150">{$mai.v_code}</object>{/if}
+            </p>
+	    {/if}
+        </div>
+    </div>
+</div>

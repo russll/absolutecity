@@ -1,0 +1,46 @@
+				{if $srch_res.journals}
+					{assign var=journals value=$srch_res.journals}
+					{assign var=cnt_journals value=$cnt_all.journals}
+					
+                                        
+                                        <div btype="Journals" class="cl_srch_list">
+                                        {if !isset($all_res)}
+                                            <!--h2><span>{if $cnt_journals>0}{$cnt_journals}{else}{if 3000 < $srch_res.journals|@count}>3000{elseif 1000 < $srch_res.journals|@count && 3000 > $srch_res.journals|@count}>1000{else}{$srch_res.journals|@count}{/if}{/if}</span>Journals</h2-->
+                                            <h2><span>{if 3000 < $cnt_journals}>3000{elseif 1000 < $cnt_journals && 3000 > $cnt_journals}>1000{else}{$cnt_journals}{/if}</span>Journals</h2>
+					{if 1000 < $cnt_journals}
+						<div class="attention-box">More than {if 3000 < $cnt_journals}3000{elseif 1000 < $cnt_journals && 3000 > $cnt_journals}1000{/if} journals found, you can use filters to refine your search</div>
+					{/if}
+                                        {/if}
+
+					{foreach item=mes from=$journals key=mk}
+					<div class="box002">
+						<div class="post-box">
+							<div class="post-box-bg00" style="min-height: 40px">
+								<div class="b-awatar"><a href="{$siteAdr}id{$mes.uid}"><img src="{if $mes.image}{$fImgDir}users/{$mes.fpath}/s/s_{$mes.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>		
+								<div class="post-title"><a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> {$mes.story|html_substr:500|closetags}{if $mes.story|count_characters > 500}...{/if}</div>
+								<p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                                <p><a href="{$siteAdr}id{$mes.uid}/journal?{$mes.id}">show more</a></p>
+							</div>
+						</div>
+					</div>
+					{/foreach}
+
+                                        {if !isset($all_res)}
+                                        <span id="pagging">
+                                            <div id="id_div_show_more_mes_journals" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+						<a href="javascript: void(0);" class="cl_search_pagging" pname="journals" pcnt=" {$pcnt.journals*$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+                                            </div>
+                                        {$pagging_journals}
+                                        </span>
+                                        {/if}
+
+					</div>
+
+					{if isset($all_res)}
+                                        {if ($pcnt.journals+$data_rcnt) < $cnt_journals}
+					<div id="id_div_show_more_mes_journals" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+						<a href="javascript: void(0);" class="cl_search_pagging_more" pname="journals" pcnt=" {$pcnt.journals+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+					</div>
+					{/if}
+                                        {/if}
+				{/if}

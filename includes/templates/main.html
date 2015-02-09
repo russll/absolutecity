@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>inZion.com</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link href="{$stlDir}styles.css" rel="stylesheet" type="text/css" />
+ 
+        <link href="{$stlDir}check.css" rel="stylesheet" type="text/css" />
+        <link href="{$stlDir}jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+        <link href="{$stlDir}uploadify.css" rel="stylesheet" type="text/css" />
+
+        {if $NO_ROBOTS}
+        <meta name="robots" content="noindex,nofollow"/>
+        {/if}
+        <link href="http://{$DOMEN}/i/favicon.ico" type="image/x-icon" rel="icon" />
+        <link href="http://{$DOMEN}/i/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+
+        <script type="text/javascript" src="/min/?g=jsbasic"></script>
+
+        {*
+        <!--  jQuery Libs  -->
+        <script type="text/javascript" src="{$jsDir}jquery-1.3.2.min.js"></script>
+        <script type="text/javascript" src="{$jsDir}jquery.form.js"></script>
+
+        <script type="text/javascript" src="{$jsDir}jquery.autocomplete.min.js"></script>
+
+        <script type="text/javascript" src="{$jsDir}json.js"></script>
+        <script type="text/javascript" src="{$jsDir}jquery.uploadify.v2.1.0.js"></script>
+        <script type="text/javascript" src="{$jsDir}swfobject.min.js"></script>
+        
+        <script type="text/javascript" src="{$jsDir}jquery.blockui.js"></script>
+	    <script type="text/javascript" src="{$jsDir}jquery.keyfilter-1.7.min.js"></script>
+
+        <!--  Additional Libs  -->
+
+        <script type="text/javascript" src="{$jsDir}niceforms.js"></script>
+
+
+        <script type="text/javascript" src="{$jsDir}jquery.filestyle.js"></script>
+        <script type="text/javascript" src="{$jsDir}ajaxfileupload.js"></script>
+        <script type="text/javascript" src="{$jsDir}jquery.MultiFile.js"></script>
+
+        <script type="text/javascript" src="{$jsDir}jquery.textarea-expander.js"></script>
+        *}
+
+        <!--  System Libs  -->
+        {*
+        <script type="text/javascript" src="{$jsDir}base.js"></script>
+        <script type="text/javascript" src="{$jsClDir}System.js"></script>
+        *}
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oSystem._initInterface();
+            });
+            {/literal}
+        </script>
+
+        <!--  Define the default parameters  -->
+        <script type="text/javascript">
+            var UserID         = '{$UserInfo.uid}';
+            var UserOtherID    = '{$ui.uid}';
+            var siteAdr        = '{$siteAdr}';
+            var imgDir         = '{$imgDir}';
+            var flDir          = '{$flDir}';
+            var siteAdr        = '{$siteAdr}';
+            var jsDir          = '{$jsDir}';
+            var jsClDir        = '{$jsClDir}';
+            var stlDir         = '{$stlDir}';
+            var fImgDir        = '{$fImgDir}';
+            var SSesID         = '{$SSesID}';
+
+            var IS_USER = 0;
+            if (UserOtherID == UserID)
+                IS_USER = 1;
+        </script>
+
+        <!--  User's Libs  -->
+        {*
+        <script type="text/javascript" src="{$jsClDir}Users.js"></script>
+        <script type="text/javascript" src="{$jsClDir}UsersProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}UsersHandlers.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Friends/Friends.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Search.js"></script>
+        *}
+        <!-- Configuration files -->
+	    {config_load file="notify.conf"}
+    </head>
+
+    <body class="{if !$HIDE_RC}bg001{else}bg002{/if}">
+
+	{include file="mods/_popups/_confirmation.html"}
+	{include file="mods/_popups/_warn.html"}
+	{include file="mods/_popups/_temp_warn.html"}
+
+	{if 'search' == $m_page}
+        <!--  Initialization of the SearchBox  -->
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oSearch._initInterface();
+                {/literal}
+                {if $glsrchsubfilt == 'Stake/Wards'}
+                oUsers.InitStakeComplete('ward_name');
+                {/if}
+                {if $glsrchsubfilt == 'Missions'}
+                oUsers.InitMissionComplete('mission_location');
+                {/if}
+                {literal}
+            });
+            {/literal}
+        </script>
+        <!--  Initialization of the SearchBox  -->
+
+	{elseif 'friends_list' == $m_page}
+		{include file="mods/_popups/_confirm_friends.html"}
+		{include file="mods/_popups/_add_friend.html"}
+	{else}
+        <!--  Initialization of the Necasseries for TOP Boxes Libraries  -->
+    	{include file="mods/_popups/_add_friend.html"}
+    	{include file="mods/_popups/_confirm_friends.html"}
+    	{include file="mods/_popups/_upl_avatar.html"}
+        <!--  Initialization of the User's AvatarBox  -->
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oSearch._initListeners();
+                oUsers._initListeners();
+            });
+            {/literal}
+        </script>
+
+
+	{if 'wards_wall' == $m_page}
+
+	    {include file="mods/_popups/_confirm_wards.html"}
+	    {include file="mods/_popups/_upl_wards_avatar.html"}
+	    {include file="mods/_popups/_add_bishopric.html"}
+
+        <!--  Initialization of the Ward's WallBox  -->
+        <script type="text/javascript" src="{$jsClDir}Wards/WardsProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Wards/Wards.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Wards/WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Wards/Wall.js"></script>
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oWWall._initInterface();
+                oWards._initInterface();
+            });
+            {/literal}
+        </script>
+        <!--  Initialization of the Ward's WallBox  -->
+
+	{elseif 'wards_list' == $m_page}
+	    {include file="mods/_popups/_confirm_wards.html"}
+        <script type="text/javascript" src="{$jsClDir}Wards/Wall.js"></script>
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oWWall._initInterface();
+            });
+            {/literal}
+        </script>
+
+	{elseif 'mission_wall' == $m_page}
+
+	    {include file="mods/_popups/_confirm_mission.html"}
+	    {include file="mods/_popups/_upl_mission_avatar.html"}
+	    {include file="mods/_popups/_add_president.html"}
+
+        <!--  Initialization of the Mission's WallBox  -->
+        <script type="text/javascript" src="{$jsClDir}Mission/MissionProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Mission/Mission.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Mission/WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Mission/Wall.js"></script>
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oMWall._initInterface();
+                oMission._initInterface();
+            });
+            {/literal}
+        </script>
+        <!--  Initialization of the Mission's WallBox  -->
+
+	{elseif 'mission_list' == $m_page}
+	    {include file="mods/_popups/_confirm_mission.html"}
+        <!--  Initialization of the Mission's WallBox  -->
+        <script type="text/javascript" src="{$jsClDir}Mission/Wall.js"></script>
+        {literal}
+        <script typ="text/javascript">
+            $(document).ready(function() {
+                oUsers.InitMissionComplete('mission_location');
+                oMWall._initInterface();
+            });
+        </script>
+        {/literal}
+	{elseif 'albums_list' == $m_page || 'albums_photos' == $m_page}
+	    {include file="mods/_popups/_add_album.html"}
+	    {include file="mods/_popups/_confirm_albums.html"}
+	    {include file="mods/_popups/_chng_album.html"}
+
+	    {if 'albums_photos' == $m_page}
+	        {include file="mods/_popups/_upl_photo.html"}
+        {/if}
+        <!--  Initialization of the AlbumsBox  -->
+        <script type="text/javascript" src="{$jsClDir}Albums/WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Albums/Albums.js"></script>
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oAlbums._initInterface();
+            });
+            {/literal}
+        </script>
+
+        <!--  Initialization of the AlbumsPhotoBox  -->
+
+	{elseif 'albums_photo' == $m_page}
+	    {include file="mods/_popups/_confirm_albums.html"}
+	    {include file="mods/_popups/_chng_album.html"}
+        {include file="mods/_popups/_album_photo_new_message.html"}
+        {include file="mods/_popups/_album_photo_share.html"}
+
+        <script type="text/javascript" src="{$jsClDir}Albums/Albums.js"></script>
+
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                var pimg = "{/literal}{$pimg}{literal}";	//previes navigation link of the image
+                var nimg = "{/literal}{$nimg}{literal}";	//next navigation link of the image
+                setTimeout('this.oAlbums._initPInterface( "'+pimg+'", "'+nimg+'" )', 700);
+            });
+            {/literal}
+        </script>
+
+	{elseif 'valbums_list' == $m_page || 'valbums_videos' == $m_page || 'valbums_video' == $m_page}
+			{if 'valbums_list' == $m_page}{include file="mods/_popups/_add_valbum.html"}{/if}
+			{if 'valbums_videos' == $m_page}{include file="mods/_popups/_upl_video.html"}{/if}
+
+			{if 'valbums_video' == $m_page}
+				{include file="mods/_popups/_confirm_valbums.html"}
+				{include file="mods/_popups/_chng_valbum.html"}
+			{/if}
+
+        <!--  Initialization of the AlbumsVideoBox  -->
+        <script type="text/javascript" src="{$jsClDir}Valbums/Valbums.js"></script>
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oValbums._initInterface();
+            });
+            {/literal}
+        </script>
+
+        <!--  Initialization of the AlbumsVideoBox  -->
+
+	{elseif 'journal' == $m_page}
+        <script type="text/javascript" src="/j/jquery.timers.js"></script>
+        <script type="text/javascript" src="/j/jquery.scrollTo.js"></script>
+        <!--  Initialization of the JournalBox  -->
+        <script type="text/javascript" src="{$jsClDir}Journal/WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Journal/Wall.js"></script>
+
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oJournal._initInterface();
+            });
+            {/literal}
+        </script>
+
+	    {include file='mods/system/_init_html_editor.html' he_delay=0 he_type=''+'extended'}
+
+	{elseif 'inbox' == $m_page}
+
+        <!--  Initialization of the JournalBox  -->
+        <script type="text/javascript" src="/j/jquery.timers.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Inbox/WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Inbox/Wall.js"></script>
+
+        <script type="text/javascript">
+            var last_msg_time = {if $inb_last_msg_time}{$inb_last_msg_time}{else}0{/if};
+            {literal}
+            $(document).ready(function() {
+                oIWall._initInterface();
+                oIWall.CheckInboxAjax();
+            });
+            {/literal}
+        </script>
+
+	    {include file='mods/system/_init_html_editor.html' he_delay=0 he_type=''+'extended'}
+
+	{else}
+        <!--  Initialization of the WallBox  -->
+        <script type="text/javascript" src="/min/?g=wallbox"></script>
+        {*
+        <script type="text/javascript" src="/j/jquery.timers.js"></script>
+        <script type="text/javascript" src="{$jsClDir}WallProgress.js"></script>
+        <script type="text/javascript" src="{$jsClDir}Wall.js"></script>
+	    *}
+        {include file="mods/_popups/_add_filter.html"}
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                oWall._initInterface();
+            });
+            {/literal}
+        </script>
+	    {/if}
+
+	{/if}
+
+        <div id="id_eclipse_bckgrnd" style="display: none; background-color: black; width: 100%; min-height: 100%; min-width: 100%; height: 100%; z-index: 1000;" align="center"></div>
+        <div id="id_eclipse_img_bckgrnd" style="display: none; background-color: black; width: 100%; min-height: 100%; min-width: 100%; height: 100%; z-index: 1000;" align="center"><img style="padding-top: 25%;" src="{$imgDir}ico_loader.gif" /></div>
+
+        <div id="id_main_contatiner" class="main-container">
+            <div class="main-box">
+
+                <!-- Header -->
+                <div class="header3">
+	            {include file="_header.html"}
+                </div>
+                <!-- Header -->
+
+                <!-- top box -->
+                {include file="_top.html"}
+                <!-- top box -->
+
+                <div class="content">
+                    <table class="carcass">
+                        <tr>
+		                {if !$HIDE_LC}
+                            <td class="c-left">
+		                  	{include file="_left_column.html"}
+                            </td>
+		                {/if}
+
+                            <td id="id_main_content" class="{if !$HIDE_LC && !$HIDE_RC}c-center{else}c-center2{/if}">
+                                {if !$im_blocked}
+                                {$_content}
+                            {/if}
+                            </td>
+
+                            <td>
+                            </td>
+		                {if !$HIDE_RC}
+                            <td class="c-right">
+			                {include file="_right_column.html"}
+                            </td>
+                                {/if}
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <!-- Footer -->
+            <div id="footer">
+	        {include file="_footer.html"}
+            </div>
+            <!-- Footer -->
+        </div>
+        {include file="mods/_popups/_report.html"}
+        {include file="mods/_popups/_invite.html"}
+        {include file="_ga.html"}
+
+        {if $show_ward}
+        <script type="text/javascript">
+            {literal}
+            $(document).ready(function() {
+                var show = "{/literal}{$show_ward}{literal}";
+                oUsers.SettingsChurchWeek();
+            });
+            {/literal}
+        </script>
+            {include file="mods/_popups/_add_church_info.html"}
+        {/if}
+        <!-- Query: {$gCnt}, Time: {$gTime}  -->
+    </body>
+</html>

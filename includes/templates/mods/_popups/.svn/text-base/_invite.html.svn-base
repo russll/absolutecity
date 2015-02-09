@@ -1,0 +1,32 @@
+{strip}
+<div id="show_invite" class="aj-box04" style="position: fixed; z-index: 3333; top: 25%;">
+    <div class="aj-close"><a href="javascript: void(0);" onclick="$('#show_invite').hide();"><img src="{$imgDir}close_ico.gif"/></a></div>
+    <div class="aj-box02-title">
+        <h2>Invite a friend</h2>
+        
+    </div>
+    <form id="id_frm_inv">
+        <div class="add-mesg-form">
+            <!--p>
+                <label>Your friend's name:</label><br />
+                <input type="text" name="INV[name]" id="id_inv_name" />
+                <span id="inv_name_err" style="color:red;padding-left: 10px;display: none;"></span>
+            </p-->
+            <p>
+                <label>Your friends' email address(es) <i>(separated by commas)</i>:<span style="color:red;"></span></label><br />
+                <!--input type="text" name="INV[email]" id="id_inv_email" /-->
+                <textarea type="text" name="INV[email]" id="id_inv_email" style="width:495px;height:40px;"></textarea>
+                <span id="inv_email_err" style="color:red;padding-left: 10px;display: none;"></span>
+            </p>
+            <p>
+                <label>Message (optional):</label><br />
+                <textarea id="id_inv_descr" name="RP[inv_descr]" style="width:495px;height:70px;"></textarea>
+            </p>
+        </div>
+    </form>
+    <div class="aj-button">
+        <span class="aj-button01"><a href="javascript: void(0);" onclick="$('#show_invite').hide();">Cancel</a></span>
+        <span class="aj-button02"><a href="javascript: void(0);" onclick="oUsers.InviteSubm();">Send</a></span>
+    </div>
+</div>
+{/strip}

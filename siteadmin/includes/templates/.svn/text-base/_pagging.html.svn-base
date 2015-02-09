@@ -1,0 +1,11 @@
+<div class="pathwhay">
+{if $lprev}<a href="{$lprev}" style="color: #004A79; text-decoration: none;">&larr;</a>{else}&larr;{/if}
+{section name=i loop=$pages}
+{if $page == $pages[i].page}
+    {if !$smarty.section.i.first}{/if}<span style="font-weight: bold;">{$pages[i].page}</span>
+{else}	
+    {if !$smarty.section.i.first}{/if}<a href="{$pages[i].link}" style="color: #004A79;">{$pages[i].page}</a>
+{/if} 
+{/section}
+{if $lnext}<a href="{$lnext}" style="color: #004A79; text-decoration: none;">&rarr;</a>{else}&rarr;{/if}
+</div>

@@ -1,0 +1,45 @@
+<div class="content">
+	<div id="leftbar">
+	  <h1>&nbsp;</h1>
+	</div>
+    
+	<div id="rightbar">
+        <div style="padding-bottom:10px;">
+            Search users: <input type="text" id="str" name="str" value="{$str}" />
+            <input type="button" value="Search" onclick="Go('{$siteAdr}security/users/indexadmin?str='+$('#str').val());" />
+            {if $str}<a href="{$siteAdr}security/users/indexadmin">Clear</a>{/if}
+        </div>
+        <div style="padding-bottom:10px;padding-left:130px;">
+            Search users IP addresses: <input type="text" id="ipstr" name="str" value="{$ip_str}" />
+            <input type="button" value="Search" onclick="Go('{$siteAdr}security/users/indexadmin?ipstr='+$('#ipstr').val());" />
+            {if $ip_str}<a href="{$siteAdr}security/users/indexadmin">Clear</a>{/if}
+        </div>
+
+		<table class="table01">
+            <tr>
+                <th style="width:30px;">ID</th>
+				<th style="width:120px;">Email</th>
+				<th style="width:120px;">Name</th>
+				<th style="width:120px;">IP address</th>
+				<th style="width:40px;">Status</th>
+				<th></th>
+				<th style="width:200px;text-align:center; font-weight: normal;">Actions</th>
+			</tr>
+			{foreach key=k item=i from=$pl}
+			<tr class="td01">
+			 	<td class="green-txt">{$i.uid}</td>
+                                <td class="green-txt"><p><a href="mailto:{$i.email}" style="color:#230022;font-size:11px;">{$i.email|truncate:20}</a></p></td>
+				<td class="green-txt">{$i.first_name} {$i.last_name}</td>
+				<td class="green-txt">{$i.last_ip}</td>
+				<td class="green-txt">{if $i.is_deleted}<font color="red">Deleted</font>{elseif $i.rchecksum}<font color="blue">Not active</font>{else}Active{/if}</td>
+				<td class="green-txt">{if $i.login != 'admin'}{if $i.active}<a href="{$siteAdr}security/users/active/?uid={$i.uid}">Active</a>{else}<a href="{$siteAdr}security/users/active/?uid={$i.uid}" style="color: red;">Not active</a>{/if}{else}<b>Active</b>{/if}</td>
+                                <td style="text-align:center"><a href="/id{$i.uid}" style="color: #004A79;" target="_blank">Show</a>{if $i.uid != 1 && !$i.is_deleted}|<a href="javascript: CGo('{$siteAdr}security/users/del/?uid={$i.uid}', 'Do yo want to delete this user?');" style="color: #004A79;">Delete</a>{/if}| {if $i.uid != 1 && !$i.is_deleted}|<a {if $i.ip_block}href="javascript: CGo('{$siteAdr}security/users/block/?uid={$i.uid}', 'Do yo want to unblock this user?');"{else}href="javascript: CGo('{$siteAdr}security/users/block/?uid={$i.uid}', 'Do yo want to block this user?');"{/if} style="color: #004A79;">{if $i.ip_block}Unblock{else}Block{/if}</a>{/if}|<a href="javascript: CGo('{$siteAdr}security/users/loginas/?uid={$i.uid}', 'Выполнить вход под пользователем? При этом вы выйдете из админки?');">Enter</a>
+                                </td>
+			</tr>
+            {/foreach}
+			
+		</table>
+		{$pagging}
+		
+	</div>
+</div>

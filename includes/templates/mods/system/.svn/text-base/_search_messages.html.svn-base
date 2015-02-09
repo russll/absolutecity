@@ -1,0 +1,44 @@
+				{if $srch_res.messages}
+					{assign var=messages value=$srch_res.messages}
+					{assign var=cnt_messages value=$cnt_all.messages}
+
+                                        <div btype="Messages" class="cl_srch_list">
+                                        {if !isset($all_res)}
+					<h2><span>{if 3000 < $cnt_messages}>3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}>1000{else}{$cnt_messages}{/if}</span>Messages</h2>
+					{if 1000 < $cnt_messages}
+						<div class="attention-box">More than {if 3000 < $cnt_messages}3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}1000{/if} messages found, you can use filters to refine your search</div>
+					{/if}
+                                        {/if}
+
+					{foreach item=mes from=$messages key=mk}
+					<div class="box002">
+						<div class="post-box">
+							<div class="post-box-bg00" style="min-height: 40px">
+								<div class="b-awatar"><a href="{$siteAdr}id{$mes.uid}"><img src="{if $mes.image}{$fImgDir}users/{$mes.fpath}/s/s_{$mes.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>		
+								<div class="post-title"><a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> {$mes.story|nl2br}</div>
+								<p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                                <p><a href="{$siteAdr}id{$mes.uid}?{$mes.id}">show more</a></p>
+							</div>
+						</div>
+					</div>
+					{/foreach}
+
+                                         {if !isset($all_res)}
+                                        <span id="pagging">
+                                            <div id="id_div_show_more_mes_messages" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+						<a href="javascript: void(0);" class="cl_search_pagging" pname="messages" pcnt=" {$pcnt.messages*$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+                                            </div>
+                                        {$pagging_messages}
+                                        </span>
+                                        {/if}
+                                        
+					</div>
+
+                                        {if isset($all_res)}
+					{if ($pcnt.messages+$data_rcnt) < $cnt_messages}
+					<div id="id_div_show_more_mes_messages" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+						<a href="javascript: void(0);" class="cl_search_pagging_more" pname="messages" pcnt=" {$pcnt.messages+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+					</div>
+					{/if}
+                                        {/if}
+				{/if}

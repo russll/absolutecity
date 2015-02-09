@@ -1,0 +1,30 @@
+<script type="text/javascript" src="{$jsDir}adLibs/HtmlEditor/jHtmlArea-0.7.0.js"></script>
+<script type="text/javascript" src="{$jsDir}adLibs/HtmlEditor/jHtmlArea.ColorPickerMenu-0.7.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="{$stlDir}adLibs/HtmlEditor/jHtmlArea.css" />
+<link rel="stylesheet" type="text/css" href="{$stlDir}adLibs/HtmlEditor/jquery-ui-1.7.2.custom.css" />
+<link rel="stylesheet" type="text/css" href="{$stlDir}adLibs/HtmlEditor/he_header.css" />
+<link rel="Stylesheet" type="text/css" href="{$stlDir}adLibs/HtmlEditor/he_cp.css" />
+
+<script type="text/javascript">
+    var m_page = '{$m_page}';
+{literal}
+var he = new Object();
+	he.delay   = {/literal}{if $he_delay}{$he_delay}{else}0{/if}{literal};
+	he.type    = {/literal}{$he_type}{literal};
+	he.ad_coef = {/literal}{if $he_ad_coef}{$he_ad_coef}{else}''{/if}{literal};
+
+$(document).ready(function() {
+	if (setTimeout( 'oSystem.SetHE( \'' + he + '\', \'' + m_page + '\' )', he.delay ))
+        {
+{/literal}
+            {if 'inbox' == $m_page}
+            setTimeout( 'oIWall._initInterface()', 300 );
+            {else}
+            setTimeout( 'oJournal._initInterface()', 300 );
+            {/if}
+{literal}
+        }
+		
+});
+{/literal}
+</script>

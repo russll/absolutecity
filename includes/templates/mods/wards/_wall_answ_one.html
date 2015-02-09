@@ -1,0 +1,6 @@
+<li><a href="{$siteAdr}id{$ai.uid}"><img src="{if $ai.image}{$fImgDir}users/{$ai.fpath}/s/s_{$ai.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+	<div>
+	<p><a href="{$siteAdr}id{$ai.uid}">{if $ai.first_name || $ai.last_name}{$ai.first_name} {$ai.last_name}{else}{$ai.public_name}{/if}</a> {if $ai.story}{$ai.story|nl2br}{/if}</p>
+	<p><span>{html_tmpl_time val=$ai.pdate type=1}</span></p>
+	</div>
+</li>

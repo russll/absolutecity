@@ -1,0 +1,48 @@
+##AddType application/zip .sql .txt 
+AddDefaultCharset UTF-8
+
+php_flag magic_quotes_gpc off
+php_flag magic_quotes_runtime off
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteBase /
+RewriteCond %{REQUEST_URI} !(includes|files|templates|\.php|\.js|\.swf|\.html)/?
+RewriteRule ^i/(.+\.(gif|png|jpg))$ includes/templates/images/$1 [L]
+RewriteRule ^f/(.+\.(jpg))$ files/images/$1 [L]
+RewriteRule ^j/(.+\.[a-z]+)$        includes/templates/js/$1     [L]
+RewriteRule ^fl/(.+\.(swf|as|fla))$ 	includes/templates/flash/$1 [L]
+RewriteRule ^s/(.+\.(css|stl|htc))$     includes/templates/css/$1 [L]
+RewriteRule ^tmpl/(.+)$ includes/templates/$1     [L,NC]
+
+RewriteRule ^id([0-9]+)/friends/([a-z0-9]+)/?$      index.php?type=base&mod=friends&uid=$1&what=$2&%{QUERY_STRING} [L,NC]
+RewriteRule ^id([0-9]+)/friends/?$            		 index.php?type=base&mod=friends&uid=$1&what=getlist&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^id([0-9]+)/wall/([a-z0-9]+)/?$      index.php?type=profile&mod=wall&uid=$1&what=$2&%{QUERY_STRING} [L,NC]
+RewriteRule ^id([0-9]+)/wall/?$            		 index.php?type=profile&mod=wall&uid=$1&what=getedit&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^id([0-9]+)/?$            			 index.php?type=profile&mod=wall&uid=$1&what=getedit&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^wards/id([0-9]+)/wall/([a-z0-9]+)/?$      index.php?type=wards&mod=wall&id=$1&what=$2&%{QUERY_STRING} [L,NC]
+RewriteRule ^wards/id([0-9]+)/wall/?$            		 index.php?type=wards&mod=wall&id=$1&what=getedit&%{QUERY_STRING} [L,NC]
+RewriteRule ^wards/id([0-9]+)/?$            			 index.php?type=wards&mod=wall&id=$1&what=getedit&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^wards/([a-z0-9]+)?$             index.php?type=base&mod=ward&what=$1&%{QUERY_STRING} [L,NC]
+RewriteRule ^wards/?$            			 index.php?type=base&mod=ward&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^mission/id([0-9]+)/wall/([a-z0-9]+)/?$      index.php?type=mission&mod=wall&id=$1&what=$2&%{QUERY_STRING} [L,NC]
+RewriteRule ^mission/id([0-9]+)/wall/?$            		 index.php?type=mission&mod=wall&id=$1&what=getedit&%{QUERY_STRING} [L,NC]
+RewriteRule ^mission/id([0-9]+)/?$            			 index.php?type=mission&mod=wall&id=$1&what=getedit&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^mission/([a-z0-9]+)?$             index.php?type=base&mod=mission&what=$1&%{QUERY_STRING} [L,NC]
+RewriteRule ^mission/?$            			   index.php?type=base&mod=mission&%{QUERY_STRING} [L,NC]
+
+RewriteRule ^id([0-9]+)/([a-z0-9]+)/?$ index.php?type=security&mod=users&uid=$1&what=$2&%{QUERY_STRING} [L,NC,QSA]
+RewriteRule ^id([0-9]+)(.*)$ index.php?type=security&mod=users&what=profile&uid=$1&%{QUERY_STRING} [L,NC]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php
+
+php_value upload_max_filesize    48M
+php_value memory_limit           48M

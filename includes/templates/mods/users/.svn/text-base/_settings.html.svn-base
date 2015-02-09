@@ -1,0 +1,76 @@
+    <script type="text/javascript" src="/j/jquery.scrollTo.js"></script>
+    <script language="javascript">
+    {if $ed_basic}
+    {literal}
+    $(document).ready(function() {
+        oUsers.SettingsBasic();
+        jQuery.scrollTo('#basic_info', 100);
+    });
+    {/literal}
+    {/if}
+    {if $ed_contact}
+    {literal}
+    $(document).ready(function() {
+        oUsers.SettingsContacts();
+        jQuery.scrollTo('#contacts_info', 100);
+    });
+    {/literal}
+    {/if}
+    {if $ed_inerest}
+    {literal}
+    $(document).ready(function() {
+        oUsers.SettingsInterest();
+        jQuery.scrollTo('#interest_info', 100);
+    });
+    {/literal}
+    {/if}
+    {if $ed_work}
+    {literal}
+    $(document).ready(function() {
+        oUsers.SettingsEdu();
+        jQuery.scrollTo('#edu_info', 100);
+    });
+    {/literal}
+    {/if}
+    {if $ed_mission}
+    {literal}
+    $(document).ready(function() {
+        oUsers.SettingsChurch();
+        jQuery.scrollTo('#church_info', 100);
+    });
+    {/literal}
+    {/if}
+    </script>
+<h2>My Info</h2>
+
+<div class="my-info-box">
+    <h4>Basic information</h4>
+    <div id="basic_info" class="hb_box" onmouseover="$('#basic_edit').css('display', 'block');" onmouseout="$('#basic_edit').css('display', 'none');">
+		{if $basic_denied}<center><h3>This section is set to private</h3></center>{else}{include file="mods/users/ajax/_show_basic.html"}{/if}
+    </div>
+
+
+    <h4>Contact information</h4>
+    <div id="contacts_info" class="hb_box" onmouseover="$('#contacts_edit').css('display', 'block');" onmouseout="$('#contacts_edit').css('display', 'none');">
+    {if $contact_denied}<center><h3>This section is set to private</h3></center>{else}{include file="mods/users/ajax/_show_contacts.html"}{/if}
+    </div>
+
+
+    <h4>Church-related information</h4>
+    <div id="church_info" class="hb_box" onmouseover="$('#church_edit').css('display', 'block');" onmouseout="$('#church_edit').css('display', 'none');">
+    {include file="mods/users/ajax/_show_church.html"}
+    </div>
+
+
+    <h4>Interests information</h4>
+    <div id="interest_info" class="hb_box" onmouseover="$('#interest_edit').css('display', 'block');" onmouseout="$('#interest_edit').css('display', 'none');">
+    {if $pinfo_denied}<center><h3>This section is set to private</h3></center>{else}{include file="mods/users/ajax/_show_interest.html"}{/if}
+    </div>
+
+    <h4>Education/Work information</h4>
+    <div id="edu_info" class="hb_box" onmouseover="$('#edu_edit').css('display', 'block');" onmouseout="$('#edu_edit').css('display', 'none');">
+    {if $edu_denied}<center><h3>This section is set to private</h3></center>{else}{include file="mods/users/ajax/_show_edu.html"}{/if}
+    </div>
+	
+</div>
+

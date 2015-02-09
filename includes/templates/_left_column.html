@@ -1,0 +1,1015 @@
+{if 'search' == $m_page && !$web_search}
+<!--  SearchFilters LeftColumn  -->
+{strip}
+<div id="id_srch_filts" style="display: block; visibility: hidden;">
+    <h2>Filters</h2>
+    <div class="filter-box">
+        <h3 class="cl_srch_ftype_h3" ftype="Email"><span><a class="cl_srch_ftype" ftype="Email" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Email\']').click();">Email</a></h3>
+        <div ftype="Email" class="drop-filter">
+            <table>
+                <tr><td><input name="email" type="text" value="Email address" onclick="this.value='';" /></td></tr>
+                <tr><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+            </table>
+        </div>
+
+        <h3 class="cl_srch_ftype_h3" ftype="Name"><span><a class="cl_srch_ftype" ftype="Name" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Name\']').click();">Name</a></h3>
+        <div ftype="Name" class="drop-filter">
+            <table>
+                <tr><td><input name="first_name" type="text" value="First/Middle name" onclick="this.value='';" /></td></tr>
+                <tr><td><input name="last_name" type="text" value="Last name" onclick="this.value='';" /></td></tr>
+                <tr><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+            </table>
+        </div>
+
+        <h3 class="cl_srch_ftype_h3" ftype="Gender"><span><a class="cl_srch_ftype" ftype="Gender" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Gender\']').click();">Gender</a></h3>
+        <div ftype="Gender" class="drop-filter">
+            <table>
+                <tr>
+                    <td>
+                        <span class="niceform"><select name="gender" size="1" style="width:149px">
+                                <option value="0" selected="1">Select gender</option>
+                                <option value="1">Male</option>
+                                <option value="2">Female</option>
+                            </select></span>
+                    </td>
+                </tr>
+                <tr><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+            </table>
+        </div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Age"><span><a class="cl_srch_ftype" ftype="Age" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Age\']').click();">Age</a></h3>
+<div ftype="Age" class="drop-filter">
+	<table>
+		<tr>
+			<td>
+				<span class="niceform">
+					<select name="age_from" size="1" style="width:63px">
+						<option value="">From</option>
+						{section name=i loop=100 start=15}
+						<option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
+						{/section}
+					</select>
+				</span>
+			</td>
+			<td>&nbsp;&mdash;</td>
+			<td>
+				<span class="niceform">
+					<select name="age_to" size="1" style="width:63px">
+						<option value="" selected="selected">To</option>
+						{section name=i loop=85 start=15}
+						<option value="{$smarty.section.i.index+1}">{$smarty.section.i.index+1}</option>
+						{/section}
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr><td colspan="3"><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+	</table>
+</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Phone number"><span><a class="cl_srch_ftype" ftype="Phone number" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Phone number\']').click();">Phone number</a></h3>
+<div ftype="Phone number"class="drop-filter">
+	<table>
+		<tr><td><input type="text" name="mob_phone" value="Enter phone number" onclick="this.value='';" /></td></tr>
+		<tr><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+	</table>
+</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Singles"><span><a class="cl_srch_ftype" ftype="Singles" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Singles\']').click();">Singles</a></h3>
+<div ftype="Singles" class="drop-filter">
+    <table>
+		<tr>
+			<td colspan="2">
+				<span class="niceform">
+					<select name="rel_status" size="1" style="width:149px">
+						<!--<option value="">Select status</option>-->
+	                    {foreach key=k item=i from=$rel_statuses}
+	                    <option value="{$k}"{if $k==$fm.rel_status} selected="selected"{/if}>{$i}</option>
+	                    {/foreach}
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td></td><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+		</tr>
+	</table>
+</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="School"><span><a class="cl_srch_ftype" ftype="School" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'School\']').click();">School</a></h3>
+<div ftype="School" class="drop-filter">
+	<table>
+		<tr>
+			<td colspan="2">
+				<span class="niceform">
+					<select name="school_type" size="1" style="width:149px">
+						<option value="">Select school type</option>
+						<option value="hight">High school</option>
+						<option value="college">College</option>
+						<option value="university">University</option>
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr><td colspan="2" style="padding-top:10px"><input name="school_name" type="text" value="Enter school name" onclick="this.value='';" /></td></tr>
+		<tr><td colspan="2"><label style="padding-top:5px">Year (from)</label></td></tr>
+		<tr>
+			<td>
+				<span class="niceform">
+					<select name="school_from_month" size="1">
+						<option value="">Month</option>
+						{foreach key=k item=i from=$mm}
+						<option value="{$k}">{$i}</option>
+						{/foreach}
+					</select>
+				</span>
+			</td>
+			<td>
+				<span class="niceform">
+					<select name="school_from_year" size="1">
+						<option value="">Year</option>
+						{section name=i loop=$yy}
+							<option value="{$smarty.section.i.index+1}">{$yy[i]}</option>
+						{/section}
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr><td colspan="2"><label>to</label></td></tr>
+		<tr>
+			<td>
+				<span class="niceform">
+					<select name="school_to_month" size="1">
+						<option value="">Month</option>
+						{foreach key=k item=i from=$mm}
+						<option value="{$k}">{$i}</option>
+						{/foreach}
+					</select>
+				</span>
+			</td>
+			<td>
+				<span class="niceform">
+					<select name="school_to_year" size="1">
+						<option value="">Year</option>
+						{section name=i loop=$yy}
+							<option value="{$smarty.section.i.index+1}">{$yy[i]}</option>
+						{/section}
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr>
+			<td></td><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+		</tr>
+	</table>
+</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Location"><span><a class="cl_srch_ftype" ftype="Location" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Location\']').click();">Location</a></h3>
+<div ftype="Location" class="drop-filter">
+	<table>
+		<tr><td><input name="location_city" type="text" value="Enter city" onclick="this.value='';" /></td></tr>
+		<tr>
+			<td style="padding-top:10px">
+				<span class="niceform">
+					<select name="location_country" size="1" style="width:149px">
+						<option value="">Select country</option>
+						{foreach key=k item=i from=$countries}
+			                <option value="{$k}"{if $k==$fm.country} selected="selected"{/if}>{$i}</option>
+			            {/foreach}
+					</select>
+				</span>
+				{*<p><a href="#">Use my current location</a></p>*}
+			</td>
+		</tr>
+		<tr><td style="padding-top:10px"><input name="location_street" type="text" value="Enter street" onclick="this.value='';" /></td></tr>
+		<tr><td style="padding-top:10px"><input name="location_zip" type="text" value="Zip code" onclick="this.value='';" /></td></tr>
+		<tr>
+			<td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+		</tr>
+	</table>
+</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Stake"><span><a class="cl_srch_ftype" ftype="Stake" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Stake\']').click();">Stake/ward</a></h3>
+<div ftype="Stake" class="drop-filter">
+	<table>
+		<tr>
+			<td>
+				<span class="niceform">
+					<select name="ward_type" id="ward_type" size="1" style="width:149px">
+						<option value="">Select type</option>
+						<option value="1">Stake</option>
+						<option value="2">Ward</option>
+					</select>
+				</span>
+			</td>
+		</tr>
+		<tr><td style="padding-top:10px"><input name="ward_name" class="ward_name" type="text" value="Enter stake/ward name" onclick="this.value='';" /></td></tr>
+		<tr>
+			<td><div class="but-filter"><span><a class="cl_filt_btn2" style="cursor: pointer;">Filter</a></span></div></td>
+		</tr>
+	</table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h3 class="cl_srch_ftype_h3" ftype="ByMission">
+	<span>
+		<a class="cl_srch_ftype" ftype="ByMission" style="cursor: pointer;">
+			<img src="{$imgDir}arr05.gif" alt="" />
+		</a>
+	</span>
+	
+	<a href="javascript: void(0);" onclick="$('a[ftype=\'ByMission\']').click();">By Mission</a></h3>
+<div ftype="ByMission" class="drop-filter">
+	<table>
+		<tr><td colspan="2"><label>Location</label></td></tr>
+		<tr>
+			<td colspan="2">
+				<input name="people_mission_location" class="mission_location" type="text" value="Enter location here" onclick="this.value='';" />
+				<small style="color:gray;">Use values from the autocomplete list</small>
+			</td>
+		</tr>
+		<tr>
+			<td></td><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+		</tr>
+		</table>
+	</div>
+
+
+
+		<h3 class="cl_srch_ftype_h3" ftype="ByWard">
+			<span>
+				<a class="cl_srch_ftype" ftype="ByWard"  style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a>
+			</span>
+			<a href="javascript: void(0);" onclick="$('a[ftype=\'ByWard\']').click();">By Ward</a>
+		</h3>
+		<div ftype="ByWard" class="drop-filter">
+			<table>
+				
+				<tr><td style="padding-top:10px"><input class="people_ward_name" name="people_ward_name" type="text" value="Enter ward name" onclick="this.value='';" /></td></tr>
+				<tr><td style="padding-top:10px"><input class="people_stake_name" name="people_stake_name" type="text" value="Enter stake name" onclick="this.value='';" /></td></tr>
+
+				<tr>
+					<td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+				</tr>
+			</table>
+		</div>
+
+
+
+
+<h3 class="cl_srch_ftype_h3" ftype="Mission"><span><a class="cl_srch_ftype" ftype="Mission" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Mission\']').click();">Mission</a></h3>
+<div ftype="Mission" class="drop-filter">
+	<table>
+		<tr><td colspan="2"><label>Mission location</label></td></tr>
+		<tr><td colspan="2"><input name="mission_location" class="mission_location" type="text" value="Enter location here" onclick="this.value='';" /></td></tr>
+			<tr><td colspan="2"><label style="padding-top:5px">Year (from)</label></td></tr>
+			<tr>
+				<td>
+					<span class="niceform">
+						<select name="mission_from_month" size="1">
+						<option value="">Month</option>
+						{foreach key=k item=i from=$mm}
+						<option value="{$k}">{$i}</option>
+						{/foreach}
+					</select>
+					</span>
+				</td>
+				<td>
+					<span class="niceform">
+						<select name="mission_from_year" size="1">
+							<option value="">Year</option>
+							{section name=i loop=$yy}
+								{* <option value="{$smarty.section.i.index+1}">{$yy[i]}</option> *}
+								<option value="{$yy[i]}">{$yy[i]}</option>
+							{/section}
+						</select>
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2"><label>to</label></td></tr>
+			<tr>
+				<td>
+					<span class="niceform">
+						<select name="mission_to_month" size="1">
+						<option value="">Month</option>
+						{foreach key=k item=i from=$mm}
+						<option value="{$k}">{$i}</option>
+						{/foreach}
+					</select>
+					</span>
+				</td>
+				<td>
+					<span class="niceform">
+						<select name="mission_to_year" size="1">
+							<option value="">Year</option>
+							{section name=i loop=$yy}
+								{* <option value="{$smarty.section.i.index+1}">{$yy[i]}</option> *}
+								<option value="{$yy[i]}">{$yy[i]}</option>
+							{/section}
+						</select>
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td></td><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+			</tr>
+		</table>
+	</div>
+
+<h3 class="cl_srch_ftype_h3" ftype="Mission2">
+	<span><a class="cl_srch_ftype" ftype="Mission2" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span>
+	<a href="javascript: void(0);" onclick="$('a[ftype=\'Mission2\']').click();">Filter location</a>
+</h3>
+<div ftype="Mission2" class="drop-filter">
+	<table>
+		<tr><td colspan="2"><label>Mission location</label></td></tr>
+		<tr><td colspan="2"><input name="mission_location" class="mission_location" type="text" value="Enter location here" onclick="this.value='';" /></td></tr>
+		<tr><td></td><td><div class="but-filter"><span><a class="cl_filt_btn2" style="cursor: pointer;">Filter</a></span></div></td></tr>
+	</table>
+	<p style="text-align: center;">Looking for a mission? <br/> Try <a style="font-weight: bold;" href="{$siteAdr}id{$ui.uid}/mission">here</a></p>
+</div>
+
+	<h3 class="cl_srch_ftype_h3" ftype="Interests">
+		<span>
+			<a class="cl_srch_ftype" ftype="Interests" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a>
+		</span>
+		
+		<a href="javascript: void(0);" onclick="$('a[ftype=\'Interests\']').click();">Interests</a>
+	</h3>
+	<div ftype="Interests" class="drop-filter">
+		<table>
+			<tr><td><input name="interests" type="text" value="Enter interest" onclick="this.value='';" /></td></tr>
+			<tr><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td></tr>
+		</table>
+	</div>
+
+</div>
+</div>
+{/strip}
+{elseif 'search' == $m_page && $web_search}
+{*
+<div style="margin-top:10px;">
+    <script type="text/javascript"><!--
+    google_ad_client = "ca-pub-1823921138820137";
+    /* inZion Banner */
+    google_ad_slot = "7585652734";
+    google_ad_width = 160;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>
+*}
+<!--  SearchFilters LeftColumn  -->
+
+{elseif 'wards_wall' == $m_page}
+{strip}
+<!--  Ward's Messages LeftColumn  -->
+<h2 class="lowprof">{$ward_i.title}{if $ward_i.ward_title},<br> {$ward_i.ward_title} {/if}</h2>
+<ul class="list01">
+	{if !$ward_i.im_member}<li><a href="javascript: void(0);" onclick="oWWall.SHConfirmPopup( 1, 'id_confirm_wards_popup', '{$ward_i.id}' );">Set as my ward</a></li>{/if}
+	<li>{if !$wwhatch}<a id="id_wards_whatch" href="javascript: void(0);" onclick="oWards.EditWhatching( 1, '{$ward_i.id}' ) ;">Watch this ward</a>{else}<a id="id_wards_whatch" href="javascript: void(0);" onclick="oWards.EditWhatching( 2, '{$ward_i.id}' ) ;">Unwatch this ward</a>{/if}</li>
+	<li><a href="{$siteAdr}wards/list">Choose other ward</a></li>
+	{* <li><a href="#">Report incorrect info</a></li> *}
+</ul>
+
+{if $ar_whatching}
+<h2>{if 5 < $cnt_whatching}<span><a href="{$siteAdr}wards/whatch">View all</a></span>{/if}Watching</h2>
+<ul class="list01">
+	{foreach name=n key=k item=i from=$ar_whatching}
+    {if $smarty.foreach.n.index < 5}
+	<li>
+		<a href="{$siteAdr}wards/id{$i.wid}">{$i.ward_title}</a>
+	</li>
+    {/if}
+	{/foreach}
+</ul>
+{/if}
+
+<h2>Information</h2>
+<ul class="list01">
+	<li>
+	{if $ward_i.country || $ward_i.city}
+	    <span style="color: gray; font-size: 12px;">Location</span>
+		<p>{$ward_i.city}, {if $ward_i.region}{$ward_i.region},{/if} {$ward_i.country}</p>
+	{else}
+	    There isn't any info
+	{/if}
+	</li>
+</ul>
+
+
+{if $ward_i.my_ward || $CAN_EDIT || ( $ward_i.bishopric.first_name || $ward_i.bishopric.last_name )}
+<br /><br />
+<h2>Bishopric</h2>
+<ul class="list01">
+	{if $ward_i.bishopric.first_name || $ward_i.bishopric.last_name}
+	<li>
+		<table>
+			<tr>
+				<td style="width: 25%;">
+					<span style="color: gray;">Bishop</span>
+				</td>
+				<td style="width: 5%;">&nbsp</td>
+				<td>&nbsp</td>
+			</tr>
+			<tr>
+				<td align="center" style="{if $ward_i.bishopric.p_img} width:25%; {else} width:0px; {/if}">
+					{assign var=prfname value=$ward_i.bishopric.first_name|cat:" "|cat:$ward_i.bishopric.last_name}
+					<img src="{if $ward_i.bishopric.p_img} {$fImgDir}wards/info/bishopric/{$ward_i.bishopric.p_img} {else} {$imgDir}no_photo_m42.jpg {/if}" style="max-width: 42px; max-height: 42px;" title="{$prfname}" alt="{$prfname}" />
+				</td>
+				<td style="width: 5%;">&nbsp</td>
+				<td>
+					<table class="pres_table">
+						<tr>
+							<td>
+								<span>{$prfname}</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>{$ward_i.bishopric.phone}</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>{$ward_i.bishopric.email}</span>
+							</td>
+						</tr>
+					</table>
+				</td>				
+			</tr>
+		</table>
+	</li>
+	{/if}
+	
+	{section name=j loop=$ar_addi}
+	
+		{assign var=str_first_name value=$ar_addi[j]|cat:"_first_name"}
+		{assign var=str_last_name value=$ar_addi[j]|cat:"_last_name"}
+		{assign var=str_phone value=$ar_addi[j]|cat:"_phone"}
+		{assign var=str_email value=$ar_addi[j]|cat:"_email"}
+		
+		{if $ward_i.bishopric.$str_first_name || $ward_i.bishopric.$str_last_name}
+		{assign var=prfname value=$ward_i.bishopric.$str_first_name|cat:" "|cat:$ward_i.bishopric.$str_last_name}
+		<li>
+			<table>
+				
+				<tr>
+					<td style="width: 25%;">
+						<span style="color: gray;">{if 'cp' == $ar_addi[j]}Contact Person{elseif 'fc' == $ar_addi[j]}First Counselor{elseif 'sc' == $ar_addi[j]}Second Counselor{elseif 'es' == $ar_addi[j]}Ward Executive Secretary{elseif 'wc' == $ar_addi[j]}Ward Clerk{/if}</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{$prfname}</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{$ward_i.bishopric.$str_phone}</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span>{$ward_i.bishopric.$str_email}</span>
+					</td>
+				</tr>
+				
+			</table>
+		</li>
+		{/if}
+		
+	{/section}
+	
+	{if $CAN_EDIT && $IS_USER && ($ward_i.my_ward || $ward_i.my_stake)}<li><a href="javascript: void(0);" onclick="oWards.SHBishopricPopup( 1, 'id_add_bishopric_popup' );">{if $ward_i.bishopric.first_name || $ward_i.bishopric.last_name} Edit bishopric info {else} Suggest bishopric info{/if}</a></li>{/if}
+</ul>
+{/if}
+{/strip}
+<!--  Ward's Messages LeftColumn  -->
+
+{elseif 'wards_list' == $m_page}
+{strip}
+<!--  Ward's List LeftColumn  -->
+<div id="id_srch_filts" style="display: block; visibility: block;">
+<div style="display: none;">
+<form id="id_frm_srch" action="{$siteAdr}base/Search/SearchWards" method="post" onsubmit="javascript: return false;" >
+	<div><input id="id_srch_edit" name="SI[bfilt]" type="text" value="" onclick="this.value='';" onkeypress="if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) oSearch.Search('id_frm_srch'); return;" /><a id="id_btn_search" href="javascript: void(0);" onclick="oSearch.Search('id_frm_srch', 1);"><img src="{$imgDir}find_b2.gif" alt="" /></a></div>
+	<div id="id_browse_attach_srch" style="display: none;">
+		<input id="id_srch_attach_frm_btype" name="SI[btype]" type="hidden" value="Stake/Wards" />
+		<input id="id_srch_attach_frm_static" name="SI[static]" type="hidden" value="1" />
+	</div>
+</form>
+</div>
+
+
+{if $IS_USER}
+<h2>Filters</h2>
+        <div class="filter-box">
+		<h3 class="cl_srch_ftype_h3" ftype="Stake"><span><a class="cl_srch_ftype" ftype="Stake" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Stake\']').click();">Stake/ward</a></h3>
+		<div ftype="Stake" class="drop-filter">
+                    <table>
+                        <tr>
+                            <td>
+                                <span class="niceform">
+                                    <select name="ward_type" id="ward_type" size="1" style="width:149px">
+                                        <option value="">Select type</option>
+                                        <option value="1">Stake</option>
+                                        <option value="2">Ward</option>
+                                    </select>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr><td style="padding-top:10px"><input name="ward_name" type="text" value="Enter stake/ward name" onclick="this.value='';" /></td></tr>
+                        <tr>
+                            <td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Filter</a></span></div></td>
+                        </tr>
+                    </table>
+		</div>
+        </div>
+</div>
+{/if}
+{/strip}
+<!--  Ward's List LeftColumn  -->
+
+{elseif 'mission_wall' == $m_page}
+{strip}
+<!--  Mission's Messages LeftColumn  -->
+<h2 class="lowprof" id="mtl_{$mission_i.id}">
+        {if $mission_i.country && $mission_i.city}{$mission_i.country}, {$mission_i.city}{if $mission_i.region}, {$mission_i.region}{/if}{else}{$mission_i.title}{/if}
+    </h2>
+<ul class="list01">
+	{if !$mission_i.is_mine}
+            <li id="id_set_as_mine">Served? &nbsp;
+                <a href="javascript: void(0);" onclick="$('#mis_name').html($('#mtl_{$mission_i.id}').text()); oMWall.SHConfirmPopup( 1, 'id_confirm_mission_popup', '{$mission_i.id}' );">
+                <br /> Yes</a> / <a id="id_dosubscr_a" href="javascript: void(0);" {if $mis_rel.im_suscr_fr} onclick="oMWall.DoSubscr( 2, '{$mission_i.id}' );" {else} onclick="oMWall.DoSubscr( 1, '{$mission_i.id}' );" href="javascript: void(0);" {/if}> {if $mis_rel.im_suscr_fr}No, and UnWatch {else}No, but Watch{/if}</a>
+            </li>
+        {/if}
+</ul>
+
+{if $mission_i.is_mine}
+{if !empty($mission_i.is_mine.time)}
+<h2>Mission Time</h2>
+<ul class="list01">
+        {foreach from=$mission_i.is_mine.time item=mt}
+            <div id="id_div_mis_time_i_{$mt.id}">
+                    {if $mt.fdate}
+                    <li id="id_mis_time_s_from">from {$mt.fdate|moddate}</li>
+                    {/if}
+                    {if $mt.tdate}
+                    <li id="id_mis_time_s_to">to {$mission_i.is_mine.tdate|moddate}</li>
+                    {/if}
+                    {*
+                    <li>
+                    {if $CAN_EDIT && $IS_USER}
+                    <a href="javascript:void(0);" onclick="$('#id_div_mis_time_i_{$mt.id}').hide(); $('#id_mis_chng_time_{$mt.id}').slideToggle();">Change your time</a>
+                    {/if}
+                    </li>
+                    *}
+            </div>
+        {/foreach}
+        <li>
+         <br /><br />
+         	<table class="t-edit">
+         	<tr>
+         		<td><span>Best places</span><textarea class="cl_umis_info" name="fm[loc_best_place]" style="width: 100%; {if !$mission_i.is_mine.loc_best_place}color:gray;{/if}" onclick="if ('Best local places...' == $(this).val()) ClearUpFld(this);">{if $mission_i.is_mine.loc_best_place}{$mission_i.is_mine.loc_best_place}{else}Best local places...{/if}</textarea></td>
+         	</tr>
+         	<tr>
+         		<td><span>Food I like</span><textarea class="cl_umis_info" name="fm[loc_food_like]" style="width: 100%;{if !$mission_i.is_mine.loc_food_like} color:gray;{/if}" onclick="if ('Local food you like...' == $(this).val()) ClearUpFld(this);">{if $mission_i.is_mine.loc_food_like}{$mission_i.is_mine.loc_food_like}{else}Local food you like...{/if}</textarea></td>
+         	</tr>
+         	<tr>
+         		<td><span>Food I hate</span><textarea class="cl_umis_info" name="fm[loc_food_dislike]" style="width: 100%;{if !$mission_i.is_mine.loc_food_dislike} color:gray;{/if}" onclick="if ('Local food you hate...' == $(this).val()) ClearUpFld(this);">{if $mission_i.is_mine.loc_food_dislike}{$mission_i.is_mine.loc_food_dislike}{else}Local food you hate...{/if}</textarea></td>
+         	</tr>
+         	<tr>
+         		<td><span>Will miss the most</span><textarea class="cl_umis_info" name="fm[loc_will_miss]" style="width: 100%;{if !$mission_i.is_mine.loc_will_miss} color:gray;{/if}" onclick="if ('What you will miss the most...' == $(this).val()) ClearUpFld(this);">{if $mission_i.is_mine.loc_will_miss}{$mission_i.is_mine.loc_will_miss}{else}What you will miss the most...{/if}</textarea></td>
+         	</tr>
+         	<tr>
+         		<td><span>Testimony</span><textarea class="cl_umis_info" name="fm[loc_temp_language]" style="width: 100%;{if !$mission_i.is_mine.loc_temp_language} color:gray;{/if}" onclick="if ('Testimony in mission language...' == $(this).val()) ClearUpFld(this);">{if $mission_i.is_mine.loc_temp_language}{$mission_i.is_mine.loc_temp_language}{else}Testimony in mission language...{/if}</textarea></td>
+         	</tr>
+         	</table>
+	</li>
+
+</ul>
+{/if}
+{/if}
+
+{if !$CAN_EDIT}
+	
+	{if $mission_i.loc_info}
+	{assign var=best_place		value=$mission_i.loc_info.loc_best_place}
+	{assign var=food_i_like		value=$mission_i.loc_info.loc_food_like}
+	{assign var=food_i_hate		value=$mission_i.loc_info.loc_food_dislike}
+	{assign var=ill_miss_most	value=$mission_i.loc_info.loc_will_miss}
+	{assign var=test_lang		value=$mission_i.loc_info.loc_temp_language}
+
+
+		{if $best_place}
+		<h2>Best places</h2>
+		<ul class="list01">
+		    {section name=i loop=$best_place}
+		    <li><span style="color: gray;">{$best_place[i].fname}</span><br />{$best_place[i].text|dlong}</li>
+		    {/section}
+		</ul>	
+		{/if}
+		
+		{if $food_i_like}
+		<h2>Food I like</h2>
+                <ul class="list01">
+		    {section name=i loop=$food_i_like}
+                    <li><span style="color: gray;">{$food_i_like[i].fname}</span><br />{$food_i_like[i].text|dlong}</li>
+		    {/section}
+                </ul>
+		{/if}
+		
+		{if $food_i_hate}
+		<h2>Food I hate</h2>
+                <ul class="list01">
+		    {section name=i loop=$food_i_hate}
+                    <li><span style="color: gray;">{$food_i_hate[i].fname}</span><br />{$food_i_hate[i].text|dlong}</li>
+		    {/section}
+                </ul>
+		{/if}
+		
+		{if $ill_miss_most}
+		<h2>I'll miss the most</h2>
+		<ul class="list01">
+		    {section name=i loop=$ill_miss_most}
+		    <li><span style="color: gray;">{$ill_miss_most[i].fname}</span><br />{$ill_miss_most[i].text|dlong}</li>
+		    {/section}
+		</ul>	
+		{/if}
+		
+		{if $test_lang}
+		<h2>Testimony</h2>
+		<ul class="list01">
+		    {section name=i loop=$test_lang}
+		    <li><span style="color: gray;">{$test_lang[i].fname}</span><br />{$test_lang[i].text|dlong}</li>
+		    {/section}
+		</ul>	
+		{/if}
+	
+	{/if}
+	
+{/if}
+
+{if $lphotos}
+<h2><span><a href="{$siteAdr}id{$ui.uid}/albums">View all</a></span>Photos</h2>
+<div class="short-photos">
+	{section name=i loop=$lphotos max=3}
+	<a href="{$siteAdr}id{$ui.uid}/albums/id{$lphotos[i].aid}/id{$lphotos[i].last_image}"><img src="{if $lphotos[i].fpath=='link'}{$lphotos[i].img}{else}{$fImgDir}{if 2 == $lphotos[i].atype}{if 'Wall' == $lphotos[i].aname}wall{elseif 'Mission' == $lphotos[i].aname}mission/wall{elseif 'Journal' == $lphotos[i].aname}journal{elseif 'Ward' == $lphotos[i].aname}wards/wall{/if}{else}albums{/if}/{$lphotos[i].fpath}/s/s_{$lphotos[i].img}{/if}" alt="" /></a>
+	{/section}
+</div>
+{/if}
+
+{if $lvideos}
+<h2><span><a href="{$siteAdr}id{$ui.uid}/valbums">View all</a></span>Videos</h2>
+<div class="short-video">
+	{section name=i loop=$lvideos max=2}
+        {if $lvideos[i].video_img}
+            <p><a href="{$siteAdr}id{$ui.uid}/valbums/id{$lvideos[i].vaid}/id{$lvideos[i].last_video}"><img src="{$lvideos[i].video_img}" alt="" style="max-width: 74px; max-height: 50px;" /></a><b><img src="{$imgDir}play_b.png" alt="" /></b></p>
+        {/if}
+	{/section}
+</div>
+{/if}
+
+{if $mission_i.is_mine.pr_first_name || $mission_i.is_mine.pr_lastt_name || $CAN_EDIT}
+<br /><br />
+<h2>President</h2>
+<ul class="list01">
+	{if $mission_i.is_mine.pr_first_name || $mission_i.is_mine.pr_lastt_name}
+	<li>
+		<table>
+			<tr>
+				<td style="width: 25%;">
+					<span style="color: gray;">President</span>
+				</td>
+				<td style="width: 5%;">&nbsp</td>
+				<td>&nbsp</td>
+			</tr>
+			<tr>
+				<td align="center" style="{if $mission_i.is_mine.pr_p_img} width: 25%; {else} width: 0px; {/if}">
+					{assign var=prfname value=$mission_i.is_mine.pr_first_name|cat:" "|cat:$mission_i.is_mine.pr_last_name}
+					<img src="{if $mission_i.is_mine.pr_p_img} {$fImgDir}mission/info/president/{$mission_i.is_mine.pr_p_img} {else} {$imgDir}no_photo_m42.jpg {/if}" style="max-width: 42px; max-height: 42px;" title="{$prfname}" alt="{$prfname}" />
+				</td>
+				<td style="width: 5%;">&nbsp</td>
+				<td>
+					<table class="pres_table">
+						<tr>
+							<td>
+								<span>{$prfname}</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>{$mission_i.is_mine.pr_phone}</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>{$mission_i.is_mine.pr_email}</span>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</li>
+	{/if}
+	{if $CAN_EDIT && $IS_USER}<li><a href="javascript: void(0);" onclick="oMission.SHPresidentPopup( 1, 'id_add_president_popup' );">{if $mission_i.is_mine.pr_first_name || $mission_i.is_mine.pr_lastt_name} Edit president info {else} Suggest president info{/if}</a></li>{/if}
+</ul>
+{/if}
+{/strip}
+<!--  Mission's Messages LeftColumn  -->
+
+{elseif 'mission_list' == $m_page}
+{strip}
+<!--  Mission's List LeftColumn  -->
+<div id="id_srch_filts" style="display: block; visibility: block;">
+	
+	<div style="display: none;">
+	<form id="id_frm_srch" action="{$siteAdr}base/search" method="post" onsubmit="javascript: return false;" >
+		<div><input id="id_srch_edit" name="SI[bfilt]" type="text" value="" onclick="this.value='';" onkeypress="if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) oSearch.Search('id_frm_srch'); return;" /><a id="id_btn_search" href="javascript: void(0);" onclick="oSearch.Search('id_frm_srch', 1);"><img src="{$imgDir}find_b2.gif" alt="" /></a></div>
+		<div id="id_browse_attach_srch" style="display: none;">
+			<input id="id_srch_attach_frm_btype" name="SI[btype]" type="hidden" value="Missions" />
+			<input id="id_srch_attach_frm_static" name="SI[static]" type="hidden" value="1" />
+		</div>
+	</form>
+	</div>
+	{if $IS_USER}
+	<h2>Filters \ Search</h2>
+	<div class="filter-box">
+		<h3 class="cl_srch_ftype_h3" ftype="Mission"><span><a class="cl_srch_ftype" ftype="Mission" style="cursor: pointer;"><img src="{$imgDir}arr05.gif" alt="" /></a></span><a href="javascript: void(0);" onclick="$('a[ftype=\'Mission\']').click();">Mission</a></h3>
+		<div ftype="Mission" class="drop-filter">
+			<table>
+				<tr><td colspan="2"><label>Mission location</label></td></tr>
+				<tr><td colspan="2"><input name="mission_location" class="mission_location" type="text" value="Enter location here" onclick="this.value='';" /></td></tr>
+					<tr><td colspan="2"><label style="padding-top:5px">Year (from)</label></td></tr>
+					<tr>
+						<td>
+							<span class="niceform">
+								<select name="mission_from_month" size="1">
+								<option value="">Month</option>
+								{foreach key=k item=i from=$mm}
+								<option value="{$k}">{$i}</option>
+								{/foreach}
+							</select>
+							</span>
+						</td>
+						<td>
+							<span class="niceform">
+								<select name="mission_from_year" size="1">
+									<option value="">Year</option>
+									{section name=i loop=$yy}
+										{* <option value="{$smarty.section.i.index+1}">{$yy[i]}</option> *}
+										<option value="{$yy[i]}">{$yy[i]}</option>
+
+									{/section}
+								</select>
+							</span>
+						</td>
+					</tr>
+					<tr><td colspan="2"><label>to</label></td></tr>
+					<tr>
+						<td>
+							<span class="niceform">
+								<select name="mission_to_month" size="1">
+								<option value="">Month</option>
+								{foreach key=k item=i from=$mm}
+								<option value="{$k}">{$i}</option>
+								{/foreach}
+							</select>
+							</span>
+						</td>
+						<td>
+							<span class="niceform">
+								<select name="mission_to_year" size="1">
+									<option value="">Year</option>
+									{section name=i loop=$yy}
+										{* <option value="{$smarty.section.i.index+1}">{$yy[i]}</option> *}
+										<option value="{$yy[i]}">{$yy[i]}</option>
+									{/section}
+								</select>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td></td><td><div class="but-filter"><span><a class="cl_filt_btn" style="cursor: pointer;">Search</a></span></div></td>
+					</tr>
+				</table>
+		</div>
+	</div>
+        {/if}
+</div>
+<!--  Mission's List LeftColumn  -->
+{/strip}
+{elseif 'albums_photos' == $m_page}
+{strip}
+<h2>
+	{if $owner}
+	<span>
+		<a href="javascript: void(0);" onclick="oAlbums.SHUplPopup( 1, 'id_add_album_popup' );">Add new</a>
+	</span> {/if}
+	Albums
+</h2>
+	<ul class="album-list">
+		{section name=i loop=$other_alb}
+				<li>
+					<span>
+						<a href="{$siteAdr}id{$other_alb[i].uid}/albums/id{$other_alb[i].aid}">
+							<img src="{if $other_alb[i].img}
+											{if $other_alb[i].img.fpath=='link'}
+												{$other_alb[i].img.img}
+											{else}
+												{$fImgDir}
+												{if 2 == $other_alb[i].type}
+													{if 'Wall' == $other_alb[i].name}
+														wall/
+													{elseif 'Mission' == $other_alb[i].name}
+														mission/wall/
+													{elseif 'Ward' == $other_alb[i].name}
+														wards/wall/
+													{/if}
+												{else}
+													albums/
+												{/if}
+												{$other_alb[i].img.fpath}/n/n_{$other_alb[i].img.img}
+											{/if}
+										{else}
+											{$imgDir}no_photo_m100.jpg
+										{/if}" alt="" style="max-width: 100px; max-height: 100px;" /></a></span>
+					<p>{if $other_alb[i].cnt_img}{$other_alb[i].cnt_img}{else}No{/if} photos <br />{if $other_alb[i].name}<a href="{$siteAdr}id{$other_alb[i].uid}/albums/id{$other_alb[i].aid}">{$other_alb[i].name|truncate:30}</a>{/if}</p>
+				</li>
+		{/section}
+	</ul>
+{/strip}
+{elseif 'inbox' == $m_page}
+{strip}
+{assign var=fname value=$UserInfo.first_name|cat:' '|cat:$UserInfo.last_name}
+<h2  class="lowprof">{if $UserInfo.first_name || $UserInfo.last_name}{$fname}{/if}</h2>
+<ul class="list01">
+        <li><a href="javascript: oUsers.ChangeAppear(1);" class="appear_offline" style="display:{if !$UserInfo.appear_offline}inline{else}none{/if}">Appear offline<img src="{$imgDir}appear_off_ico.gif" style="float:right;margin-bottom:20px;margin-right: 5px;"/></a>
+        <a href="javascript: oUsers.ChangeAppear(0);" class="appear_online" style="display:{if $UserInfo.appear_offline}inline{else}none{/if}">Appear online<img src="{$imgDir}appear_on_ico.gif" style="float:right;margin-bottom:20px;margin-right: 5px;" /></a></li>
+	<!--li><a href="javascript: void(0);">Disable sounds</a><img src="{$imgDir}sound_disable_ico.gif" style="float:right; margin-right: 5px" /></li-->
+</ul>
+<h2>Friends {if $cnt_ar_fr}<b>{$cnt_ar_fr}</b>{/if}</h2>
+
+<div class="sort">
+    <input id="id_inb_fr_rlist_find" type="text" value="Find user..." sb="1" onclick="if (this.value=='Find user...') this.value='';" />
+    <p><a class="cl_fr_list_recent" style="cursor: pointer;" sb="0">Recent</a>&nbsp;&nbsp; <a class="cl_fr_list_recent" style="cursor: pointer; color: #000;" sb="1">A-Z</a>&nbsp; <a class="cl_fr_list_recent" style="cursor: pointer;" sb="2">Blocked</a> &nbsp;<a class="cl_fr_list_recent" style="cursor: pointer;" sb="3">Online</a></p>
+</div>
+<div class="friend-box">
+    <ul id="id_inb_fr_rlist">
+        {foreach key=fk item=fi from=$ar_fr}
+        <li id="id_fr_rlist_{$fi.uid}" class="cl_rlist_fr {if $lfr_id==$fi.uid} act {/if}" >
+            <img src="{if $fi.image}{$fImgDir}users/{$fi.fpath}/s/s_{$fi.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 42px; height: 42px;"  />
+            {if isset($fi.is_online)}<span class="awatar"></span>{/if}
+	    {if $fi.cnt_new_mes} <span>{$fi.cnt_new_mes}</span> {/if}
+            <p><a class="cl_rlist_fr_el" fr_uid="{$fi.uid}"  href="javascript: void(0);">{$fi.first_name} {$fi.last_name}</a>{if $fi.last_update}{$fi.last_update}{/if}</p>
+        </li>
+	{/foreach}
+    </ul>
+</div>
+{/strip}
+{else}
+{strip}
+<!--  Wall LeftColumn  -->
+{assign var=fname value=$ui.first_name|cat:' '|cat:$ui.last_name}
+<h2 class="lowprof">{$fname}</h2>
+{if !$im_blocked && !$ui.is_deleted}
+    <ul class="list01">
+            <li><a href="{$siteAdr}id{$ui.uid}">News feed</a></li>
+            {if !$IS_USER}<li><a href="{$siteAdr}id{$UserInfo.uid}">Back to my Feed</a>{/if}
+            <li><a href="{$siteAdr}id{$ui.uid}/friends">Friends</a> {if $IS_USER && $cnt_myfrinvites}<span style="position: relative; float: right; margin-right: 5px;">({$cnt_myfrinvites})</span>{/if} </li>
+            <li><a href="{$siteAdr}id{$ui.uid}/albums">Photo albums</a></li>
+            <li><a href="{$siteAdr}id{$ui.uid}/valbums">Video albums</a></li>
+            <li><a href="{$siteAdr}id{$ui.uid}/settings">{if $IS_USER}My info{else}Info{/if}</a></li>
+            {if $IS_USER}<li><a href="{$siteAdr}id{$UserInfo.uid}/options">Settings</a></li>{/if}
+            {if !$IS_USER}<li id="friend_block">{if !$ui.im_friend}<a href="javascript: void(0);" onclick="oFriends.GetFrAjax('{$ui.uid}', 0)">Add as a friend</a>{elseif 3==$ui.im_friend}<b>Blocked</b>{else}<a href="javascript: void(0);" onclick="oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$ui.uid}')">{if 2==$ui.im_friend}Cancel Invitation{else}Unfriend{/if}</a>{/if}</li>{/if}
+            {if !$IS_USER}{*&& (!$ui.im_friend || 2==$ui.im_friend)*}<li><a id="id_dosubscr_a" href="javascript: void(0);" onclick="oUsers.DoSubscr();">{if $ui.im_suscr_fr}Unfollow{else}Follow{/if}</a></li>{/if}
+            <li><a href="javascript:void(0);" onclick="$('#show_invite').show();">Invite friends</a></li>
+            <li><a href="{$siteAdr}?logout=1">Sign out</a></li>
+    </ul>
+    {*
+    <h2><span><a href="#">Add new</a></span> My pages</h2>
+    <ul class="list01">
+            <li><a href="#">My church talks</a></li>
+    </ul>
+    *}
+
+{if !$IS_USER && !$basic_denied}
+<h2><span><a href="{$siteAdr}id{$ui.uid}/settings">View all</a></span> Information</h2>
+{if !$ui.no_dob && $ui.dob != '0000-00-00'}
+<div class="clear" style="height:8px;"><!-- --></div>
+<b style="color:#999999;">Birthday</b><br />
+<b>{$ui.dob|date_format:"%B %e, %Y"}</b><br />
+{/if}
+
+{if $ui.rel_status}
+<div class="clear" style="height:8px;"><!-- --></div>
+<b style="color:#999999;">Relationship status</b><br />
+{if $ui.rel_status==1}<b>Single</b>{/if}
+{if $ui.rel_status==2}<b>Married</b>{/if}
+{if $ui.rel_status==3}<b>Divorced</b>{/if}
+{if $ui.rel_status==4}<b>Separated</b>{/if}
+{if $ui.rel_status==5}<b>Widowed</b>{/if}
+<br />
+{/if}
+
+{if $ui.live_in}
+<div class="clear" style="height:8px;"><!-- --></div>
+<b style="color:#999999;">Current location</b><br />
+<b>{$ui.live_in}</b><br />
+{/if}
+{/if}
+
+    <div style="padding-top:7px;">
+            {if $IS_USER}
+            <div><h2 style="margin-top: -30px;"><span>
+                    <a id="id_scripture_btn_edit" href="javascript: void(0);" onclick="oUsers.EditScripture( 1 );" style="display: none;"  onmouseover="$(this).show();">Edit</a>
+                    
+            </span></h2></div>
+            {/if}
+            <br />
+            
+            <div id="id_scripture" class="snoska" onmouseover="$('#id_scripture_btn_edit').show();" onmouseout="$('#id_scripture_btn_edit').hide();">
+                    {if $ui.scripture}{$ui.scripture|nl2br|dlong}{else}There isn't any scripture{/if}
+            </div>
+            <div id="id_scripture_field" style="display: none;">
+                    <textarea id="id_scripture_txt" cols="17">{$ui.scripture}</textarea>
+            </div>
+			<div style="text-align: center;">
+				{* <a id="id_scripture_btn_save" href="javascript: void(0);" onclick="oUsers.EditScripture( 2 );" style="display: none;" ><img style="width:51px; padding-right:10px;" src="{$imgDir}save_b.png" alt="save" /></a>
+				<a id="id_scripture_btn_cancel" href="javascript: void(0);" onclick="oUsers.EditScripture( 3 );" style="display: none;" ><img style="width:51px;" src="{$imgDir}cancel_b.png" alt="cancel" /></a> *}
+				<a id="id_scripture_btn_save" href="javascript: void(0);" onclick="oUsers.EditScripture( 2 );" style="display: none; padding-right:10px;" >Save</a>
+				<a id="id_scripture_btn_cancel" href="javascript: void(0);" onclick="oUsers.EditScripture( 3 );" style="display: none;" >Cancel</a>
+			</div>
+    </div>
+
+    {if $lphotos}
+    <h2><span><a href="{$siteAdr}id{$ui.uid}/albums">View all</a></span>Photos</h2>
+    <div class="short-photos">
+            {section name=i loop=$lphotos max=3}
+            <a href="{$siteAdr}id{$ui.uid}/albums/id{$lphotos[i].aid}/id{$lphotos[i].last_image}"><img src="{if $lphotos[i].fpath=='link'}{$lphotos[i].img}{else}{$fImgDir}{if 2 == $lphotos[i].atype}{if 'Wall' == $lphotos[i].aname}wall{elseif 'Mission' == $lphotos[i].aname}mission/wall{elseif 'Journal' == $lphotos[i].aname}journal{elseif 'Ward' == $lphotos[i].aname}wards/wall{/if}{else}albums{/if}/{$lphotos[i].fpath}/s/s_{$lphotos[i].img}{/if}" alt="" /></a>
+            {/section}
+    </div>
+    {/if}
+
+    {if $lvideos}
+    <h2><span><a href="{$siteAdr}id{$ui.uid}/valbums">View all</a></span>Videos</h2>
+    <div class="short-video">
+            {section name=i loop=$lvideos max=2}
+            {if $lvideos[i].video_img}
+                <p><a href="{$siteAdr}id{$ui.uid}/valbums/id{$lvideos[i].vaid}/id{$lvideos[i].last_video}"><img src="{$lvideos[i].video_img}" alt="" style="max-width: 74px; max-height: 50px;" /></a><b><img src="{$imgDir}play_b.png" alt="" /></b></p>
+            {/if}
+            {/section}
+    </div>
+    {/if}
+    {if 'journal' == $m_page}	
+	<div id="tags_div">
+		{include file='mods/adtmpl/_tags_leftcolumn.html'}
+	</div>
+
+        <div id="journal_div">
+          {if !$IS_USER}
+            <h2>Journal</h2>
+            <ul class="list01">
+                {if !$IS_USER}<li><a href="{$siteAdr}id{$UserInfo.uid}/journal">Back to my Journal</a>{/if}
+                {if !$IS_USER}{if $ui.global.notes}<li><a id="id_dosubscr_j" href="javascript: void(0);" onclick="oJournal.DoSubscr();">{if $ui.im_suscr_jr}Unfollow{else}Follow{/if}</a></li>{/if}{/if}
+            </ul>
+          {else}
+            {if $jsubscr && $IS_USER}
+            <h2 style="padding-top:5px; font-size: 13px;">{if 3 < $cnt_jsubscr}<span style="font-size:11px;"><a href="{$siteAdr}id{$ui.uid}/journal/getsubscr/">All</a></span>{/if} Journals I follow <b> {$cnt_jsubscr} </b></h2>
+            <ul class="list03" style="margin-bottom:5px;">
+                    {foreach item=i key=k from=$jsubscr max=4}
+                            <li style="width: 47px; height:49px; margin-bottom:10px;"><a href="{$siteAdr}id{$i.wuid}/journal"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 29px; height: 29px;" /></a> <a href="{$siteAdr}id{$i.wuid}/journal">{$i.first_name} {$i.last_name}</a></li>
+                    {/foreach}
+            </ul>
+            {/if}
+          {/if}
+        </div>
+    {/if}
+{/if}
+{/strip}
+<!--  Wall LeftColumn  -->
+{/if}
+
+<div style="margin-top:10px;">
+    <script type="text/javascript">//<!--
+    google_ad_client = "ca-pub-1823921138820137";
+    /* inZion Banner */
+    google_ad_slot = "7585652734";
+    google_ad_width = 160;
+    google_ad_height = 600;
+    //-->
+    </script>
+    <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+</div>

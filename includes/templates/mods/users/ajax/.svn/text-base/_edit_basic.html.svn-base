@@ -1,0 +1,118 @@
+<form method="post" id="basic_info_form">
+    <table class="t-edit">
+        <tr>
+            <td id="basic_info_err" style="display:none;color:red;" colspan="2">
+
+            </td>
+        </tr>
+        <tr>
+            <td width="150"><label>Gender</label></td>
+            <td><span class="niceform">
+                    <select name="fm[gender]" id="gender" size="1">
+                        <option value="0">Select</option>
+                        <option value="1"{if $fm.gender==1} selected="selected"{/if}>Male</option>
+                        <option value="2"{if $fm.gender==2} selected="selected"{/if}>Female</option>
+                    </select>
+                </span></td>
+        </tr>
+        <tr>
+            <td width="150"><label>Birthday</label></td>
+            <td>
+                <span class="niceform" style="float:left">
+                    <select id="bmonth" name="fm[bmonth]" size="1">
+                        <option value="0">Month</option>
+                        {foreach key=k item=i from=$mm}
+                        <option value="{$k}"{if $k==$fm.bmonth} selected="selected"{/if}>{$i}</option>
+	                {/foreach}
+                    </select>    
+                </span>
+                <span class="niceform" style="float:left">
+                    <select id="bday" name="fm[bday]" size="1">
+                        <option value="0">Day</option>
+	                {foreach key=k item=i from=$dd}
+                        <option value="{$i}"{if $i==$fm.bday} selected="selected"{/if}>{$i}</option>
+	                {/foreach}
+                    </select>
+                </span>
+                <span class="niceform" style="float:left">
+                    <select id="byear" name="fm[byear]" size="1">
+                        <option value="0">Year</option>
+	               {foreach key=k item=i from=$yy}
+                        <option value="{$i}"{if $i==$fm.byear} selected="selected"{/if}>{$i}</option>
+	               {/foreach}
+                    </select>
+                </span>
+            </td>
+        </tr>
+        <tr><td width="150">&nbsp;</td><td><input type="checkbox" id="no_dob" name="fm[no_dob]" value="1"{if $fm.no_dob} checked="checked"{/if} /> Don’t show my birthday in the profile</td></tr>
+        <tr><td width="150"><label>I was born in</label></td><td><input class="txt" type="text" name="fm[was_born]" value="{$fm.was_born}" id="was_born" /></td></tr>
+        <tr><td width="150"><label>I currently live in</label></td><td><input class="txt" type="text" name="fm[live_in]" value="{$fm.live_in}" id="live_in" /></td></tr>
+		
+        <tr><td width="150"><label>Family </label></td><td>
+                <table id="basic_rel" style="margin:0; padding: 0;" cellpadding="0" cellspacing="0">
+                {foreach key=k item=i from=$relation}
+                <tr>
+                    <td>
+                    <span class="niceform">
+                    <select name="fm[relation][]" size="1">
+                    <option value="0">Relation</option>
+                    {foreach key=k2 item=i2 from=$relations}
+                    <option value="{$k2}"{if $k2==$fm.relation.$k} selected="selected"{/if}>{$i2}</option>
+                    {/foreach}
+                    </select></span></td>
+                    <td>
+                    	<input type="hidden" id="id_fam" name="fm[relation_id][]" value="{$fm.relation_id.$k}" />
+                    	<input type="text" class="fam" name="fm[relation_name][]" value="{$fm.relation_name.$k}" />
+                    </td>
+                    <td><div style="margin-top: 3px;"><a href="javascript:void(0);" onclick="oUsers.SettingsBasicDelRel( $(this).parent().parent().parent() );">Clear</a></div></td>
+                </tr>
+                {/foreach}
+                </table>
+                <div><a href="javascript:oUsers.SettingsBasicAddRel();">Add another family member</a></div>
+                </td></tr>
+				
+         <tr><td width="150"><label>Relationship status</label></td><td>
+                    <span class="niceform"><select name="fm[rel_status]" size="1">
+                    <option value="0">Select</option>
+                    {foreach key=k item=i from=$rel_statuses}
+                    <option value="{$k}"{if $k==$fm.rel_status} selected="selected"{/if}>{$i}</option>
+                    {/foreach}
+                    </select></span>
+              </td></tr>
+        <tr>
+            <td width="150"><label>Spoken languages</label></td>
+            <td>
+                <table id="basic_lng" style="margin:0; padding: 0;" cellpadding="0" cellspacing="0">
+                {foreach key=k item=i from=$spoken_lang}
+                <tr>
+                <td style="width:100px;">
+					<span class="niceform">
+
+						<input style="width:180px;" type="text" name="fm[spoken_lang]" id="langsAC" value="{$ulangs}" />
+
+						{*<select name="fm[spoken_lang][]" size="1">
+							<option value="0">Select</option>
+								{foreach key=k2 item=i2 from=$spoken_langs}
+								<option value="{$k2}"{if $k2==$fm.spoken_lang.$k} selected="selected"{/if}>{$i2}</option>
+								{/foreach}
+						</select>*}
+					</span>
+				</td>
+           {*     <td><div style="margin-top: 3px;"><a href="javascript:void(0);" onclick="oUsers.SettingsBasicDelLng( $(this).parent().parent().parent() );">Clear</a></div></td> *}
+                </tr>
+                {/foreach}
+                </table>
+                {* <div><a href="javascript:oUsers.SettingsBasicAddLng();">Add another language</a></div> *}
+            </td>
+        </tr>
+        <tr style="height:50px;">
+            <td colspan="2" align="right">
+                <div class="aj-button">
+                    <span class="aj-button01"><a href="javascript:void(0);" id="basic_cancel" onclick="oUsers.SettingsBasicCnl();">Cancel</a></span>
+                    <span class="aj-button02"><a href="javascript:void(0);" id="basic_save" onclick="oUsers.SettingsBasicSubm();">Save</a></span>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+

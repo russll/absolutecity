@@ -1,0 +1,37 @@
+<span class="edit-info" id="church_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsChurch();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+{if $ui.baptism_date != '0000-00-00' || $ui.mission || $ui.ward || $ui.stake || $ui.calling}   
+    {if $ui.baptism_date != '0000-00-00'}
+    <tr><td width="150"><label>Date of baptism</label></td><td>{$ui.baptism_date|moddate}</td></tr>
+    {/if}
+    {if $ui.mission}
+    <tr><td width="150"><label>Served mission</label></td><td style="padding-right: 20px;">
+             {foreach key=k item=i name=n from=$ui.mission}{if $smarty.foreach.n.index}<br />{/if}{$i.location}{if $i.fdate|moddate != '00' && $i.tdate|moddate != '00'}, {$i.fdate|moddate} - {$i.tdate|moddate}{/if}{/foreach}
+        </td></tr>
+    {/if}
+    {if $ui.ward}
+    <tr><td width="150"><label>Ward</label></td><td>{$ui.ward}</td></tr>
+    {/if}
+    {if $ui.stake}
+    <tr><td width="150"><label>Stake</label></td><td>{$ui.stake}</td></tr>
+    {/if}
+    {if $ui.calling}
+    <tr><td width="150"><label>My calling</label></td><td>
+        {foreach key=k item=i name=n from=$ui.calling}{if $smarty.foreach.n.index}, {/if}{$i.calling}{if $i.comment}({$i.comment}){/if}{/foreach}
+    </td></tr>
+    {/if}
+    {if $ui.priesthood}
+    <tr><td width="150"><label>Are you a priesthood holder?</label></td><td>
+       {$phl[$ui.priesthood]}
+    </td></tr>
+
+    {/if}
+    {if $ui.class}
+    <tr><td width="150"><label>Sunday School Classes</label></td><td style="padding-right: 20px;">
+             {foreach key=k item=i name=n from=$ui.class}{if $smarty.foreach.n.index}<br />{/if}{$i.title}{/foreach}
+        </td></tr>
+    {/if}
+{else}
+    <tr><td width="150"><label>None</label></td><td>&nbsp;</td></tr>
+{/if}
+</table>

@@ -1,0 +1,63 @@
+{if $taglist}
+	<h2>Photos for tag "{$tag}" {if $cnt_pl}<span>{$cnt_pl}</span>{/if}</h2>
+{else}
+	{if 2 == $ai.type}
+		<h2><em></em> System album - {$ai.name}</h2>
+	{else}
+		<h2>{*<em><a href="#">Share an album</a></em>*} {$ai.name} {if $cnt_pl}<span>{$cnt_pl}</span>{/if}</h2>
+	{/if}
+{/if}
+
+<input id="aid" type="hidden" value="{$ai.aid}" />
+
+{if $pl}
+<table>
+	<tr>
+		<td>
+			{assign var=ind value=0}
+			{section name=i loop=$pl}
+
+				<div class="flow-box" id="id_alb_photos_cp_{$pl[i].id}">
+					<div class="boxgrid captionfull" onmouseover="javascript: $('#id_famous_bridge_{$pl[i].id}').css('top', '125px');" onmouseout="javascript: $('#id_famous_bridge_{$pl[i].id}').css('top', '230px');" >
+						<a href="{$siteAdr}id{$ui.uid}/albums/id{$pl[i].aid}/id{$pl[i].id}" >
+							{if $taglist}
+								<img src="{if $pl[i].fpath=='link'}{$pl[i].img}{else}{$fImgDir}{if 2 == $pl[i].a_type}{if 'Wall' == $pl[i].a_name}wall{elseif 'Mission' == $pl[i].a_name}mission/wall{elseif 'Journal' == $pl[i].a_name}journal{elseif 'Inbox' == $pl[i].a_name}inbox{elseif 'Ward' == $pl[i].a_name}wards/wall{/if}{else}albums{/if}/{$pl[i].fpath}/a/a_{$pl[i].img}{/if}" style="max-width: 230px; max-height: 154px;" />
+							{else}
+								<img src="{if $pl[i].fpath=='link'}{$pl[i].img}{else}{$fImgDir}{if 2 == $ai.type}{if 'Wall' == $ai.name}wall{elseif 'Mission' == $ai.name}mission/wall{elseif 'Journal' == $ai.name}journal{elseif 'Inbox' == $ai.name}inbox{elseif 'Ward' == $ai.name}wards/wall{/if}{else}albums{/if}/{$pl[i].fpath}/a/a_{$pl[i].img}{/if}" style="max-width: 230px; max-height: 154px;"/>
+							{/if}
+						</a>
+						<div style="top: 260px;" class="cover boxcaption" id="id_famous_bridge_{$pl[i].id}" onmouseover="javascript: $('#id_famous_bridge_{$pl[i].id}').css('top', '125px');" onmouseout="javascript: $('#id_famous_bridge_{$pl[i].id}').css('top', '230px');">
+							<p>
+								<a href="javascript: void(0);" style="cursor: default; text-decoration: none; position:absolute;right:100px;">{$pl[i].descr|truncate:25:"...":false}</a>
+								{*<a class="ico03" href="javascript: void(0);"><img src="{$imgDir}ico0003.gif"  /></a>*}
+								{if $IS_USER}
+									<a class="ico02" href="javascript: void(0);" onclick="javascript: oAlbums.SHConfirmPopup( 1, 'id_confirm_albums_popup', {$pl[i].id} );"><img src="{$imgDir}ico0002.gif"  /></a>
+									<a class="ico01" href="javascript: void(0);" onclick="javascript: oAlbums.SHChngPopup( 1, 'id_chng_album_popup', {$pl[i].id}, {$pl[i].aid} );"><img src="{$imgDir}ico0001.gif"  /></a>
+								{/if}
+							</p>
+						</div>
+					</div>
+
+					<p align="center">Uploaded on {$pl[i].dt|date_format:"%b %d, %Y"}</p>
+					<p align="center">
+						<a href="{$siteAdr}id{$ui.uid}/albums/id{$pl[i].aid}/id{$pl[i].id}">
+							{if $pl[i].cnt_com}View {$pl[i].cnt_com} comments{else}No comments{/if}
+						</a>
+					</p>
+				</div>
+
+			{/section}
+		</td>
+	</tr>
+
+	<tr>
+		<td>{$pagging}</td>
+	</tr>
+</table>
+	
+	
+{else}
+	<div class="flow-box">
+		There aren't any photos
+	</div>
+{/if}

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear
+END
+template.spec
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/template.spec
+END
+package.dtd
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/package.dtd
+END
+System.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/System.php
+END
+DB.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB.php
+END
+PEAR.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR.php
+END

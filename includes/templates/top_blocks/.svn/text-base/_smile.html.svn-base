@@ -1,0 +1,89 @@
+{literal}
+<script type="text/javascript">
+        function AddSmileText(code, type, id){
+        if (type == 'board')
+        {
+            if (jQuery("#id_send_inp_mes_story").val() == 'Share your thoughts'||jQuery("#id_send_inp_mes_story").val() == 'Post something on this wall')
+            var string = code;
+            else var string = jQuery("#id_send_inp_mes_story").val()+ code;
+            jQuery("#id_send_inp_mes_story").val(string);
+        }
+        else if(type == 'just_comment')
+        {
+                var string = jQuery('#id_add_new_answ_txtar_b_'+id).val()+ code;
+                jQuery('#id_add_new_answ_txtar_b_'+id).val(string);
+        }
+        else if (type == 'comment')
+        {
+                var string = jQuery('#id_add_new_answ_txtar_b'+id).val()+ code;
+                jQuery('#id_add_new_answ_txtar_b'+id).val(string);
+        }
+        else if (type == 'inbox' || type == 'journal')
+        {
+            var mes_story = $('#id_iframe_txt').contents().find('body').find('font').val();
+            if (mes_story == '')
+                var string = code;
+            else
+                var string = jQuery("#id_send_inp_mes_story").val()+code;
+                $("#id_iframe_txt").contents().find("body").html(string).css('color','black');
+        }
+        else if (type == 'badge')
+        {
+            if (jQuery("#id_send_badge_b_story").val() == 'Enter badge text')
+                var string = code;
+            else var string = jQuery("#id_send_badge_b_story").val()+ code;
+            jQuery("#id_send_badge_b_story").val(string);
+             
+        }
+    }
+</script>
+{/literal}
+                            <div class="smiley-top">
+                             &nbsp;
+                            {section name=gorizontal loop=$sname start=0 step=1}
+                            {assign var="index" value=$smarty.section.gorizontal.index}
+                            {assign var="name" value=$sname.$index}
+
+                            {if isset($i.com_parent)}
+                                {assign var="id_com" value=$i.com_parent}
+                            {elseif isset($mai.com_parent)}
+                                {assign var="id_com" value=$mai.com_parent}
+                            {elseif isset($i)}
+                                <!--Missions Wall, Wards Wall-->
+                                {assign var="id_com" value=$i.id}
+                            {elseif isset($mai)}
+                                <!--Missions Wall, Wards Wall just commented-->
+                                {assign var="id_com" value=$mai.id}
+                            {/if}
+                            
+                            {if $type_smile=='board' || $type_smile=='inbox'}
+                                <a href="javascript:void(0);" id="smiley_code" onclick="AddSmileText('{$snamecode.$name}','{$type_smile}');" value="{$snamecode.$name}" onmouseover="$('div.smiley_name').empty().append('{$name}');$('div.smiley_code').empty().append('{$snamecode.$name}');"><img class="smile_border" id="smile_img" src="{$imgDir}smiles/{$sname.$index}.gif" {if $snamecode.$name == '(boeing)'}style="margin-left:7px;margin-right: 0;"{else}style="margin-left:1px; margin-right:0;"{/if}/></a>
+                            {elseif $type_smile=='journal'}
+                                <a href="javascript:void(0);" id="smiley_code" onclick="AddSmileText('{$snamecode.$name}','{$type_smile}','{$id_com}'); oJournal.toggleMes(1);" value="{$snamecode.$name}" onmouseover="$('div.smiley_name').empty().append('{$name}');$('div.smiley_code').empty().append('{$snamecode.$name}');"><img class="smile_border" id="smile_img" src="{$imgDir}smiles/{$sname.$index}.gif" {if $snamecode.$name == '(boeing)'}style="margin-left:7px;margin-right: 0;"{else}style="margin-left:1px; margin-right:0;"{/if}/></a>
+                            {elseif $type_smile=='badge'}
+                                <a href="javascript:void(0);" id="smiley_code" onclick="AddSmileText('{$snamecode.$name}','{$type_smile}');" value="{$snamecode.$name}" onmouseover="$('div.smiley_name').empty().append('{$name}');$('div.smiley_code').empty().append('{$snamecode.$name}');"><img class="smile_border" id="smile_img" src="{$imgDir}smiles/{$sname.$index}.gif" /></a>
+                            {else}
+                                <a href="javascript:void(0);" id="smiley_code" onclick="AddSmileText('{$snamecode.$name}','{$type_smile}','{$id_com}');" value="{$snamecode.$name}" onmouseover="$('div.smiley_name').empty().append('{$name}');$('div.smiley_code').empty().append('{$snamecode.$name}');"><img class="smile_border" id="smile_img" src="{$imgDir}smiles/{$sname.$index}.gif" {*style="border: 1px solid #cae5ff;"*}/></a>
+                            {/if}
+                            
+                            {/section}
+                        </div>
+                        <div class="smiley-bot">
+                            <table>
+                            <tr>
+                                <td>
+                                <div class="smiley_name" style="text-align: left;">
+                                     &nbsp;
+                                    {$sname.0}
+                                </div>
+                                </td>
+                                <td>
+                                <div class="smiley_code" style="text-align: right;">
+                                    {assign var="code" value=$sname.0}
+                                    {$snamecode.$code}
+                                    &nbsp;
+                                </div>
+                                </td>
+                            </tr>
+                            </table>
+                        </div>

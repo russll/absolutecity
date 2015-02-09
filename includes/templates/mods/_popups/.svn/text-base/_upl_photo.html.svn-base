@@ -1,0 +1,80 @@
+<div id="id_upl_photo_popup" class="aj-box01" style="visibility: hidden; position: fixed; z-index: 3333; /*max-height: 370px;*/ height: auto; top: 25%;">
+    <div id="id_upl_popup_close" class="aj-close"><a href="javascript: void(0);" onclick="oAlbums.SHUplPopup( 2, 'id_upl_photo_popup' )"><img src="{$imgDir}close_ico.gif"  /></a></div>
+
+    <div style="margin: 10px;"><h3>Upload new photos</h3></div>
+
+    <div class="" style="margin: 10px; border: none !important;">
+        <div>
+            <div>
+                <input id="id_friend_add_friend_id" name="fr_id" type="hidden" value="" />
+                <fieldset style="border: none !important;">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div id="id_send_frm_photo_choose_file" class="upload-photo">
+                                        <form id="id_frm_upl_photo"
+                                              {*action="{$siteAdr}id{$UserInfo.uid}/albums/{if 'album' == $atype}id{$ai.aid}{else}{$atype}{/if}/uplphotos" *}
+											  method="post" enctype="multipart/form-data"> 
+
+                                              <table width="80%">
+                                                <tr>
+                                                    <td width="100px" style="vertical-align: middle"><b>Album: &nbsp</b></td>
+                                                    <td>
+                                                        <span class="niceform">
+                                                            <select id="id_upl_photo_album" name="PI[aid]" size="1" style="width:149px">
+																{section name=i loop=$al}
+                                                                <option {if 0 == $smarty.section.i.index} selected="selected" {/if} value="{$al[i].aid}">{$al[i].name}</option>
+																{/section}
+                                                            </select>
+                                                            <input id="id_upl_photo_album_val" type="text" value="" name="PI[aid]" style="display: none;"></span>
+                                                    </td>
+                                                </tr>
+                                             {*   <tr>
+                                                    <td width="70px" style="vertical-align: middle"><b>Description: &nbsp</b></td>
+                                                    <td><span><textarea id="id_upl_photo_descr" name="PI[descr]" value="" cols="50" ></textarea></span></td>
+                                                </tr> *}
+                                            </table>
+
+                                            <input type="hidden" name="WI[mtype]" value="4" />
+
+                                            <table style="width:100%">
+                                                <tr style="">
+                                                    <td style="width:150px; vertical-align: top; padding-top: 20px;">
+                                                        <input type="file"  name="fd_photos[]" id="fd_photos" />
+
+                                                    </td>
+                                                    <td id="sphotos_list" style="height:50px; vertical-align: top;"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2" id="photos_status_td" style="padding-top:10px;">Please select up to 3 photos and press "Add"</td>
+                                                </tr>
+                                            </table>
+											{*
+                                            <p><label>Upload a photo from your computer:</label> <span id="id_span_upl_btn"></span></p>
+                                            <ol id="id_photo_upl_pr_ol">
+                                                <!-- <li>DSC102659.jpg <a href="#">Remove</a></li> -->
+                                            </ol>
+                                            <br />
+                                            <div>
+                                                <input id="id_btn_photo_upload" type="button" value="Start Upload" onclick="oUplPhoto.startUpload();" style="margin-left: 2px; font-size: 8pt; height: 29px; display: none;" />
+
+                                                <p><span id="id_span_upl_file_cnt">You can upload up to 3 photos at a time</span></p>
+                                            </div> *}
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div style="float:right;left:0px;margin-bottom: 5px;">
+        <span id="id_upl_popup_cancel" class="aj-button01"><a href="javascript: void(0);" onclick="oAlbums.SHUplPopup( 2, 'id_upl_photo_popup' );">Cancel</a></span>
+        <span id="id_upl_popup_add" class="aj-button02"><a href="javascript: void(0);" onclick="oAlbums.UplPhotos();">Add</a></span>
+    </div>
+
+</div>

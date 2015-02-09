@@ -1,0 +1,129 @@
+<div class="content">
+	<div id="leftbar">
+	  <h1>{if $uid}Edit{else}Add{/if} user</h1>
+		
+	</div>
+	<div id="rightbar">
+	  <div class="infobox">
+		<form method="post" action="{$siteAdr}security/users/edit/" enctype="multipart/form-data">
+        <input type="hidden" name="mod" value="users" />
+        <input type="hidden" name="what" value="edit" />
+        {if $uid}
+        <input type="hidden" name="uid" value="{$uid}" />
+        {/if}
+		
+		{if $errs}
+            <font color="#990000">
+            {foreach key=k item=i from=$errs}
+             - {$i}<br />
+            {/foreach}        
+			</font><br />    
+        {/if}
+		
+        <p>Login<br /><input class="txt" type="text" name="fm[login]" value="{$fm.login}"  /></p>
+		<p>Name<br /><input class="txt" type="text" name="fm[name]" value="{$fm.name}"  /></p>
+		<p>E-mail<br /><input class="txt" type="text" name="fm[email]" value="{$fm.email}"  /></p>
+        
+        <input class="txt" name="fm[country]" type="hidden" value="" />
+        <input class="txt" name="fm[city]" type="hidden" value="" />
+
+        {*
+		<p>Country<br />
+		<select class="txt" name="fm[country]">
+				    {foreach key=k item=i from=$countries}
+				        <option value="{$k}"{if $fm.country==$k} selected="selected"{/if}>{$i}</option>
+					{/foreach}
+					</select> 
+		</p>
+		<p>City<br /> <input class="txt" name="fm[city]" type="text" value="{$fm.city}" /></p>
+		
+		<p>Birthday<br />
+		<select name="fm[dd]">
+				    <option value="0">день</option>
+					{foreach key=k item=i from=$dd}
+					<option value="{$i}"{if $fm.dd==$i} selected="selected"{/if}>{$i}</option>
+					{/foreach}
+				</select>
+				
+				<select name="fm[mm]">
+				    <option value="0">месяц</option>
+					{foreach key=k item=i from=$mm}
+					<option value="{$k}"{if $fm.mm==$k} selected="selected"{/if}>{$i}</option>
+					{/foreach}
+				</select>
+				
+				<select name="fm[yy]">
+				    <option value="0">год</option>
+					{foreach key=k item=i from=$yy}
+					<option value="{$i}"{if $fm.yy==$i} selected="selected"{/if}>{$i}</option>
+					{/foreach}
+				</select>
+		</p>
+		*}
+		
+		<p>Phone<br />
+	    <input class="txt" name="fm[phone]" type="text" value="{$fm.phone}" />
+		</p>
+		
+		
+		<p>ICQ<br />
+		<input class="txt" name="fm[icq]" type="text" value="{$fm.icq}" />
+		</p>
+		
+		<input type="hidden" name="fm[interests]" value="" />
+		
+		{*
+		<p>Interests<br />
+		<textarea name="fm[interests]">{$fm.interests}</textarea>
+		</p>
+
+		<p>Subscribe<br />
+		<input type="checkbox" name="fm[subscr]" value="1"{if $fm.subscr} checked="checked"{/if} /> Получать уведомления и рассылки
+	    </p>	
+	    *}	
+		
+		<p>Photo<br />
+		<input class="txt" name="fm[file]" type="file" value="" />
+				    {if $fm.image}
+					<br />
+					<div style="float: left;"><img src="/files/images/users/resize/{$fm.image}" alt="" /></div>
+					<div style="float: left; padding-top: 10px; padding-left: 5px;"><a href="javascript: CGo('{$siteAdr}security/users/edit?uid={$uid}&delphoto=1', 'Удалить фото?');">Удалить</a></div>
+					{/if}
+		</p>			
+		<div style="clear: both;width: 100%; height: 10px;"><!-- --></div>
+		{if $uid}
+		<p><font color="red">Do not enter a password if you do not want to change it</font></p>
+		{/if}
+        <p>Password<br /><input class="txt" type="password" name="fm[pass]" value="{if !$pass_err}{$fm.pass}{/if}"  /></p>
+        <p>Repeat password<br /><input class="txt" type="password" name="fm[pass2]" value="{if !$pass_err}{$fm.pass2}{/if}"  /></p>
+	
+		<p>Status<br /><select class="txt" name="fm[status]" onchange="_v('prj').style.display = (0 != this.value) ? 'block' : 'none';">
+		               <option value="0">Administrator</option>
+					   <option value="1"{if 1 == $fm.status} selected="selected"{/if}>Moderator</option>
+					   <option value="2"{if 2 == $fm.status} selected="selected"{/if}>User</option>
+					   </select></p>
+					   		
+		<span {if !$fm.status} style="display: none;"{/if} id="prj">
+		
+		<span id="rx">
+		<p>
+		    <b>Access to modules</b><br />
+		    <table>   
+		    {foreach key=k item=i from=$ml}
+			{assign var="ov" value=$i.fname}
+		        <tr>
+		            <td>{$i.name}</td>
+					<td><input type="checkbox" name="fm[mod_edit][{$i.fname}]" value="1"{if $fm.modules.$ov} checked="checked"{/if} /></td>
+		        </tr>    
+		    {/foreach}
+		    </table><br />
+		</p>
+		</span>
+
+		</span>
+		<p><input type="button" value="Cancel" onclick="Go('{$siteAdr}security/users/');" /> <input type="submit" value="Save" /></p>
+        </form>
+	   </div>
+		
+	</div>
+</div>

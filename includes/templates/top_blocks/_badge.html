@@ -1,0 +1,8 @@
+<div>
+    &nbsp;
+    {section name=vertical loop=$badge_array start=0 step=1}
+    {assign var="index" value=$smarty.section.vertical.index}
+    {assign var="name" value=$badge_array.$index}
+       <a href="javascript:void(0);" onclick="$('#select_badge').attr('src','{$imgDir}badges/{$name}.png').attr('alt','{$name}');$('#id_send_inp_badge_img_val').val('{$name}');" /><img src="{$imgDir}badges/{$name}.png" alt="Badge" {if $name == 'LDS'}style="margin-left:5px;;"{/if}/></a>
+    {/section}
+</div>

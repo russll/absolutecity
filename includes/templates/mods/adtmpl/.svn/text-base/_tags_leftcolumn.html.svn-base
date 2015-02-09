@@ -1,0 +1,12 @@
+<h2>{if $IS_USER}<span><a href="{$siteAdr}id{$UserInfo.uid}/tags">Edit</a></span>{/if} Tags</h2>
+<ul class="list02">
+	{if $j_ctags}
+	{section name=i loop=$j_ctags}
+		{if $j_ctags[i].type != 2}
+		<li class="cl_rtags" tid="{$j_ctags[i].id}" id="id_tags_li_el_{$j_ctags[i].id}" onMouseOver="$('#id_tags_li_el_{$j_ctags[i].id} .cl_del_link').show();" onMouseOut="$('#id_tags_li_el_{$j_ctags[i].id} .cl_del_link').hide();"><span>{if $j_ctags[i].cnt_mes}<a href="{$siteAdr}id{$ui.uid}/tags/id{$j_ctags[i].id}">{$j_ctags[i].cnt_mes}</a>{/if}</span> <a href="{$siteAdr}id{$ui.uid}/tags/id{$j_ctags[i].id}">{$j_ctags[i].name}</a> {if $IS_USER}<span class="cl_del_link" tid="{$j_ctags[i].id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DeleteTag( {$j_ctags[i].id} );', 'Please confirm you want to remove this tag \'{html_str_format str=$j_ctags[i].name}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</li>
+		{else}
+		<li><span><a href="{$siteAdr}id{$ui.uid}/tags/id{$j_ctags[i].id}">{$j_ctags[i].cnt_mes}</a></span> <a href="{$siteAdr}id{$ui.uid}/tags/id{$j_ctags[i].id}"><img src="{$imgDir}heart_ico.gif" title="Favorites" alt="Favorites" /></a></li>
+		{/if}
+	{/section}
+	{/if}
+</ul>

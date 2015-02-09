@@ -1,0 +1,89 @@
+8
+
+dir
+724
+https://ssergy@mysvn.ru/ssergy/InZion/min/lib
+https://ssergy@mysvn.ru/ssergy/InZion
+
+
+
+2011-01-13T11:48:48.033500Z
+361
+ssergy
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+a6c28c3a-3114-0345-bc7c-7549c853707f
+
+HTTP
+dir
+
+Solar
+dir
+
+Minify.php
+file
+
+
+
+
+2011-01-13T20:25:03.000000Z
+1e76cb45c5e02a2d8085debae855c92f
+2011-01-13T11:48:48.033500Z
+361
+ssergy
+has-props
+
+FirePHP.php
+file
+
+
+
+
+2011-01-13T20:25:03.000000Z
+f619b5a77fee4b21e4397e98d858fbf4
+2011-01-13T11:48:48.033500Z
+361
+ssergy
+has-props
+
+JSMin.php
+file
+
+
+
+
+2011-01-13T20:25:03.000000Z
+3b9a1350e9afde38a5242a80ea1a62a9
+2011-01-13T11:48:48.033500Z
+361
+ssergy
+has-props
+
+JSMinPlus.php
+file
+
+
+
+
+2011-01-13T20:25:03.000000Z
+9d982f55fe9526105eaf9c0fc661263e
+2011-01-13T11:48:48.033500Z
+361
+ssergy
+has-props
+
+Minify
+dir
+

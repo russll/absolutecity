@@ -1,0 +1,102 @@
+			
+{if $IS_USER}
+{if $ar_invites && $wh=='invites'}
+<div class="cl_srch_list" id="inv_list_all">
+    <h2>Invitations</h2>
+    <span id="inv_list">
+        {foreach item=i from=$ar_invites key=ik}
+        <div class="box001" l_frid="{$i.uid}">
+            <div class="post-box">
+                <div n_frid="{$i.uid}" class="post-box-bg00" style="min-height: 40px">
+                    <div class="b-awatar"><a href="{$siteAdr}users/id{$i.uid}" {* onclick="javascript: $('#id_dropbox_i_{$i.id}').slideToggle('slow');" *}><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}" /></a></div>
+
+                    <div class="post-title2">
+                        <b><a href="{$siteAdr}id{$i.uid}">{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</a></b>
+                    </div>
+								{if $i.mes}<p align="left" style="text-align: left">{$i.mes}</p>{/if}
+                    <div class="aj-button" style="left:330px;width:200px;">
+			{assign var=ifull_name value=$i.first_name|cat:" "|cat:$i.last_name}
+			{assign var=cifull_name value=$ifull_name}
+
+                        <span class="aj-button02"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 1, \'{$wh}\' );', 'Please confirm you want to add {html_str_format str=$cifull_name} as a friend?', 'Accept' );">Accept</a></span>
+                        <span class="aj-button01"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 2, \'{$wh}\' );', 'Please confirm you want to reject invitation from {html_str_format str=$cifull_name}?' );">Decline</a></span>
+                    </div>
+                </div>
+		{*
+                <br />
+                <div id="id_dropbox_i_{$i.id}" class="dropbox00" style="position: absolute">
+                    <div class="dropbox00-left">
+                        <div class="dropbox00-right">
+                            <ul><li><a href="{$siteAdr}id{$i.uid}">Send a message</a></li></ul>
+                            <p><a href="#">Hide member’s entries</a></p>
+                            <p><a href="#">Report this user</a></p>
+                        </div>
+                    </div>
+                </div>
+		*}
+            </div>
+        </div>
+	{/foreach}
+    </span>
+</div>
+{elseif $wh=='invites'}
+<h2>Invitations</h2>
+<div class="box001">
+    <div class="post-box">
+	There aren't any invitations
+    </div>
+</div>
+{/if}
+{/if}
+
+{if $ar_friends && !$wh}
+<div class="cl_srch_list">
+    <h2>{if $mutual}Mutual {/if}Friends<span style="font-size:16px;">{$cnt_ar_friends}</span></h2>
+    <div id="id_fr_mlist">
+	{foreach item=fr from=$ar_friends key=frk}
+        <div class="box001">
+            <div class="post-box">
+                <div class="post-box-bg00" style="height:70px;min-height: 70px !important;float:left; width: 300px;">
+
+                    <div class="b-awatar"><a href="{$siteAdr}id{$fr.uid}" {* onclick="javascript: $('#id_dropbox_fr_{$fr.uid}').slideToggle('slow');" *}><img src="{if $fr.image}{$fImgDir}users/{$fr.fpath}/s/s_{$fr.image}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="{if $fr.first_name || $fr.last_name}{$fr.first_name} {$fr.last_name}{else}{$fr.public_name}{/if}" /></a></div>
+
+                    <div class="post-title2"><b><a href="{$siteAdr}id{$fr.uid}">{if $fr.first_name || $fr.last_name}{$fr.first_name} {$fr.last_name}{else}{$fr.public_name}{/if}</a></b></div>
+                    {if $IS_USER}
+                    <div style="position:absolute;margin-left: 260px; margin-top: -20px;">
+                        <p><a href="{$siteAdr}id{$fr.uid}/friends/?mutual=1">{$fr.mutual} mutual friend(s)</a></p>
+                        <p><a href="{$siteAdr}id{$fr.uid}">Send a message</a></p>
+                        <p><a href="javascript: void(0);" onclick="javascript: oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$fr.uid}');">Unfriend</a></p>
+
+                        <p id="blockFr{$fr.uid}" {if $fr.active == 3}style="display:none;"{/if}><a href="javascript: void(0);" onclick="javascript: oFriends.EditFrActive({$fr.uid}, 3);">Block</a></p>
+                        <p id="unblockFr{$fr.uid}" {if $fr.active != 3}style="display:none;"{/if}><a href="javascript: void(0);" onclick="javascript: oFriends.EditFrActive({$fr.uid}, 1);">UnBlock</a></p>
+			{*
+                        <p><a href="#">Hide member’s entries</a></p>
+                        <p><a href="#">Report this user</a></p>
+                        *}
+                    </div>
+                    {/if}
+                </div>
+                <div style="height:50px;">&nbsp;</div>
+
+                {*<div id="id_dropbox_fr_{$fr.uid}" >
+                    <div class="dropbox00-left">
+                        <div class="dropbox00-right">
+                            <ul><li>&nbsp;</li></ul>
+                        </div>
+                    </div>
+                </div>*}
+            </div>
+        </div>
+	{/foreach}
+    </div>
+</div>
+<span id="pagging">{$pagging}</span>
+
+{elseif !$wh}
+<h2>Friends</h2>
+<div class="box001">
+    <div class="post-box">
+    There aren't any friends
+    </div>
+</div>
+{/if}

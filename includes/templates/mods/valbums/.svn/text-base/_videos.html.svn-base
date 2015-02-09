@@ -1,0 +1,42 @@
+{if 2 == $ai.type}
+<h2><em></em> System video Album - {$ai.name}</h2>
+{else}
+<h2><em>{*<a href="#">Share an album</a>*}</em> {$ai.name} {if $cnt_pl}<span>{$cnt_pl}</span>{/if}</h2>
+{/if}
+<table class="album-box">
+    {if $vl}
+    {assign var=ind value=0}
+    {section name=hi loop=$cnt_hpl}
+    {assign var=ind value=$ind}
+    <tr>
+	{section name=i loop=$vl start=$ind max=2}
+	{assign var=ind value=$ind+1}
+        <td>
+            <p style="width: 100%; text-align: center;"><object wmode="opaque" style="z-index: 300;">{$vl[i].video}</object></p>
+            <p style="width: 100%; text-align: center;">Uploaded on {$vl[i].dt|date_format:"%b %d, %Y"}</p>
+            <p style="width: 100%; text-align: center;"><a href="{$siteAdr}id{$ui.uid}/valbums/id{$vl[i].vaid}/id{$vl[i].id}">View this video {$vl[i].name}</a></p>
+            <ul class="recomment">
+	    {if $vl[i].lcom}
+	        {assign var=ccom value=$vl[i].lcom}
+                <li><a href="{$siteAdr}id{$ccom.user_id}"><img src="{if $ccom.image}{$fImgDir}users/{$ccom.fpath}/s/s_{$ccom.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+                    <div>
+                        <p><a href="#">{if $ccom.first_name || $ccom.last_name} {$ccom.first_name} {$ccom.last_name} {else} {$ccom.public_name} {/if}</a> {$ccom.text} </p>
+                        <p><span>{html_tmpl_time val=$ccom.dt type=1}</span></p>
+                    </div>
+                </li>
+		{/if}
+            </ul>
+        </td>
+	{/section}
+    </tr>
+    {/section}
+	<tr><td colspan="2">{$pagging}</td></tr>
+    {else}
+
+    <tr>
+        <td>
+	There aren't any videos
+        </td>
+    </tr>
+    {/if}
+</table>

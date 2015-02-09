@@ -1,0 +1,21 @@
+<!-- Search top box -->
+<div class="search-top-box">
+	{if $glsrch}<input id="id_glsrch_input" type="hidden" value="{$glsrch}" />{/if}
+	{if $glsrchsubfilt}<input id="id_glsrchsubfilt_input" type="hidden" value="{$glsrchsubfilt}" />{/if}
+	<input id="pml" type="hidden" value="{$pml|default:''}" />
+	<input id="pwn" type="hidden" value="{$pwn|default:''}" />
+	<input id="psn" type="hidden" value="{$psn|default:''}" />
+	{if !$web_search}
+    <form id="id_frm_srch" action="{$siteAdr}base/search" method="post" onsubmit="javascript: return false;" >
+		<div><input id="id_srch_edit" name="SI[bfilt]" type="text" value="{if $glsrch}{$glsrch}{else}Find something...{/if}" onclick="this.value='';" onkeypress="javascript: if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) oSearch.Search('id_frm_srch'); return;" /><a id="id_btn_search" href="javascript: void(0);" onclick="javascript: oSearch.Search('id_frm_srch', 1);"><img src="{$imgDir}find_b2.gif"  /></a></div>
+		<div id="id_browse_attach_srch" style="display: none;">
+			<input id="id_srch_attach_frm_btype" name="SI[btype]" type="hidden" value="All results" />
+		</div>
+	</form>
+    {else}
+    <form action="{$siteAdr}base/search/web" id="fms" method="post">
+		<div><input name="q" type="text" value="{if $q}{$q}{else}Find something...{/if}" onclick="this.value='';" onkeypress="javascript: if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) $('#fms').submit(); return;" /><a id="id_btn_search" href="javascript: void(0);" onclick="javascript: $('#fms').submit();"><img src="{$imgDir}find_b2.gif"  /></a></div>
+	</form>
+    {/if}
+</div>
+<!-- Search top box -->

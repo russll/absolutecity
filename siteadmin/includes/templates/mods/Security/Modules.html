@@ -1,0 +1,38 @@
+
+<div class="content">
+	<div id="leftbar">
+	  <h1>&nbsp;Modules</h1>
+	</div>
+	<div id="rightbar">
+       
+		<form name="fb" method="post" action="{$siteAdr}security/modules/update">
+        <input type="hidden" name="action" id="action" value="update" />
+        <input type="hidden" name="id" id="id" value="0" />
+		<table class="table01">
+			{section name=i loop=$list}
+			<tr class="td01">
+    			<td class="black-txt">&nbsp;<input type="text" name="sortid{$list[i].id}" value="{$list[i].sortid}" style="width:30px" />&nbsp;</td>
+   			    <td class="black-txt">&nbsp;<input type="text" name="fname{$list[i].id}" style="width:180px" value="{$list[i].fname}" />&nbsp;</td>
+   			    <td class="black-txt">&nbsp;<input type="text" name="name{$list[i].id}" style="width:180px" value="{$list[i].name}" />&nbsp;</td>
+   			    <td class="black-txt">{if $list[i].active==0}<a href="{$siteAdr}security/modules/active/?id={$list[i].id}"><img src="{$imgDir}ico/status_green_l.gif " border="0"></a>&nbsp;<img src="{$imgDir}ico/status_red.gif ">{else}<img src="{$imgDir}ico/status_green.gif " border="0">&nbsp;<a href="{$siteAdr}security/modules/active/?id={$list[i].id}"><img src="{$imgDir}ico/status_red_l.gif" border="0"></a>{/if}</td>
+   		    	<td class="black-txt" width="30px"><a href="#" onClick="_v('id').value='{$list[i].id}'; _v('action').value='edit'; document.fb.submit(); return false;" title="{#mo11#}"><img src="{$imgDir}ico/icon_save.gif" border="0" alt="Сохранить" /></a></td>
+   			    <td class="black-txt" width="30px"><a href="javascript: CGo('{$siteAdr}security/modules/del/?id={$list[i].id}', '{#mo10#}');" title="{#mo9#}" ><img src="{$imgDir}ico/icon_del.gif" border="0" alt="Удалить" /></a></td>
+			</tr>
+            {/section}
+		</table>
+		</form>
+		<br />
+		
+        <form name="fa" method="post" action="{$siteAdr}security/modules/edit">
+        <table>
+        <tr class="td01">
+            <td class="black-txt">&nbsp;<b>{#mo7#}</b>&nbsp;</td>
+            <td class="black-txt">&nbsp;{#mo3#}: <input type="text" name="fname" value="{$list[i].fname}" />&nbsp;</td>
+            <td class="black-txt">&nbsp;{#mo4#}: <input type="text" name="name" value="{$list[i].name}" /></td>
+            <td class="black-txt">&nbsp;<input type="submit" value="{#mo8#}" /></td>
+		</tr>
+        </table>
+        </form>		
+  		
+	</div>
+</div>

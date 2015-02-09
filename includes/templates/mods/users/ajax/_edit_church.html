@@ -1,0 +1,294 @@
+<form method="post" id="church_info_form">
+    <table class="t-edit">
+		<tbody>
+    <tr>
+        <td width="124"><label>Date of baptism</label></td>
+        <td>
+            <span class="niceform">
+                <select class="bp_month" id="bmonth" name="fm[bmonth]" size="1" style="width:61px;">
+                    <option value="0">Month</option>
+                    {foreach key=k item=i from=$mm}
+                    <option value="{$k}"{if $k==$fm.bmonth} selected="selected"{/if}>{$i}</option>
+	        {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select class="bp_day" id="bday" name="fm[bday]" size="1" style="width:51px;">
+                    <option value="0">Day</option>
+	            {foreach key=k item=i from=$dd}
+                    <option value="{$i}"{if $i==$fm.bday} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select class="bp_year" id="byear" name="fm[byear]" size="1" style="width:55px;">
+                    <option value="0">Year</option>
+	            {foreach key=k item=i from=$yy}
+                    <option value="{$i}"{if $i==$fm.byear} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr></tbody>
+    
+    <tbody style="display:none;" id="church_mission_tmp">
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+    </tbody>
+    <!--for scripts-->
+    <tbody id="church_mission_default" style="display:none">
+		<tr>
+			<td width="124"><label>Mission location</label></td>
+			<td>
+				<input type="hidden" id="mission_id" />
+				<input type="hidden" name="fm[user_mission_id][]" value="0" />
+				<input class="txt3 loc" type="text" name="fm[mission_location][]" value=""  />
+				<div style="float:left;margin-top:4px;">
+					<a  href="javascript:void(0);" onclick="oUsers.SettingsChurchDelMission( $(this).parent().parent().parent(), 0 );">Clear</a>
+				</div>
+			</td>
+		</tr>
+    <tr>
+        <td width="124"><label>Mission time from</label></td>
+        <td>
+             <span class="niceform">
+                <select cls="from_month" id="bmonth" name="fm[fmonth][]" size="1" style="width:61px;">
+                    <option value="0">Month</option>
+                    {foreach key=k item=i from=$mm}
+                    <option value="{$k}">{$i}</option>
+	        {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="from_day" id="bday" name="fm[fday][]" size="1" style="width:51px;">
+                    <option value="0">Day</option>
+	            {foreach key=k item=i from=$dd}
+                    <option value="{$i}">{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="from_year" id="byear" name="fm[fyear][]" size="1" style="width:55px;">
+                    <option value="0">Year</option>
+	            {foreach key=k item=i from=$yy}
+                    <option value="{$i}">{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td width="124"><label>to</label></td>
+        <td>
+            <span class="niceform">
+                <select cls="to_month" id="bmonth" name="fm[tmonth][]" size="1" style="width:61px;">
+                    <option value="0">Month</option>
+                    {foreach key=k item=i from=$mm}
+                    <option value="{$k}">{$i}</option>
+	        {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="to_day" id="bday" name="fm[tday][]" size="1" style="width:51px;">
+                    <option value="0">Day</option>
+	            {foreach key=k item=i from=$dd}
+                    <option value="{$i}">{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="to_year" id="byear" name="fm[tyear][]" size="1" style="width:55px;">
+                    <option value="0">Year</option>
+	            {foreach key=k item=i from=$yy}
+                    <option value="{$i}">{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr>
+    </tbody>
+    <!--for scripts-->
+    <tbody id="church_mission">
+    {foreach key=k1 item=i1 from=$mission}
+
+	{*<tr><td width="124"><label>Mission location</label></td><td><input name="fm[mission_location][]" value="{$fm.mission_location.$k1}"  class="txt3 loc" type="text"  />*}
+    
+    <tr>
+		<td width="124">
+			<label>Mission location</label></td><td><input type="hidden" id="mission_id" /><input type="hidden" name="fm[user_mission_id][]" value="{if $fm.user_mission_id.$k1}{$fm.user_mission_id.$k1}{else}0{/if}" /><input class="txt3 loc" type="text" name="fm[mission_location][]" value="{$fm.mission_location.$k1}"  />
+            <div style="float:left;margin-top:4px;"><a  href="javascript:void(0);" onclick="oUsers.SettingsChurchDelMission( $(this).parent().parent().parent(), {if $fm.user_mission_id.$k1}{$fm.user_mission_id.$k1}{else}0{/if} );">Clear</a></div>
+	    </td>
+	</tr>
+
+    <tr>
+        <td width="124"><label>Mission time from</label></td>
+        <td>
+             <span class="niceform">
+                <select cls="from_month" id="bmonth" name="fm[fmonth][]" size="1" style="width:61px;">
+                    <option value="0">Month</option>
+                    {foreach key=k item=i from=$mm}
+                    <option value="{$k}"{if $k==$fm.fmonth.$k1} selected="selected"{/if}>{$i}</option>
+	        {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="from_day" id="bday" name="fm[fday][]" size="1" style="width:51px;">
+                    <option value="0">Day</option>
+	            {foreach key=k item=i from=$dd}
+                    <option value="{$i}"{if $i==$fm.fday.$k1} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="from_year" id="byear" name="fm[fyear][]" size="1" style="width:55px;">
+                    <option value="0">Year</option>
+	            {foreach key=k item=i from=$yy}
+                    <option value="{$i}"{if $i==$fm.fyear.$k1} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td width="124"><label>to</label></td>
+        <td>
+            <span class="niceform">
+                <select cls="to_month" id="bmonth" name="fm[tmonth][]" size="1" style="width:61px;">
+                    <option value="0">Month</option>
+                    {foreach key=k item=i from=$mm}
+                    <option value="{$k}"{if $k==$fm.tmonth.$k1} selected="selected"{/if}>{$i}</option>
+	        {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="to_day" id="bday" name="fm[tday][]" size="1" style="width:51px;">
+                    <option value="0">Day</option>
+	            {foreach key=k item=i from=$dd}
+                    <option value="{$i}"{if $i==$fm.tday.$k1} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+            <span class="niceform" style="float:left">
+                <select cls="to_year" id="byear" name="fm[tyear][]" size="1" style="width:55px;">
+                    <option value="0">Year</option>
+	            {foreach key=k item=i from=$yy}
+                    <option value="{$i}"{if $i==$fm.tyear.$k1} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr>
+    {/foreach}
+    </tbody>
+	<tbody>
+    <tr><td></td><td><a href="javascript:oUsers.SettingsChurchAddMission();">Add another mission</a></td>
+
+   {* <tr>
+		<td width="124">
+			<label>Stake</label>
+		</td>
+		<td>
+			<input type="hidden" id="stake_id" name="fm[stake_id]" value="{$fm.stake_id}" />
+			<input type="hidden" id="stake_id_input" class="txt3 stake" name="fm[stake]" value="{$fm.stake}"  />
+		</td>
+	</tr> *}
+    <tr>
+		<td width="124">
+			<label>Ward/Branch</label>
+		</td>
+		<td>
+			<input type="hidden" id="stake_id" name="fm[stake_id]" value="{$fm.stake_id}" />
+			<input type="hidden" id="ward_id" name="fm[ward_id]" value="{$fm.ward_id}" />
+			<input id="ward_id_input" class="txt3 ward" name="fm[ward]" type="text" value="{$fm.ward}"  />
+		</td>
+	</tr>
+	<tr>
+		<td width="124">
+			<label></label>
+		</td>
+		<td>
+			<a style="float:left; cursor:pointer;" id="ward_not_found">Haven't found your ward?</a>
+		</td>
+	</tr>
+    </tbody>
+    <tbody id="church_calling">
+    {foreach key=k item=i from=$calling}
+    <tr>
+        <td width="124" style="margin-bottom:0px; padding-bottom: 0px;"><label>My calling</label></td>
+        <td style="margin-bottom:0px; padding-bottom: 0px;">
+            <span class="niceform">
+                <input type="text" style="width:124px;" name="fm[calling][]" value="{$fm.calling.$k}" class="txt" />
+            </span>
+          {*  <input class="txt2" type="text" style="width:144px; float: left;" name="fm[calling_comment][]" value="{if $fm.calling_comment.$k|trim}{$fm.calling_comment.$k}{/if}"  /> *}
+            <div style="float:left;margin-top:4px; margin-left:4px;"><a href="javascript:void(0);" onclick="oUsers.SettingsChurchDelCalling( $(this).parent().parent().parent() );">Clear</a></div>
+        </td>
+    </tr>
+    {/foreach}
+    </tbody>
+
+	<tbody>
+    <tr><td style="margin-top:0px; padding-top: 0px;"></td><td style="margin-top:0px; padding-top: 0px;"><a href="javascript:oUsers.SettingsChurchAddCalling();">Add other calling</a></td></tr>
+	</tbody>
+    <tbody id="church_priesthood">
+    <tr>
+        <td width="124" style="margin-bottom:0px; padding-bottom: 0px;"><label>Are you a priesthood holder? </label></td>
+        <td style="margin-bottom:0px; padding-bottom: 0px;">
+            <span class="niceform" style="float:left">
+                <select id="id_priesthood" name="fm[priesthood]" size="1" style="width:200px;">
+	            {foreach key=k item=i from=$fm.priesthood_list}
+                    <option value="{$k}"{if $k == $fm.priesthood} selected="selected"{/if}>{$i}</option>
+	            {/foreach}
+                </select>
+            </span>
+        </td>
+    </tr>
+	</tbody>
+
+
+    <!-- Classes -->
+    <tbody style="display:none;" id="class_mission_tmp">
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+    </tbody>
+    {if $fm.ward_id}
+    <!--for scripts-->
+    <tbody id="church_class_default" style="display:none">
+		<tr>
+			<td width="124"><label>Sunday School Class</label></td>
+			<td>
+				<input type="hidden" id="class_id" /><input type="hidden" name="fm[user_class_id][]" value="0" /><input class="txt3 schl" type="text" name="fm[class_title][]" value=""  />
+                <div style="float:left;margin-top:4px;"><a  href="javascript:void(0);" onclick="oUsers.SettingsChurchDelClass( $(this).parent().parent().parent(), 0 );">Clear</a></div>
+			</td>
+		</tr>
+
+    </tbody>
+    <!--for scripts-->
+    <tbody id="church_class">
+    {foreach key=k1 item=i1 from=$class}
+    <tr>
+        <td width="124"><label>Sunday School Class</label></td>
+        <td>
+			<input type="hidden" id="class_id" /><input type="hidden" name="fm[user_class_id][]" value="{if $fm.user_class_id.$k1}{$fm.user_class_id.$k1}{else}0{/if}" /><input class="txt3 schl" type="text" name="fm[class_title][]" value="{$fm.class_title.$k1}"  />
+			<div style="float:left;margin-top:4px;"><a  href="javascript:void(0);" onclick="oUsers.SettingsChurchDelClass( $(this).parent().parent().parent(), {if $fm.user_class_id.$k1}{$fm.user_class_id.$k1}{else}0{/if} );">Clear</a></div>
+        </td>
+    </tr>
+    {/foreach}
+    </tbody>
+    <tr><td></td><td><a href="javascript:oUsers.SettingsChurchAddClass();">Add Sunday school class</a></td>
+    {else}
+    <tr><td></td><td>To choose Sunday school class, please select your ward</td></tr>
+    {/if}
+    </tbody>
+
+    <tr style="height:50px;">
+        <td colspan="2" align="right">
+            <div class="aj-button">
+                <span class="aj-button01"><a href="javascript:void(0);" id="basic_cancel" onclick="oUsers.SettingsChurchCnl();">Cancel</a></span>
+                <span class="aj-button02"><a href="javascript:void(0);" id="basic_save" onclick="oUsers.SettingsChurchSubm();">Save</a></span>
+            </div>
+        </td>
+    </tr>
+</table>
+</form>

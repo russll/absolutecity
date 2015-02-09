@@ -1,0 +1,7 @@
+{if $ti}
+    {section name=i loop=$ti}
+    <li class="cl_rtags" tid="{$ti[i].id}" id="id_tags_li_el_{$ti[i].id}" onMouseOver = "$('#id_tags_li_el_{$ti[i].id} .cl_del_link').show();" onMouseOut = "$('#id_tags_li_el_{$ti[i].id} .cl_del_link').hide();"><a href="{$siteAdr}id{$ui.uid}/albums/tags/{$ti[i].name}">{$ti[i].name}</a> {if $IS_USER && !empty($pi)}<span class="cl_del_link" tid="{$ti[i].id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oAlbums.DelTag( {$ti[i].id}, {$pi.id} );', 'Please confirm you want to remove this tag \'{html_str_format str=$ti[i].name}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</li>
+    {/section}
+{else}
+    <li class="emptytag">There aren't any tags</li>
+{/if}

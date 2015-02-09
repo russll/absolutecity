@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/LICENSE
+END
+aboutus.html
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/aboutus.html
+END
+changelog.txt
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/changelog.txt
+END
+class.phpmailer.php
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/class.phpmailer.php
+END
+class.pop3.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/class.pop3.php
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/README
+END
+class.smtp.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/Phpmailer_v5.1/class.smtp.php
+END

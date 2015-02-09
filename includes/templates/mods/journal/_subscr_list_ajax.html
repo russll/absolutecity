@@ -1,0 +1,26 @@
+			{if $ar_subscribition}
+				<h2>Journals I follow List</h2>
+                                {foreach item=subsc from=$ar_subscribition key=sk}
+				<div class="box001">
+					<div class="post-box">
+						<div class="post-box-bg00" style="min-height: 40px">
+							<div class="b-awatar"><a href="javascript: void(0);" onclick="javascript: $('#id_dropbox_subsc_{$i.wuid}').slideToggle('slow');"><img src="{if $subsc.image}{$fImgDir}users/{$subsc.fpath}/s/s_{$subsc.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  style="width: 66px; height: 66px;" /></a></div>
+
+							<div class="post-title2"><b><a href="{$siteAdr}id{$subsc.wuid}/journal">{if $subsc.first_name || $subsc.last_name}{$subsc.first_name} {$subsc.last_name}{else}{$subsc.public_name}{/if}</a></b></div>
+						</div>
+						<br />
+						<div id="id_dropbox_subsc_{$subsc.wuid}" class="dropbox00" style="position: absolute">
+							<div class="dropbox00-left">
+							<div class="dropbox00-right">
+								<ul><li><a href="{$siteAdr}id{$subsc.wuid}">Send a message</a></li></ul>
+								<p><a class="user_report" href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$subsc.uid}');">Report this user</a></p>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				{/foreach}
+
+                                <span id="pagging">{$pagging}</span>
+			{/if}
+                        

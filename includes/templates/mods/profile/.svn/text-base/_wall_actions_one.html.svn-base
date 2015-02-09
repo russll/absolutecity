@@ -1,0 +1,53 @@
+<div class="tlink" style="" id="tl_{$mai.com_parent}" mid="{$mai.com_parent}">
+{if $mai.fpath}
+    {if $IS_USER || $UserInfo.uid == $mai.uid}
+    <span mid="{$mai.id}" class="cl_del_link">
+        <a href="javascript: void(0);" onclick="oSystem.SConfPopup( '{if $m_page == 'wall'}oWall{elseif $m_page == 'wards_wall'}oWWall{elseif $m_page == 'mission_wall'}oMWall{/if}.DelMes( {$mai.id}, {$mai.com_parent} );', 'Please confirm you want to delete this message' );">&nbsp&nbsp&nbsp&nbsp</a>
+    </span>
+    {/if}
+
+    <a  id="id_edit_fav_a_{$mai.id}" style="float:right" href="javascript: void(0);" {if $mai.my_fav} onclick="oUsers.EditTagsMes( 2, {$ctags_fav.id}, {$mai.id}, {$mai.fpath}, {$mai.wtype} );" {else} onclick="oUsers.EditTagsMes( 1, {$ctags_fav.id}, {$mai.id}, {$mai.fpath}, {$mai.wtype} );" {/if}>
+        <img {if $mai.my_fav} src="{$imgDir}heart_ico03.png" class="favorites favorite" {else} class="favorites not_favorite"  src="{$imgDir}heart_ico01.png" {/if} alt="Favorite" />
+    </a>
+    <span id="taghov" onmouseover="$('#tb_{$mai.id}').show();" onmouseout="$('#tb_{$mai.id}').hide();">
+        <a  href="#">
+            <img id="st_{$mai.id}" src="/i/stick_ico01.png" onmouseover="this.src='/i/stick_ico03.png';" onclick="this.src='/i/stick_ico03.png';" onmouseout="this.src='/i/stick_ico01.png'"  />
+        </a>
+        <div class="tagsbox" id="tb_{$mai.id}" onmouseover="$('#st_{$mai.id}').attr('src', '/i/stick_ico03.png');" onmouseout="$('#st_{$mai.id}').attr('src', '/i/stick_ico01.png');">
+            <div class="tagsbox-top">Tags:</div>
+            <div class="tagsbox-bot">
+                <ul id="id_tags_menu_list_{$mai.id}">
+		{if $mai.ctags}
+		    {section name=j loop=$mai.ctags}
+                    <li><a href="/id{$UserInfo.uid}/tags/id{$ctags[i].id}">{$ctags[i].name}</a></li>
+		    {/section}
+		{else}
+		    There aren't any tags
+		{/if}
+                </ul>
+                <p>
+                    <input id="id_inp_tag_name_{$mai.id}" type="text" value="Add tag" onclick="this.value='';" />
+                    <a href="javascript: void(0);" onclick="oUsers.EditTags( 1, {$mai.id}, {$mai.fpath}, {$mai.wtype}, 1 );">
+                        <img src="{$imgDir}add_b.gif" alt="Add tag" />
+                    </a>
+                </p>
+            </div>
+        </div>
+    </span>
+    <span id="smile_status">
+       <a href="javascript:void(0);" onmouseover="$('#status_sm_{$mai.id}').show();" onmouseout="$('#status_sm_{$mai.id}').hide();" onclick="$('#status_sm_{$mai.id}').show();"><img src="{$imgDir}smile_ico.gif" alt="Smile status" /></a>
+        <div class="tab_smile_status" id="status_sm_{$mai.id}" onmouseover="$('#status_sm_{$mai.id}').show();" onmouseout="$('#status_sm_{$mai.id}').hide();" {if isset($mai.sub_mtype)}style="width:175px;"{/if}>
+            <div class="tab_smile_status_top">
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.happy.0}');" onclick="oWall.AddSmileStat('happy','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/happy.png" alt="Happy" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.laugh.0}');" onclick="oWall.AddSmileStat('laugh','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/laugh.png" alt="Laugh" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.wink.0}');" onclick="oWall.AddSmileStat('wink','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/wink.png" alt="Wink" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.bless.0}');" onclick="oWall.AddSmileStat('bless','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/bless.png" alt="Bless" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.love.0}');" onclick="oWall.AddSmileStat('love','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/love.png" alt="Love" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.shock.0}');" onclick="oWall.AddSmileStat('shock','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/shock.png" alt="Shock" /></a>
+                <a href="javascript:void(0);" onmouseover="$('#status_name_{$mai.id}').empty().append('I\'m '+'{$status.sad.0}');" onclick="oWall.AddSmileStat('sad','{$UserInfo.uid}',{if !($mai.is_copy_mes)}'{$mai.id}'{else}'{$mai.is_copy_mes}'{/if});"><img src="/i/smile/sad.png" alt="Sad" /></a>
+            </div>
+            <div id="status_name_{$mai.id}" class="tab_smile_status_bot">I'm happy about this</div>
+        </div>
+    </span>
+	{/if}
+</div>

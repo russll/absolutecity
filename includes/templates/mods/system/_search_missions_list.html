@@ -1,0 +1,36 @@
+ {if $srch_res.missions}
+        {assign var=missions value=$srch_res.missions}
+		{assign var=cnt_missions value=$cnt_all.missions}
+        <h2><span></span>Missions</h2>
+		<div btype="Missions" class="cl_srch_list">
+			{foreach item=mis from=$missions key=mk}
+				<div class="box002">
+					<div class="post-box">
+						<div class="post-box-bg00" style="min-height: 40px">
+							<div class="b-awatar"><a href="#"><img src="{if $mis.img}{$fImgDir}mission/{$mis.img}{else}{$imgDir}no_photo_ward_m66.png{/if}"  /></a></div>
+							<div class="post-title2">
+								{if !$mis.served}<a href="javascript: void(0);" onclick="$('#mis_name').html($('#mtl_{$mis.id}').text());oMWall.SHConfirmPopup( 1, 'id_confirm_mission_popup', {$mis.id} );" style="float:right;">Served this mission?</a>{/if}
+								<b><a href="{$siteAdr}id{$ui.uid}/mission/id{$mis.id}" id="mtl_{$mis.id}">{if $mis.location}{$mis.location}{else}{$mis.title}{/if}</a></b> <br/>
+							</div>
+							<p>&nbsp</p>
+						</div>
+					</div>
+				</div>
+			{/foreach}
+		</div>
+
+		{if ($pcnt.missions+$data_rcnt) < $cnt_missions}
+			<div id="id_div_show_more_mes_missions" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+				<a href="javascript: void(0);" class="cl_search_pagging{if $nwall}2{/if}" pname="missions" pcnt=" {$pcnt.missions+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+			</div>
+		{/if}
+ {else}
+<h2><span></span>Missions</h2>
+
+    <div class="box001">
+        <div class="post-box">Missions not found...<br />
+        <br />Can not find your Mission? <a href="{$siteAdr}id{$UserInfo.uid}/settings?ed_mission"><b>Add here..</b></a>
+        </div>
+
+    </div>
+ {/if}        

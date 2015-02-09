@@ -1,0 +1,8 @@
+{foreach key=fk item=fi from=$ar_fr}
+<li id="id_fr_rlist_{$fi.uid}" class="cl_rlist_fr {if 0 == $fk} act {/if}" >
+  {if $fi.cnt_new_mes} <span>{$fi.cnt_new_mes}</span> {/if}
+    <img src="{if $fi.image}{$fImgDir}users/{$fi.fpath}/s/s_{$fi.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 42px; height: 42px;"  />
+    {if isset($fi.is_online)}<span class="awatar"></span>{/if}
+    <p><a class="cl_rlist_fr_el" fr_uid="{$fi.uid}"  href="javascript: void(0);">{$fi.first_name} {$fi.last_name}</a>{if $fi.last_update}{$fi.last_update}{/if}</p>
+</li>
+{/foreach}

@@ -1,0 +1,14 @@
+{foreach item=i key=k from=$ar_img_com}
+	<li><a href="{$siteAdr}id{$i.user_id}"><img src="{if $i.image}{$fImgDir}users/{$i.user_fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+		<div>
+			<p><b>{$i.first_name} {$i.last_name}</b> wrote:</p>
+			{*<p><a href="/id{$ui.uid}/albums/id{$i.aid}/id{$i.iid}/">{$i.text}</a></p>*}
+			<p>{$i.text}</p>
+			<p style="font-size:10px;">{html_tmpl_time val=$i.dt type=1} ({$i.dt|date_format:"%b %d, %Y"})</p>
+		</div>
+	</li>
+{/foreach}
+<li>
+	<a class="prev" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgBoxCom( 1, '{$ai.aid}', '{$pi.id}', '{$fcnt}', 2 );" {if 0 == $fcnt} style="visibility: hidden;" {/if}>previous</a>
+	<a class="next" href="javascript: void(0);" onclick="javascript: oAlbums.ReloadImgBoxCom( 1, '{$ai.aid}', '{$pi.id}', '{$fcnt}', 1 );" {if $cnt_img_com <= ($fcnt + $pcnt)} style="visibility: hidden;" {/if} >next</a>
+</li>

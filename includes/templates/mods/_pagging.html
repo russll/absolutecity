@@ -1,0 +1,30 @@
+{if $pages}
+<div style="padding-top:5px; padding-right: 10px;padding-bottom:10px;">
+        <table style="font-size:13px;margin-left:180px;font-weight:bold;">
+        <tr>
+            <td style="width: 50px;">Pages:</td>
+            {if $lprev}
+            <td style="width: 20px;">
+		       <a href="{$lprev}"><<</a>
+            </td>
+            {/if}
+            <td>
+					{section name=i loop=$pages}
+					{if $page == $pages[i].page}
+					<span class="gray">{$pages[i].page}</span>
+					{else}
+					<a href="{$pages[i].link}">{$pages[i].page}</a>
+					{/if}
+					{/section}
+					{if $last_page && !1}
+					<span class="gray">&nbsp; ...</span> &nbsp;
+					<a href="{$last_page_link}">{$last_page}</a>
+					{/if}
+			</td>
+			<td{if $lnext} style="width: 25px; padding-left:8px;"{/if}>
+			    {if $lnext}<a href="{$lnext}">>></a>{/if}
+			</td>
+		</tr>
+		</table>		
+	    </div>
+{/if}		

@@ -1,0 +1,77 @@
+<h2>Settings</h2>
+<div class="settings-box">
+    <h4>Account settings</h4>
+
+    <table class="t-edit-line" id="name_info">
+	{include file="mods/users/ajax/_options_show_name.html"}
+    </table>
+    <form name="name_info_form" id="name_info_form">
+    <table class="t-edit hidden" id="name_edit">
+	{include file="mods/users/ajax/_options_edit_name.html"}
+    </table>
+    </form>
+
+    <table class="t-edit-line" id="email_info">
+	{include file="mods/users/ajax/_options_show_email.html"}
+    </table>
+    <form name="email_info_form" id="email_info_form">
+    <table class="t-edit hidden" id="email_edit">
+        {include file="mods/users/ajax/_options_edit_email.html"}
+    </table>
+    </form>
+
+    <table class="t-edit-line" id="password_info">
+	{include file="mods/users/ajax/_options_show_password.html"}
+    </table>
+    <form name="pass_info_form" id="pass_info_form">
+    <table class="t-edit hidden" id="password_edit">
+        {include file="mods/users/ajax/_options_edit_password.html"}
+    </table>
+    </form>
+
+    <table class="t-edit-line" id="question_info">
+	{include file="mods/users/ajax/_options_show_question.html"}
+    </table>
+    <form name="question_info_form" id="question_info_form">
+    <table class="t-edit hidden" id="question_edit">
+        {include file="mods/users/ajax/_options_edit_question.html"}
+    </table>
+    </form>
+
+    <h4>Deleting your account</h4>
+    <table class="t-edit-line" id="delete_info">
+        <tr><td width="150"><a href="javascript:oUsers.OptionsEdit('delete');">Delete my account?</a></td><td>&nbsp;</td><td width="10"><a href="javascript:oUsers.OptionsEdit('delete');"><img src="{$imgDir}arr05.gif"  /></a></td></tr>
+    </table>
+    <table class="t-edit hidden" id="delete_edit">
+        <tr style="height: 50px;">
+            <td colspan="2" align="right">
+                <form name="delete_info_form" id="delete_info_form">
+                    <div class="aj-button">
+                        <span class="aj-button01"><a href="javascript:oUsers.OptionsCnl('delete');">No</a></span>
+                        <span class="aj-button02"><a href="javascript:oUsers.OptionsDeleteSubm();">Yes</a></span>
+                    </div>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+    <h4>Notification settings</h4>
+    <table id="notify_info" class="t-edit-line">
+	{include file="mods/users/ajax/_options_show_notify.html"}
+    </table>
+    <form name="notify_info_form" id="notify_info_form">
+    <table class="t-edit hidden" id="notify_edit">
+	{include file="mods/users/ajax/_options_edit_notify.html"}    
+    </table>
+    </form>
+
+    <h4>Privacy settings</h4>
+    <table id="privacy_info" class="t-edit-line">
+	{include file="mods/users/ajax/_options_show_privacy.html"}
+    </table>
+    <form name="privacy_info_form" id="privacy_info_form">
+    <table class="t-edit hidden" id="privacy_edit">
+        {include file="mods/users/ajax/_options_edit_privacy.html"}
+    </table>
+    </form>
+</div>

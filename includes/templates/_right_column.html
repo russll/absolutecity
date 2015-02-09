@@ -1,0 +1,448 @@
+{if 'friends_list'==$m_page}
+{if $wh != 'invites' && !$mutual}
+<h2>Sorting</h2>
+<ul id="id_browse_list" class="list02">
+	<li><span></span><div id="bl_link_1"><a class="cl_srch_browse_links" onclick="SetLeftBold(this); oFriends.GetListAjax( 1, '{$ui.uid}', 'all', '', 'id_main_content', '' );">A-Z</a></div></li>
+        <li><span></span> <div id="bl_link_2"><a class="cl_srch_browse_links" onclick="SetLeftBold(this); oFriends.GetListAjax( 1, '{$ui.uid}', 'all', '', 'id_main_content', 'last_add' );">Recently added</a> </div></li>
+	<li><span></span> <div id="bl_link_3"><a class="cl_srch_browse_links" onclick="SetLeftBold(this); oFriends.GetListAjax( 1, '{$ui.uid}', 'blocked', '', 'id_main_content', '' );">Blocked</a> </div></li>
+	<li><span></span> <div id="bl_link_4"><a class="cl_srch_browse_links" onclick="SetLeftBold(this); oFriends.GetListAjax( 1, '{$ui.uid}', 'all', '', 'id_main_content', 'online' );">Online</a> </div></li>
+</ul>
+{/if}
+{if !$wh && $ar_invites && $IS_USER}
+<h2>Invitations &nbsp;<font color="grey">{$cnt_invites}</font><span><a href="{$siteAdr}id{$UserInfo.uid}/friends?wh=invites">View all</a></span></h2>
+    <div style="height:4px;"></div>
+    {foreach key=k item=i from=$ar_invites}
+    {assign var=cifull_name value=$i.first_name|cat:" "|cat:$i.last_name}
+        <ul id="id_browse_list" class="list02">
+            <li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" style="width:30px;float:left;" alt="" /></a>
+                <div style="float:left;padding-left:10px;" id ="i_frid{$i.uid}"><a href="{$siteAdr}id{$i.uid}">{if $i.first_name && $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</a>
+                    <br />
+                    <a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 1 );', 'Please confirm you want to add {html_str_format str=$cifull_name} as a friend?', 'Accept' );">Accept</a> or <a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 2 );', 'Please confirm you want to reject invitation from {html_str_format str=$cifull_name}?' );">Decline</a>
+                </div>
+                <div style="clear:both;"></div>
+                <span></span>
+            </li>
+        </ul>
+    {/foreach}
+{elseif ( ($wh=='invites' && $IS_USER) || $mutual )  && $ar_friends}
+<h2>Friends &nbsp;<font color="grey">{$cnt_friends}</font><span><a href="{$siteAdr}id{$UserInfo.uid}/friends">View all</a></span></h2>
+    <div style="height:4px;"></div>
+    {foreach key=k item=i from=$ar_friends}
+        <ul id="id_browse_list" class="list02">
+            <li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" style="width:30px;float:left;" alt="" /></a>
+                <div style="float:left;padding-left:10px;"><a href="{$siteAdr}id{$i.uid}">{if $i.first_name && $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</a>
+                </div>
+                <div style="clear:both;"></div>
+                <span></span>
+            </li>
+        </ul>
+    {/foreach}
+{/if}
+
+{elseif 'search' == $m_page && !$web_search}
+
+<!--  SearchBrowse RightColumn  -->
+<h2>Browse</h2>
+<ul id="id_browse_list" class="list02">
+	<li btype="All results" bcnt=""><p><span></span>All results</p></li>
+	<li btype="People" bcnt=""><span></span> <a btype="People" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">People</a></li>
+	<li btype="Singles" bcnt=""><span></span> <a btype="Singles" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Singles</a></li>
+	{*<li btype="Occupations" bcnt=""><span></span> <a btype="Occupations" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Occupations</a></li>*}
+	{*<li btype="Families" bcnt=""><span></span> <a btype="Families" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Families</a></li>*}
+	<li btype="Journals" bcnt=""><span></span> <a btype="Journals" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Journals</a></li>
+	<li btype="Missions" bcnt=""><span></span> <a btype="Missions" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Missions</a></li>
+	<li btype="Stake/Wards" bcnt=""><span></span> <a btype="Stake/Wards" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Stake/Wards</a></li>
+	{*<li btype="Events" bcnt=""><span></span> <a btype="Events" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Events</a></li>*}
+	{*<li btype="Communities" bcnt=""><span></span> <a btype="Communities" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Communities</a></li>*}
+	<li btype="Messages" bcnt=""><span></span> <a btype="Messages" bcnt="" class="cl_srch_browse_links" style="cursor: pointer;">Messages</a></li>
+    {*<li bcnt=""><span></span> <a href="{$siteAdr}base/search/web" bcnt="" class="" style="cursor: pointer;">Web search</a></li>*}
+</ul>
+
+<!--  SearchBrowse RightColumn  -->
+{elseif $web_search}
+<h2>Browse</h2>
+<ul id="id_browse_list" class="list02">
+	<li btype="All results" bcnt=""><span></span><a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=undefined">All results</a></li>
+	<li btype="People" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=People" bcnt="" style="cursor: pointer;">People</a></li>
+	<li btype="Singles" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Singles" bcnt="" style="cursor: pointer;">Singles</a></li>
+	{*<li btype="Occupations" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Occupations" bcnt="" style="cursor: pointer;">Occupations</a></li>*}
+	{*<li btype="Families" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Families" bcnt="" style="cursor: pointer;">Families</a></li>*}
+	<li btype="Journals" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Journals" bcnt="" style="cursor: pointer;">Journals</a></li>
+	<li btype="Missions" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Missions" bcnt="" style="cursor: pointer;">Missions</a></li>
+	<li btype="Stake/Wards" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Stake/Wards" bcnt="" style="cursor: pointer;">Stake/Wards</a></li>
+	{*<li btype="Events" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Events" bcnt="" style="cursor: pointer;">Events</a></li>*}
+	{*<li btype="Communities" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Communities" bcnt="" style="cursor: pointer;">Communities</a></li>*}
+	<li btype="Messages" bcnt=""><span></span> <a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=Messages" bcnt="" style="cursor: pointer;">Messages</a></li>
+    {*<li btype="Web Search" bcnt=""><p><span></span> <a href="{$siteAdr}base/search/web" bcnt="" class="" style="cursor: pointer;">Web search</a></p></li>*}
+</ul>
+
+{elseif 'wards_wall' == $m_page}
+
+<!--  Ward's Messages RightColumn  -->
+<h2></span>Feeds</h2>
+<ul class="list02">
+	<li><a href="javascript: void(0);" onclick="oWWall.GetList( '{$ward_i.id}', '0', '1', '' )">All entries</a></li>
+	<li><span><a href="#"><img src="{$imgDir}photo_ico.gif"  /></a></span> <a href="javascript: void(0);" onclick="oWWall.GetList( '{$ward_i.id}', '0', 1, 4 )">Photos</a></li>
+	<li><span><a href="#"><img src="{$imgDir}video_ico.gif"  /></a></span> <a href="javascript: void(0);" onclick="oWWall.GetList( '{$ward_i.id}', '0', 1, 5 )">Videos</a></li>
+	<li><span><a href="#"><img src="{$imgDir}event_ico.gif"  /></a></span> <a href="javascript: void(0);" onclick="oWWall.GetList( '{$ward_i.id}', '0', 1, 2 )">Events</a></li>
+	<li><span><a href="#"><img src="{$imgDir}link_ico.gif"  /></a></span> <a href="javascript: void(0);" onclick="oWWall.GetList( '{$ward_i.id}', '0', 1, 3 )">Links</a></li>
+</ul>
+
+{if $ar_wusers}
+<h2>{if $cnt_ar_wusers > 9 || 1==1}<span><a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=People&pwn={$ward_i.title}">View all</a></span>{/if} Ward members <b>{$cnt_ar_wusers}</b></h2>
+<ul class="list03">
+	{foreach item=i key=k from=$ar_wusers max=9}
+	{assign var=fname value=$i.first_name|cat:' '|cat:$i.last_name}
+	<li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$fname}</a></li>
+	{/foreach}
+</ul>
+{/if}
+
+<!--  Ward's Messages RightColumn  -->
+
+{elseif 'wards_list' == $m_page}
+
+<!--  Ward's List RightColumn  -->
+<h2>Feeds</h2>
+<span style="font-size: 12px; color: gray">Select ward/branch first</span>
+<!--  Ward's List RightColumn  -->
+
+{elseif 'mission_wall' == $m_page}
+
+<!--  Ward's Messages RightColumn  -->
+<h2></span>Feeds</h2>
+<ul class="list02">
+	<li><span><a href="#"></a></span> <a ltype="0" class="cl_sr_mis_filt" style="cursor: pointer;">All entries</a></li>
+	<li><span><a href="#"></a></span> <a ltype="-1" class="cl_sr_mis_filt" style="cursor: pointer;">Messages</a></li>
+	<li><span><a href="#"></a></span> <a ltype="1" class="cl_sr_mis_filt" style="cursor: pointer;">Best places</a></li>
+	<li><span><a href="#"></a></span> <a ltype="2" class="cl_sr_mis_filt" style="cursor: pointer;">Foods</a></li>
+	<li><span><a href="#"></a></span> <a ltype="4" class="cl_sr_mis_filt" style="cursor: pointer;">Miss the most</a></li>
+	<li><span><a href="#"></a></span> <a ltype="5" class="cl_sr_mis_filt" style="cursor: pointer;">Testimonies</a></li>
+</ul>
+
+{if $ar_musers_nh}
+<h2>{if $cnt_show_musers_nh > 9}<span><a href="{$siteAdr}id{$ui.uid}/friends">View all</a></span>{/if} Now on a mission <b>{$cnt_show_musers_nh}</b></h2>
+<ul class="list03">
+	{foreach item=i key=k from=$ar_musers_nh max=9}
+	<li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$i.first_name} {$i.last_name}</a></li>
+	{/foreach}
+</ul>
+{/if}
+
+{if $ar_musers_gh}
+<h2>{if $cnt_show_musers_gh > 9}<span><a href="{$siteAdr}id{$ui.uid}/friends">View all</a></span>{/if} Going on a mission <b>{$cnt_show_musers_gh}</b></h2>
+<ul class="list03">
+	{foreach item=i key=k from=$ar_musers_gh max=9}
+	<li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$i.first_name} {$i.last_name}</a></li>
+	{/foreach}
+</ul>
+{/if}
+
+{if $ar_musers_wh}
+<h2>{if $cnt_show_musers_wh > 9 || 0==0}<span><a href="{$siteAdr}base/search?glsrch=&glsrchsubfilt=People&pml={$mission_i.title}">View all</a></span>{/if} Served mission <b>{$cnt_show_musers_wh}</b></h2>
+<ul class="list03">
+	{foreach item=i key=k from=$ar_musers_wh max=9}
+	<li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$i.first_name} {$i.last_name}</a></li>
+	{/foreach}
+</ul>
+
+{/if}
+
+
+{if $ar_msubscr}
+<h2>{if $ar_msubscr > 9 && 0}<span><a href="{$siteAdr}id{$ui.uid}/friends">View all</a></span>{/if} Followers <b>{$cnt_show_musers_subscr}</b></h2>
+<ul class="list03">
+	{foreach item=i key=k from=$ar_msubscr max=9}
+	<li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$i.first_name} {$i.last_name}</a></li>
+	{/foreach}
+</ul>
+{/if}
+
+<!--  Ward's Messages RightColumn  -->
+
+{elseif 'mission_list' == $m_page}
+
+<!--  Ward's List RightColumn  -->
+<h2>Feeds</h2>
+<span style="font-size: 12px; color: gray">Select mission first</span>
+<!--  Ward's List RightColumn  -->
+
+{elseif 'albums_list' == $m_page}
+
+<!--  Albums's List RightColumn  -->
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_albums_show_filts" stype="1" style="cursor: pointer;">All entries</a></li>
+	<li><a class="cl_albums_show_filts" stype="2" style="cursor: pointer;">System</a></li>
+	<li><a class="cl_albums_show_filts" stype="3" style="cursor: pointer;">User's</a></li>
+</ul>
+<!--  Album's Photos RightColumn  -->
+
+{elseif 'albums_photos' == $m_page}
+
+{if $taglist}
+    <h2>Tags</h2>
+    <ul class="list02" id="rm_tag_list">
+        {include file="mods/_ajax/tag_list.html"}
+    </ul>
+{else}
+    <h2>Recent activity</h2>
+	<ul class="activity-list">
+		{if $ar_lap_com}
+		{section name=i loop=$ar_lap_com max=2}
+		<li>
+			<em><a href="/id{$ui.uid}/albums/id{$ar_lap_com[i].aid}/id{$ar_lap_com[i].id}/"><img src="{if $ar_lap_com[i].img}{if $ar_lap_com[i].fpath=='link'}{$ar_lap_com[i].img}{else} {$fImgDir}{if 2 == $ar_lap_com[i].atype}{if 'Wall' == $ar_lap_com[i].aname}wall/{elseif 'Mission' == $ar_lap_com[i].aname}mission/wall/{elseif 'Ward' == $ar_lap_com[i].aname}wards/wall/{/if}{else}albums/{/if}{$ar_lap_com[i].fpath}/a/a_{$ar_lap_com[i].img} {/if}{else}{$imgDir}no_photo_m100.jpg{/if}"  style="max-width: 99px; max-height: 66px;" /></a></em>
+			{assign var=cimg value=$ar_lap_com[i].com}
+			{section name=j loop=$cimg max=3}
+			<div>
+			{assign var=funame value=$cimg[j].first_name|cat:" "|cat:$cimg[j].last_name}
+				<img src="{if $cimg[j].image}{$fImgDir}users/{$cimg[j].user_fpath}/s/s_{$cimg[j].image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 42px; height: 42px;" />
+				<p><a href="{$siteAdr}id{$cimg[j].user_id}">{if $cimg[j].first_name || $cimg[j].last_name}{$funame}{else}{$cimg[j].public_name}{/if}</a> commented<br /> {html_tmpl_time val=$cimg[j].dt type=1}</p>
+				<div>{$cimg[j].text|truncate:40:"...":false}</div>
+			</div>
+			{/section}
+		</li>
+		{/section}
+		{else}
+		<li>
+			No activities...
+		</li>
+		{/if}
+	</ul>
+{/if}
+<!--  Album's Photo RightColumn  -->
+
+{elseif 'albums_photo' == $m_page}
+	<h2>Actions</h2>
+	<ul id="id_photo_right_col" class="list04">
+		{include file="mods/albums/_photo_right_one.html"}
+	</ul>
+
+{elseif 'valbums_list' == $m_page}
+
+<!--  Albums's List RightColumn  -->
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_valbums_show_filts" stype="1" style="cursor: pointer;">All entries</a></li>
+	<li><a class="cl_valbums_show_filts" stype="2" style="cursor: pointer;">System</a></li>
+	<li><a class="cl_valbums_show_filts" stype="3" style="cursor: pointer;">User's</a></li>
+</ul>
+<!--  Album's Photos RightColumn  -->
+	
+{elseif 'valbums_videos' == $m_page}
+
+			{if $other_alb}
+			<h2>Other albums</h2>
+			<ul class="album-list">
+				{section name=i loop=$other_alb}
+				<li>
+					<span>
+						<a href="{$siteAdr}id{$UserInfo.uid}/valbums/id{$other_alb[i].vaid}">
+							<img src="
+								 {if $other_alb[i].video}{if 2 == $other_alb[i].type}{if 'Wall' == $other_alb[i].name}wall/{elseif 'Mission' == $other_alb[i].name}mission/wall/{elseif 'Ward' == $other_alb[i].name}wards/wall/{/if}{else}{$other_alb[i].video_img}{/if}{else}/i/no_photo.gif{/if}"  width="100px" height="100px" style="max-width: 100px; max-height: 100px;" />
+						</a>
+					</span>
+					<p>
+						{if $other_alb[i].cnt_video}
+							{$other_alb[i].cnt_video}
+						{else}
+							No
+						{/if} videos <br />
+						
+						{if $other_alb[i].name}
+							<a href="{$siteAdr}id{$UserInfo.uid}/valbums/id{$other_alb[i].aid}">{$other_alb[i].name}</a>
+						{/if}
+					</p>
+				</li>
+				{/section}
+			</ul>
+			{/if}
+	
+{elseif 'valbums_video' == $m_page}		
+	<h2>Actions</h2>
+	<ul id="id_photo_right_col" class="list04">
+		<li>
+			<p><b>Info</b></p>
+			<ul>
+				<li>Video uploaded on {$vi.dt|date_format:"%b %d, %Y"}</li>
+				{*<li>Embed on {$vi.dt|date_format:"%b %d, %Y"}</li>
+				<li>Viewed 4 times</li>*}
+			</ul>
+		
+			{if $IS_USER}
+				{if $al}<p><b><a href="javascript: void(0);" onclick="oValbums.SHChngPopup( 1, 'id_chng_valbum_popup' );">{if $ai.type==1}Move{else}Copy{/if} to another album</a></b></p>{/if}
+				<p><b><a href="javascript: void(0);" onclick="oValbums.SHConfirmPopup( 1, 'id_confirm_valbums_popup' );">Delete</a></b></p>
+			{/if}
+		</li>
+		
+	</ul>
+	
+{elseif 'tags_list' == $m_page}
+
+<!--  Albums's List RightColumn  -->
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_tag_show_filts" stype="1" style="cursor: pointer;">All entries</a></li>
+</ul>
+<!--  Album's Photos RightColumn  -->
+
+{elseif 'tags_mes' == $m_page}
+
+<!--  Albums's List RightColumn  -->
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_tag_show_filts" stype="1" style="cursor: pointer;font-weight:bold;">All entries</a></li>
+	<li><a class="cl_tag_show_filts" stype="2" style="cursor: pointer;">Profile</a></li>
+	<li><a class="cl_tag_show_filts" stype="3" style="cursor: pointer;">Mission</a></li>
+	<li><a class="cl_tag_show_filts" stype="4" style="cursor: pointer;">Ward/Stake</a></li>
+	<li><a class="cl_tag_show_filts" stype="5" style="cursor: pointer;">Journal</a></li>    
+</ul>
+<!--  Album's Photos RightColumn  -->
+
+{elseif 'subscr_list' == $m_page}
+
+<!--  Albums's List RightColumn  -->
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_subscr_show_filts" stype="1" style="cursor: pointer;">All</a></li>
+	<li><a class="cl_subscr_show_filts" stype="2" style="cursor: pointer;">Followers</a></li>
+	<li><a class="cl_subscr_show_filts" stype="3" style="cursor: pointer;">People I follow</a></li>
+</ul>
+<!--  Album's Photos RightColumn  -->
+
+{*elseif 'inbox' == $m_page*}
+
+<!--h2>All friends {if $cnt_ar_fr}<b>{$cnt_ar_fr}</b>{/if}</h2>
+
+<div class="sort">
+    <p><a class="cl_fr_list_recent" style="cursor: pointer;" sb="0">Recent</a> &nbsp;&nbsp;&nbsp;&nbsp; <a class="cl_fr_list_recent" style="cursor: pointer; color: #000;" sb="1">A-Z</a> &nbsp;&nbsp;&nbsp;&nbsp; <a class="cl_fr_list_recent" style="cursor: pointer;" sb="2">Blocked</a> &nbsp;&nbsp;&nbsp;&nbsp; <a class="cl_fr_list_recent" style="cursor: pointer;" sb="3">Online</a></p>
+    <input id="id_inb_fr_rlist_find" type="text" value="Find user..." sb="1" onclick="if (this.value=='Find user...') this.value='';" />
+</div>
+
+<div class="friend-box">
+    <ul id="id_inb_fr_rlist">
+	{foreach key=fk item=fi from=$ar_fr}
+        <li id="id_fr_rlist_{$fi.uid}" class="cl_rlist_fr {if $lfr_id==$fi.uid} act {/if}" >
+	    {if $fi.cnt_new_mes} <span>{$fi.cnt_new_mes}</span> {/if}
+            <img src="{if $fi.image}{$fImgDir}users/{$fi.fpath}/s/s_{$fi.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 42px; height: 42px;"  />
+            <p><a class="cl_rlist_fr_el" fr_uid="{$fi.uid}"  href="javascript: void(0);">{$fi.first_name} {$fi.last_name}</a>{if $fi.last_update}{$fi.last_update}{/if}</p>
+        </li>
+	{/foreach}
+    </ul>
+</div-->
+
+{elseif 'notify_list' == $m_page}
+
+<h2>Feeds</h2>
+<ul class="list02">
+	<li><a class="cl_notify_show_filts" wtype="" ntype="" style="cursor: pointer;">All notifications</a></li>
+	<li><a class="cl_notify_show_filts" wtype="1" ntype="50" style="cursor: pointer;">Friend requests</a></li>
+	{*<li><a class="cl_notify_show_filts" wtype="5" ntype="" style="cursor: pointer;">Event invitations</a></li>
+	<li><a class="cl_notify_show_filts" wtype="5" ntype="" style="cursor: pointer;">Community invitations</a></li>*}
+	<li><a class="cl_notify_show_filts" wtype="1" ntype="1" style="cursor: pointer;">Comments</a></li>
+</ul>
+
+{else}
+<!--  Wall RightColumn  -->
+{if !$im_blocked && !$ui.is_deleted}
+            <h2>{if $IS_USER}<span><a href="javascript: void(0);" onclick="oWall.SHFilterPopup( 1, 'id_add_filter_popup' );">Add new</a></span>{/if} Feeds</h2>
+            <ul class="list02">
+                    <li><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '' );">All entries</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '4' );"><img src="{$imgDir}photo_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 1, 4 )">Photos</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '5' );"><img src="{$imgDir}video_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 1, 5 )">Videos</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '2' );"><img src="{$imgDir}event_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 1, 2 )">Events</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '3' );"><img src="{$imgDir}link_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 1, 3 )">Links</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '1', '6' );"><img src="{$imgDir}badge_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 1, 6 )">Badges</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '2', '1' );"><img src="{$imgDir}friend_add_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 2, 1 )">Friends and followers</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '2', '2' );"><img src="{$imgDir}frendly_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 2, 2 )">Friends only</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '2', '3' );"><img src="{$imgDir}family_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 2, 3 )">Family only</a></li>
+                    <li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '2', '5' );"><img src="{$imgDir}private_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 2, 5 )">Private</a></li>
+                    {*<li><span><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', '2', '4' );"><img src="{$imgDir}group_ico.gif" alt=""  /></a></span> <a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 2, 4 )">Groups</a></li>*}
+                    {foreach item=i key=k from=$cfilts}
+                            <li class="cl_rfilt" fid="{$i.id}" id="id_filter_li_el_{$i.id}" onMouseOut="$('#id_filter_li_el_{$i.id} .cl_del_link').hide();" onMouseOver="$('#id_filter_li_el_{$i.id} .cl_del_link').show();"><a href="javascript: void(0);" onclick="oWall.GetList( '{$ui.uid}', '0', 3, '{$i.mtype}', '{$i.ptype}' );">{$i.name}</a> {if $IS_USER}<span class="cl_del_link" fid="{$i.id}"><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oWall.DelFilter( {$i.id} );', 'Please confirm you want to delete filter \'{$i.name}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if} </li>
+                    {/foreach}
+            </ul>
+
+            <h2>{if $IS_USER}<span><a href="{$siteAdr}id{$UserInfo.uid}/tags">Edit</a></span>{/if} Tags</h2>
+            <ul class="list02">
+                    {if $ctags}
+                        {section name=i loop=$ctags}
+                            {if $ctags[i].type != 2}
+                            <li class="cl_rtags" tid="{$ctags[i].id}" id="id_tags_li_el_{$ctags[i].id}" onMouseOver="$('#id_tags_li_el_{$ctags[i].id} .cl_del_link').show();" onMouseOut="$('#id_tags_li_el_{$ctags[i].id} .cl_del_link').hide();"><span>{if $ctags[i].cnt_mes}<a href="{$siteAdr}id{$ui.uid}/tags/id{$ctags[i].id}">{$ctags[i].cnt_mes}</a>{/if}</span> <a href="{$siteAdr}id{$ui.uid}/tags/id{$ctags[i].id}">{$ctags[i].name}</a> {if $IS_USER}<span class="cl_del_link" tid="{$ctags[i].id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oUsers.DeleteTag( {$ctags[i].id} );', 'Please confirm you want to remove tag \'{html_str_format str=$ctags[i].name}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</li>
+			    {else}
+                            <li><span><a href="{$siteAdr}id{$ui.uid}/tags/id{$ctags[i].id}">{$ctags[i].cnt_mes}</a></span> <a href="{$siteAdr}id{$ui.uid}/tags/id{$ctags[i].id}"><img src="{$imgDir}heart_ico.gif" title="Favorites" alt="Favorites" /></a></li>
+                            {/if}
+                        {/section}
+			{else}
+			There aren't any tags
+                    {/if}
+            </ul>
+
+	    {if $mfriends}
+	    <h2>{if 6 < $cnt_mfriends}<span><a href="{$siteAdr}id{$ui.uid}/friends?mutual=1">View all</a></span>{/if} Mutual Friends <b>{$cnt_mfriends}</b></h2>
+
+            {foreach name=n item=i key=k from=$mfriends max=6}
+                    {if $smarty.foreach.n.index mod 4==0}
+                    <ul class="list03"{if $smarty.foreach.n.index} style="margin-top:0px; padding-top:0px;"{/if}>
+                    {/if}
+                    <li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <br /><a href="{$siteAdr}id{$i.uid}">{$i.first_name} <font style="font-size:10px">{$i.last_name}</font></a></li>
+                    {assign var="ov" value=$smarty.foreach.n.index+1}
+                    {if $ov mod 4==0}
+                    </ul>
+                    {/if}
+            {/foreach}
+	    {/if}
+            
+            {if $cfriends}
+            <h2>{if $cnt_show_cfr < $cnt_cfriends}<span><a href="{$siteAdr}id{$ui.uid}/friends">View all</a></span>{/if} Friends <b>{$cnt_cfriends}</b></h2>
+            
+                    {foreach name=n item=i key=k from=$cfriends max=12}
+                    {if $smarty.foreach.n.index mod 4==0}
+                    <ul class="list03"{if $smarty.foreach.n.index} style="margin-top:0px; padding-top:0px;"{/if}>
+                    {/if}
+                    <li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <br /><a href="{$siteAdr}id{$i.uid}">{$i.first_name} <font style="font-size:10px">{$i.last_name}</font></a></li>
+                    {assign var="ov" value=$smarty.foreach.n.index+1}
+                    {if $ov mod 4==0}
+                    </ul>
+                    {/if}
+                    {/foreach}
+            
+            {/if}
+
+            <div class="clear">&nbsp;</div>
+
+            {if $csubscribition && $IS_USER}
+            <h2 style="padding-top:5px">{if 4 < $cnt_csubscribition}<span><a href="{$siteAdr}id{$ui.uid}/subscr">View all</a></span>{/if} People I follow <b> {$cnt_csubscribition}</b></h2>
+            <ul class="list03" style="margin-bottom:5px">
+                    {foreach item=i key=k from=$csubscribition max=4}
+                            <li><a href="{$siteAdr}id{$i.wuid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.wuid}">{$i.first_name} {$i.last_name}</a></li>
+                    {/foreach}
+            </ul>
+            {/if}
+
+            <div class="clear">&nbsp;</div>
+
+            {*if $csubscr && $IS_USER*}
+            {if $csubscr}
+            <h2 style="padding-top:5px">{if 4 < $cnt_csubscr}<span><a href="{$siteAdr}id{$ui.uid}/subscr">View all</a></span>{/if} Followers <b>{$cnt_csubscr}</b></h2>
+            <ul class="list03" style="margin-bottom:5px">
+                    {foreach item=i key=k from=$csubscr max=4}
+                            <li><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 49px; height: 49px;" /></a> <a href="{$siteAdr}id{$i.uid}">{$i.first_name} {$i.last_name}</a></li>
+                    {/foreach}
+            </ul>
+            {/if}
+
+
+            {if $scripture_of_day}
+            {assign var="script" value=$scripture_of_day.0}
+            <h2>Scripture of the day</h2>
+            <div class="snoska2">
+                    <span style="word-wrap: break-word;">
+                    {$script.scripture|nl2br|dlong}
+                    </span>
+                    <p>{$script.first_name} {$script.last_name} {$script.script_dt|date_format:""}</p>
+            </div>
+            {/if}
+            <!--  Wall RightColumn  -->
+{/if}
+{/if}

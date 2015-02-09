@@ -1,0 +1,58 @@
+<div id="id_upl_video_popup" class="aj-box01" style="display: none; position: absolute; z-index: 3333; max-height: 270px">
+    <div id="id_upl_popup_close" class="aj-close"><a href="javascript: void(0);" onclick="oValbums.SHUplPopup( 2, 'id_upl_video_popup' )"><img src="{$imgDir}close_ico.gif"  /></a></div>
+
+    <div style="margin: 10px;"><h3>Add a new embed video</h3></div>
+
+    <div class="" style="max-height: 180px; margin: 10px; border: none !important;">
+        <div>
+            <div>
+                <input id="id_friend_add_friend_id" name="fr_id" type="hidden" value="" />
+                <fieldset style="border: none !important;">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div id="id_send_frm_video_choose_file" class="upload-photo">
+                                        <form id="id_frm_upl_video" action="{$siteAdr}id{$UserInfo.uid}/valbums/id{$ai.vaid}/uplvideos" method="post" enctype="multipart/form-data">
+                                            <table width="80%">
+                                                <tr>
+                                                    <td width="70px" valign="top"><b>Album: &nbsp</b></td>
+                                                    <td valign="top">
+                                                        <span class="niceform">
+                                                            <select id="id_upl_video_album" name="PI[vaid]" size="1" style="width:249px">
+                                                                {foreach key=k item=i name=n from=$al}
+								                                <option  value="{$i.vaid}"{if 0 == $smarty.foreach.n.index} selected="selected"{/if}>{$i.name}</option>
+                                                                {/foreach}
+					                                        </select>
+                                                            <input id="id_upl_video_val" type="text" value="" name="PI[video]" style="display: none;"></span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="70px" style="vertical-align: middle"><b>Embed code: &nbsp</b></td>
+                                                    <td><span><textarea id="id_upl_video_code" rows="6" cols="50" ></textarea></span>
+                                                    <i>We accept: <a href="http://YouTube.com" target="_blank">YouTube.com</a>, <a href="http://Vimeo.com" target="_blank">Vimeo.com</a>, <a href="http://RuTube.ru" target="_blank">RuTube.ru</a></i>
+
+                                                    </td>
+                                                </tr>
+                                             {*   <tr>
+                                                    <td width="70px" style="vertical-align: middle"><b>Description: &nbsp</b></td>
+                                                    <td><span><textarea id="id_upl_photo_descr" name="PI[descr]" value="" cols="50" ></textarea></span></td>
+                                                </tr> *}
+                                            </table>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="aj-button">
+        <span id="id_upl_popup_cancel" class="aj-button01"><a href="javascript: void(0);" onclick="oValbums.SHUplPopup( 2, 'id_upl_video_popup', {$ai.vaid} );">Cancel</a></span>
+        <span id="id_upl_popup_add" class="aj-button02"><a href="javascript: void(0);" onclick="oValbums.EmbingVideo( 'id_frm_upl_video' );">Add</a></span>
+    </div>
+
+</div>

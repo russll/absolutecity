@@ -1,0 +1,17 @@
+			{if $srch_res.people || $srch_res.singles || $srch_res.journals || $srch_res.missions || $srch_res.messages || $srch_res.wards}
+
+				{include file="mods/system/_search_list_people.html"}
+				
+				{include file="mods/system/_search_list_singles.html"}
+								
+				{include file="mods/system/_search_list_journals.html"}
+				
+				{include file="mods/system/_search_list_missions.html"}
+				
+				{include file="mods/system/_search_list_messages.html"}
+				
+				{include file="mods/system/_search_list_wards.html"}
+
+			{else}
+				<h2><span></span>There aren't any results found</h2>
+			{/if}

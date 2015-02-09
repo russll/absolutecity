@@ -1,0 +1,49 @@
+<div id="id_chng_valbum_popup" class="aj-box01" style="display: none; position: fixed; z-index: 3333; max-height: 180px">
+    <div id="id_upl_popup_close" class="aj-close"><a href="javascript: void(0);" onclick="oValbums.SHUplPopup( 2, 'id_chng_valbum_popup' )"><img src="{$imgDir}close_ico.gif"  /></a></div>
+
+    <div style="margin: 10px;"><h3>{if $ai.type==1}Move{else}Copy{/if} this video to another video album</h3></div>
+
+    <div class="" style="max-height: 180px; margin: 10px; border: none !important;">
+        <div>
+            <div>
+                <input id="id_friend_add_friend_id" name="fr_id" type="hidden" value="" />
+                <fieldset style="border: none !important;">
+                    <div>
+                        <table>
+                            <tr>
+                                <td>
+                                    <div id="id_send_frm_video_choose_file" class="upload-photo">
+                                        <form id="id_frm_chng_valbum" action="{$siteAdr}id{$UserInfo.uid}/valbums/{if 'album' == $atype}id{$ai.aid}{else}{$atype}{/if}/uplvideos" method="post" enctype="multipart/form-data">
+
+                                            <table width="80%">
+                                                <tr>
+                                                    <td width="70px" valign="top"><b>Album: &nbsp</b></td>
+                                                    <td valign="top">{if $al}
+                                                        <span class="niceform"><select id="id_chng_valbum_album" name="PI[vaid]" size="1" style="width:249px">
+						                              	{foreach key=k item=i name=n from=$al}
+                                                            <option {if $smarty.foreach.n.first} selected="selected"{/if} value="{$i.vaid}">{$i.name|trim|strip_tags}</option>
+							                            {/foreach}
+                                                        </select></span>
+                                                        {else}
+                                                        No albums
+                                                        {/if}
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+    <div class="aj-button">
+        <span id="id_upl_popup_cancel" class="aj-button01"><a href="javascript: void(0);" onclick="oValbums.SHUplPopup( 2, 'id_chng_valbum_popup' );">Cancel</a></span>
+        <span id="id_upl_popup_add" class="aj-button02"><a href="javascript: void(0);" onclick="oValbums.ChngValbums();">Change</a></span>
+    </div>
+
+</div>

@@ -1,0 +1,63 @@
+{if $al_sys}
+	<div id="id_valbums_system_list" class="cl_valbums_lists">
+		<h2><span></span>System video Albums</h2>
+		{foreach item=i from=$al_sys key=ak}
+			{if 'Inbox' != $i.name || ('Inbox' == $i.name && $IS_USER)}
+				<div class="box002">
+					<div class="post-box" style="min-height: 45px">
+											{if ($i.name == 'Wall' && $ui.global.news == 0) || ($i.name == 'Journal' && $ui.global.notes == 0)}
+						<div class="b-awatar"><img src="{$imgDir}no_photo_m66.jpg" alt="" style="width: 66px; height: 66px;"/></div>
+						<div class="post-title2"><b>{$i.name}</b></div>
+						<p>This section is set to private</p>
+											{else}
+						<div class="b-awatar"><a href="{$siteAdr}id{$i.uid}/valbums/id{$i.vaid}"><img src="{if $i.video_img}{$i.video_img}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="" style="width: 66px; height: 66px;" /></a></div>
+						<div class="post-title2"><b><a href="{$siteAdr}id{$i.uid}/valbums/id{$i.vaid}">{$i.name}</a></b></div>
+						<p><b>Description:</b>{if $i.descr} {$i.descr} {else} &nbsp {/if}</p>
+						{if $i.cnt_video}<p><b>Videos:</b> {$i.cnt_video}</p>{/if}
+											{/if}
+					</div>
+				</div>
+			{/if}
+		{/foreach}
+	</div>
+{/if}
+
+<div id="id_valbums_user_list" class="cl_valbums_lists">
+{if $al && $ui.global.videos}
+	<div class="cl_srch_list">
+		<h2>Member's Video Albums</h2>
+		<div id="id_new_alb_list" class="box002"></div>
+		<span id="all_alb_list">
+			{foreach item=i from=$al key=ak}
+			<div id="id_valbums_el_1_{$i.vaid}" vaid="{$i.vaid}" class="box002 cl_valbums_list">
+				<div class="post-box" style="min-height: 45px">
+					<div class="b-awatar"><a href="{$siteAdr}id{$i.uid}/valbums/id{$i.vaid}"><img src="{if $i.video_img}{if 2 == $i.type}{if 'Wall' == $i.name}wall/{elseif 'Mission' == $i.name}mission/wall/{elseif 'Inbox' == $i.name}inbox/{elseif 'Ward' == $i.name}wards/wall/{/if}{else}{$i.video_img}{/if}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="" style="width: 66px; height: 66px;" /></a></div>
+
+					<div class="post-title2"><b><a href="{$siteAdr}id{$i.uid}/valbums/id{$i.vaid}">{$i.name}</a></b></div>
+					<p><b>Created:</b> {if $i.created} {$i.created} {else} &nbsp {/if}</p>
+					<p><b>Description:</b>{if $i.descr} {$i.descr} {else} &nbsp {/if}</p>
+					{if $i.cnt_video}<p><b>Videos:</b> {$i.cnt_video}</p>{/if}
+					{assign var=asname value=$i.name}
+					{if $IS_USER}<span class="cl_del_link" vaid="{$i.vaid}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oValbums.DelAlbum( {$i.vaid}, {$i.type} );', 'Please confirm you want to delete album  \'{html_str_format str=$asname|truncate:30}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}
+				</div>
+			</div>
+			{/foreach}
+		</span>
+	</div>
+
+	{elseif !$ui.global.videos}
+	<div class="cl_srch_list">
+		<h2><span></span>Member's Video Albums</h2>
+		<div id="id_new_alb_list" class="box002"></div>
+		<div class="box001"><div class="post-box"><center><h3>This section is set to private</h3></center></div></div>
+	</div>
+			{else}
+	<h2><span></span>Member's Video Albums</h2>
+	<div id="id_new_alb_list" class="box002"></div>
+	<div class="box001">
+		<div class="post-box">
+			{if $IS_USER}You don't have any albums{else}This member doesn't have any albums{/if}
+		</div>
+	</div>
+			{/if}
+</div>

@@ -1,0 +1,39 @@
+
+<!-- Message top box -->
+
+<div class="top-box-inbox">
+    <table>
+        <tr>
+            <td class="top-left">
+                <div class="m-awatar">
+                    <!--a href="javascript: void(0);" {if IS_USER} onclick="javascript: oUsers.SHUplPopup(1, 'id_upl_avatar_popup');" {/if}><div style="height: 100%; width: 100%;"><img src="{if $ui.image}{$fImgDir}users/{$ui.fpath}/a/a_{$ui.image}{else}{$imgDir}no_photo.jpg{/if}"   class="big_avatar" /></a-->
+                    <div style="height: 100%; width: 100%;"><img src="{if $ui.image}{$fImgDir}users/{$ui.fpath}/a/a_{$ui.image}{else}{$imgDir}no_photo.jpg{/if}"   class="big_avatar" /></div>
+		    <span></span>
+                  {*if $IS_USER}
+                    <span><a href="javascript:void(0);" class="open-drop01"><img src="{$imgDir}arr03.png"  />I want to</a></span>
+                    <div class="dropbox01">
+                        <div class="dropbox01-left">
+                            <div class="dropbox01-right">
+                                <ul>
+                                    <li><a href="javascript: oUsers.ChangeAppear(1);" class="appear_offline" style="display:{if !$UserInfo.appear_offline}inline{else}none{/if}">Appear offline</a><a href="javascript: oUsers.ChangeAppear(0);" class="appear_online" style="display:{if $UserInfo.appear_offline}inline{else}none{/if}">Appear online</a></li>
+                                    <li><a href="{$siteAdr}?logout=1">Sign out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+		    {/if*}
+                </div>
+            </td>
+            <td>
+                <div>
+                    <span style="font-size: 20px; color: white; margin: 45px 0 30px 20px;">{$UserInfo.first_name}&nbsp;{$UserInfo.last_name}</span>
+                </div>
+            </td>
+
+            <!--td class="top-right"-->
+                {*include file="top_blocks/_notify_mini.html"*}
+            <!--/td-->
+
+        </tr>
+    </table>
+</div>

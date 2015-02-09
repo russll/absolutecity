@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>inZion.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="{$stlDir}styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" language="JavaScript" src="/j/jquery-1.3.2.min.js"></script>
+<script type="text/javascript" language="JavaScript" src="/j/base.js"></script>
+
+<script type="text/javascript" src="/j/jquery.autocomplete.min.js"></script>
+<link href="/s/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+<link href="/s/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script language="javascript">
+var system_login = 'admin';
+var UserID = ''; 
+</script>
+</head>
+<body>
+
+<div class="main-container">
+<!-- Header -->
+<div id="header">
+	<div class="logo"><a href="{$siteAdr}"><img src="{$imgDir}logo.png"  /></a></div>
+	<div class="right">
+		<div class="slogan">Content Management System</div>
+		<div class="info-line">
+		    <img src="{$imgDir}ico01.gif" alt="" /><a class="user-link1" href="{assign var="ov" value="security/users"}{if !$UserInfo.status || $UserInfo.modules.$ov}{$siteAdr}security/users/show/?login={$UserInfo.login}{else}/users/{$UserInfo.login}{/if}">{$UserInfo.login}</a>|<a class="user-link2" href="{$siteAdr}admin.php?logout=1">Logout</a>
+	        &nbsp;&nbsp;&nbsp; {foreach key=k item=i from=$ml}{if $i.sortid >= 1 && $i.sortid <= 10}{assign var="ov" value=$i.fname} <a class="user-link1" href="{$siteAdr}{$i.fname}">{$i.name}</a>&nbsp;{/if}{/foreach}
+		</div>		
+	</div>
+</div>
+<!-- /Header -->
+</div>
+
+
+{$_content}
+
+<!-- Footer -->
+<div id="footer">
+	<div class="left"> <span></span></div>
+	<div class="right">&copy; 2010 inZion.com<br /></div>
+</div>
+<!-- /Footer -->
+<!--{php}echo $gCnt;{/php}-->
+</body>
+</html>
+

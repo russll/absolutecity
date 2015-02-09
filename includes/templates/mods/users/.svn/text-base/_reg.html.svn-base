@@ -1,0 +1,64 @@
+{strip}
+<h2>Sign up</h2>
+
+<div class="sing-title">The simple way to connect and share with your <br />LDS friends.  <font color="#808080">Anyone can join!</font></div>
+
+<div class="sbox01">
+    <img src="/i/icon01.png" alt="" />
+    <p>Share thoughts, news, photos and videos</p>
+</div>
+<div class="sbox01">
+    <img src="/i/icon02.png" alt="" />
+    <p>Connect with your ward/stake members</p>
+</div>
+<div class="sbox01">
+    <img src="/i/icon03.png" alt="" />
+    <p>Keep in touch with your friends away on a mission</p>
+</div>
+
+<div class="reg-form">
+    <table>
+        <tr><td align="right"><label>First name:</label></td><td><p><input class="txt" id="rname" type="text" value="" /></p></td></tr>
+        <tr><td align="right"><label>Last name:</label></td><td><p><input class="txt" id="rlname"  type="text" value="" /></p></td></tr>
+        <tr><td align="right"><label>You are:</label></td><td><span class="niceform" style="margin-bottom:0px"><select id="rgender" size="1"><option>Select</option><option value="1">Male</option><option value="2">Female</option></select></span></td></tr>
+        <tr><td align="right"><label>When were you born?</label></td>
+            <td>
+               <span class="niceform" style="margin-bottom:0px;">
+                    <select id="bmonth" size="1" style="width:50px;">
+
+                        <option></option>
+                        {foreach key=k item=i from=$mm name=bmonth}
+                        <option value="{$k}">{$i}</option>
+	                {/foreach}
+                    </select>
+                </span>
+                <span class="niceform" style="margin-bottom:0px;">
+                    <select id="bday" size="1" style="width:50px;">
+
+                        <option></option>
+	                {foreach key=k item=i from=$dd}
+                        <option value="{$k+1}">{$i}</option>
+	                {/foreach}
+                    </select>
+                </span>
+                <span class="niceform" style="margin-bottom:0px;">
+                    <select id="byear" size="1" style="width:50px;">
+                        <option></option>
+	               {foreach key=k item=i from=$yy}
+                        <option value="{$i}">{$i}</option>
+	               {/foreach}
+                   </select>
+                </span>
+            </td>
+        </tr>
+        <tr><td align="right"><label>Your email:</label></td><td><p><input class="txt" id="remail" type="text" value="" /></p></td></tr>
+        <tr><td align="right"><label>Re-enter email:</label></td><td><p><input class="txt" id="remail2" type="text" value="" /></p></td></tr>
+        <tr><td align="right"><label>Password:</label></td><td><p class="pass"><input class="txt" type="password" id="rpass" value="" /></p></td></tr>
+        <tr>
+            <td>&nbsp;</td>
+            <td><div class="but-box" style="margin-top:-3px"><span><a href="javascript:void(0);" id="reg_btn">Sign Up</a></span></div></td>
+        </tr>
+    </table>
+    <div id="reg_errs" class="error_box" style="display: none; padding:5px;"></div>
+</div>
+{/strip}

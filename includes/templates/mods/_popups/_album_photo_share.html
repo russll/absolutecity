@@ -1,0 +1,24 @@
+<div id="id_album_photo_share" class="aj-box03">
+<div class="aj-close"><a href="javascript: void(0);" onclick="oAlbums.SHUplPopup( 2, 'id_album_photo_share' )"><img src="{$imgDir}close_ico.gif"  /></a></div>
+<div class="aj-box03-title"><h2 style="margin-left:15px;">Share</h2></div>
+    <form id="id_frm_album_photo_new_message" action="{$siteAdr}id{$UserInfo.uid}/albums/edit" method="post">
+        <div class="add-mesg-form">
+            <table class="v2">
+                <tr><td><span>Copy the code below to embed this video</span></td></tr>
+                <tr><td align="right">
+                        <textarea id="to_descr" name="WI[story]">
+<a href="{$siteUrl}id{$ui.uid}/albums/id{$ai.aid}/id{$pi.id}" title="{$pi.descr} by {$UserInfo.first_name} {$UserInfo.last_name} on Inzion.com"><img src="{$siteUrl}{$fImgDir}{if 2 == $ai.type}{if 'Wall' == $ai.name}wall/{elseif 'Mission' == $ai.name}mission/wall/{elseif 'Inbox' == $ai.name}inbox/{elseif 'Journal' == $ai.name}journal/{elseif 'Ward' == $ai.name}wards/wall/{/if}{else}albums/{/if}{$pi.fpath}/n/n_{$pi.img}" alt="{$pi.descr}"></a>
+                        </textarea>
+                    </td></tr>
+                <tr><td style="height:5px;"></td></tr>
+                <tr><td valign="top"><span>Copy the link to this photo</span></td></tr>
+                <tr><td>
+                        <input id="to_title" name="WI[name]" type="text" value="{$siteUrl}{$fImgDir}{if 2 == $ai.type}{if 'Wall' == $ai.name}wall/{elseif 'Mission' == $ai.name}mission/wall/{elseif 'Inbox' == $ai.name}inbox/{elseif 'Journal' == $ai.name}journal/{elseif 'Ward' == $ai.name}wards/wall/{/if}{else}albums/{/if}{$pi.fpath}/n/n_{$pi.img}" />
+                </td></tr>
+            </table>
+        </div>
+    </form>
+    <div class="aj-button">
+        <span class="aj-button01"><a href="javascript: void(0);" onclick="oAlbums.SHUplPopup( 2, 'id_album_photo_share' );">Close</a></span>
+    </div>
+</div>

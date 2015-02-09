@@ -1,0 +1,202 @@
+{if 'tags_list' == $ttype}
+
+{if $ar_tags}
+<div class="cl_srch_list">
+    <h2>Tags List</h2>
+    {foreach item=tags from=$ar_tags key=tk}
+    <div class="box001 cl_tags_list_els" tid="{$tags.id}" id="id_tags_menu_list_{$tags.id}">
+        <div class="post-box-bg00" style="min-height: 40px;">
+            <div class="post-title2" style="padding-left: 0px; margin-left: 0px;">
+                <b><a href="{$siteAdr}id{$ui.uid}/tags/id{$tags.id}">{$tags.name}</a></b>
+		{if $tags.cnt_mes}<span style="float: right;">{$tags.cnt_mes}</span>{/if}
+		{assign var=tsname value=$tags.name}
+		{if $IS_USER}<span class="cl_del_link" tid="{$tags.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DeleteTag( {$tags.id} );', 'Please confirm you want to delete tag \'{html_str_format str=$tsname|truncate:30}\'?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}
+            </div>
+        </div>
+    </div>
+    {/foreach}
+</div>
+{else}
+<h2>Tags List</h2>
+<div class="box001">
+    <div class="post-box">
+	There aren't any tags
+    </div>
+</div>
+{/if}
+{/if}
+
+
+{assign var="auto_show_act" value=1}
+{if 'tags_mes_list' == $ttype}
+<h2>Messages List From "{$ti.name}"</h2>
+{if $ar_tags_msg}
+{assign var=ind value=0}
+{assign var=m_ind value=0}
+{assign var=w_ind value=0}
+
+{foreach key=k2 item=i2 from=$ar_tags_msg}
+{if $i2}
+<div id="id_tags_list_{if $k2=='wall'}2{elseif $k2=='journal'}5{elseif $k2=='mission'}3{elseif $k2=='wards'}4{/if}" class="cl_tags_list"{* onmouseover="$('#tl_{$i.id}').show();" onmouseout="$('#tl_{$i.id}').hide();"*}>
+     <h2>{if $k2=='wall'}Profile Wall Messages{elseif $k2=='journal'}Journal Wall Messages{elseif $k2=='mission'}Mission Wall Messages{elseif $k2=='wards'}Wards Wall Messages{/if}</h2>
+
+    {foreach key=k item=i3 from=$i2}
+    {assign var="i" value=$i3.mes}
+    {assign var=ind value=$ind+1}
+    <div id="id_tags_mes_{$i.id}" tid="{$i.id}" class="box001 cl_tags_list_els">
+        <div class="post-box">
+            <div class="post-box-bg{if 5==$i.ptype}04{elseif 4==$i.ptype}05{elseif 3==$i.ptype}02{elseif 2==$i.ptype}03{elseif 1==$i.ptype}01{else}00{/if}" style="min-height: 68px">
+
+		{if !empty($i.ptype)}<em><img src="{$imgDir}ico{if 5==$i.ptype}07_{elseif 4==$i.ptype}06{elseif 3==$i.ptype}05_{elseif 2==$i.ptype}04_{elseif 1==$i.ptype}03{/if}.png"  /></em>{/if}
+
+                <div class="b-awatar"><a href="javascript: void(0);" onclick="javascript: $('#id_dropbox_{$i.id}').slideToggle('slow');"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a>
+                    <!-- Drop00 -->
+		    {if $i.uid != $UserInfo.uid}
+                    <div id="id_dropbox_{$i.id}" class="dropbox00">
+                        <div class="dropbox00-left">
+                            <div class="dropbox00-right">
+                                <ul><li><a href="#">Send a message</a></li></ul>
+                                <p>{if !$i.relations.im_friend}<a href="javascript: void(0);" onclick="javascript: oFriends.GetFrAjax('{$i.uid}', 0)">Add as Friend</a>{else}<a href="javascript: void(0);" onclick="javascript: oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$i.uid}')">Unfriend</a>{/if}</p>
+                                {*<p><a href="#">Hide member’s entries</a></p>
+                                <p><a class="user_report" href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$i.uid}');">Report this user</a></p>*}
+                            </div>
+                        </div>
+                    </div>
+		    {/if}
+                    <!-- Drop00 -->
+                </div>
+
+
+	     	{if 2 == $i.mtype}
+                <div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> is going to {if $i.ev_title}{$i.ev_title}{/if}</div>
+                <div class="event-txt">
+                    <img src="{$imgDir}event_ico.gif"  />{$i.ev_where}, {$i.ev_dt|date_format:"%B %d, %I:%M %p"} <br><br>
+                    <div>
+                        {if $i.ev_img}<img src="{$siteAdr}f/wall/{$i.uid}/t/{$i.ev_img}"  align="left"/>{/if}
+                        {if $i.ev_descr}<span style="text-align:left; font-style: italic; display:block;  min-height: 20px !important;">{$i.ev_descr}</span>{/if}
+                    </div>
+                    {if $k2=='journal' && $i.subj}<b>{$i.subj}</b><br>{/if}
+                    {$i.story|nl2br}
+                </div>
+                <br />
+		        {*include file="mods/profile/_wall_actions.html"
+                <div class="event-txt">
+                    <img src="{$imgDir}event_ico.gif"  />{$i.ev_where}, {$i.ev_dt|date_format:"%B %d, %I:%M %p"}
+                </div>*}
+                <p>{html_tmpl_time val=$i.pdate type=1} {if $IS_USER}<span class="cl_del_link" tid="{$i.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DelTagFromMesg( {$ti.id}, {$i.id});', 'Please confirm you want to delete tag  from this message?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</p>
+
+
+                {elseif 3 == $i.mtype}
+                <div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> {if $k2=='journal' && $i.subj}<b>{$i.subj}</b><br>{/if} {if $i.story}{$i.story|nl2br}{/if}</div>
+                <br />
+	         	{*include file="mods/profile/_wall_actions.html"*}
+                <p>&nbsp;<a href="{$i.l_url}" target="_blank">{if $i.l_url_label}{$i.l_url_label}{else}{$i.l_url}{/if}</a></p>
+                <p>{html_tmpl_time val=$i.pdate type=1} {if $IS_USER}<span class="cl_del_link" tid="{$i.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DelTagFromMesg( {$ti.id}, {$i.id});', 'Please confirm you want to delete tag from this message?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</p>
+
+
+                {elseif 4 == $i.mtype}
+                <div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> {if $k2=='journal' && $i.subj}<b>{$i.subj}</b><br>{/if} {if $i.story}{$i.story|nl2br}{/if}</div>
+
+                <p style="float: left; margin: none; padding: none;" align="left">
+		{if $i.p_url}<em><a href="javascript: void(0);"><img src="{$i.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+		{if $i.p_path}
+             
+                    {if $k2=='journal'}
+		        {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {elseif $k2=='wall'}
+                        {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.wuid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.wuid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.wuid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {elseif $k2=='mission'}
+                        {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+                    {elseif $k2=='wards'}
+                        {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		        {if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}{$k2}/wall/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {/if}
+                {/if}
+                </p>
+
+                <br />
+		{*include file="mods/profile/_wall_actions.html"*}
+
+                <p>{html_tmpl_time val=$i.pdate type=1} {if $IS_USER}<span class="cl_del_link" tid="{$i.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DelTagFromMesg( {$ti.id}, {$i.id});', 'Please confirm you want to delete tag from this message?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</p>
+				                    {elseif 5 == $i.mtype}
+                <div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> {if $k2=='journal' && $i.subj}<b>{$i.subj}</b><br>{/if} {if $i.story}{$i.story|nl2br}{/if}</div>
+                <p style="float: left; margin: none; padding: none;" align="left">
+		    {if $i.v_code}<object width="200" height="150">{$i.v_code}</object>{/if}
+                </p>
+
+                <br />
+	        {*include file="mods/profile/_wall_actions.html"*}
+
+                <p>{html_tmpl_time val=$i.pdate type=1} {if $IS_USER}<span class="cl_del_link" tid="{$i.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DelTagFromMesg( {$ti.id}, {$i.id});', 'Please confirm you want to delete tag from this message?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</p>
+		{else}
+                <div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> {if $k2=='journal' && $i.subj}<b>{$i.subj}</b><br>{/if} {if $i.story}{$i.story|nl2br}{/if}</div>
+                <br />
+		{*include file="mods/profile/_wall_actions.html"*}
+                <p>{html_tmpl_time val=$i.pdate type=1} {if $IS_USER}<span class="cl_del_link" tid="{$i.id}" style="margin-right: 5px;"><a href="javascript: void(0);" onclick="javascript: oSystem.SConfPopup( 'oUsers.DelTagFromMesg( {$ti.id}, {$i.id});', 'Please confirm you want to delete tag from this message?' );">&nbsp&nbsp&nbsp&nbsp</a></span>{/if}</p>
+		{/if}
+                <p>
+                {if $k2 != 'wards'}
+                    {if 5==$i.ptype}
+                    private
+                    {elseif 4==$i.ptype}
+                    only for {if $i.first_name3 && $i.last_name3} <a href="{$siteAdr}id{$i.uid3}">{$i.first_name3} {$i.last_name3}</a> {else} ... {/if}
+                    {elseif 3==$i.ptype}
+                    For family
+                    {elseif 2==$i.ptype}
+                    For friends {if $i.pstype} ( {if $i.pstype == 5} {if $uclasses_index[$i.pclass]} {$uclasses_index[$i.pclass]} {else} Classmates {/if} {elseif $i.pstype == 1} Aaronic priesthood {elseif $i.pstype == 2} Young man {elseif $i.pstype == 3} Priesthood holders {elseif $i.pstype == 4} Melchizedek priesthood {elseif $i.pstype == 7} high priest {elseif $i.pstype == 12} Young woman {elseif $i.pstype == 100} {if $UserInfo.ward_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $i.pstype == 101} {if $UserInfo.stake_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                    {elseif 1==$i.ptype}
+                    For friends and followers {if $i.pstype} ( {if $i.pstype == 5} {if $uclasses_index[$i.pclass]} {$uclasses_index[$i.pclass]} {else} Classmates {/if} {elseif $i.pstype == 1} Aaronic priesthood {elseif $i.pstype == 2} Young man {elseif $i.pstype == 3} Priesthood holders {elseif $i.pstype == 4} Melchizedek priesthood {elseif $i.pstype == 7} high priest {elseif $i.pstype == 12} Young woman {elseif $i.pstype == 100} {if $UserInfo.ward_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $i.pstype == 101} {if $UserInfo.stake_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                    {elseif 0==$i.ptype}
+                    For everyone {if $i.first_name3 && $i.last_name3 && $i.uvid && $i.uid != $i.uvid} except <a href="{$siteAdr}id{$i.uid3}">{$i.first_name3} {$i.last_name3}</a> {/if}
+                    {/if}
+                {else}
+                    {if 1==$i.ptype} for stake {elseif 0==$i.ptype} for ward {/if}
+                    {if $i.stype && $prhs[$i.stype]} ({$prhs[$i.stype]})
+                    {elseif $i.stype==5}
+                    {if $uclasses_index[$i.pclass]} {$uclasses_index[$i.pclass]} {else} Classmates {/if}
+                    {/if}
+                {/if}    
+                </p>
+            </div>
+
+            <ul id="id_mes_answ_list_{$i.id}" class="recomment">
+		{if $i.answers}
+		    {assign var=answ value=$i.answers}
+		    {section name=si loop=$i.answers}
+                <li><a href="{$siteAdr}id{$answ[si].uid}"><img src="{if $answ[si].image}{$fImgDir}users/{$answ[si].fpath}/s/s_{$answ[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+                    <div>
+                        <p><a href="{$siteAdr}id{$answ[si].uid}">{if $answ[si].first_name || $answ[si].last_name}{$answ[si].first_name $answ[si].last_name}{else}{$answ[si].public_name}{/if}</a> {if $answ[si].story}{$answ[si].story|nl2br}{/if}</p>
+                        <p><span>{html_tmpl_time val=$answ[si].pdate type=1}</span></p>
+                    </div>
+                </li>
+		    {/section}
+		{/if}
+            </ul>
+        </div>
+    </div>
+    {/foreach}
+</div>
+{/if}
+{/foreach}
+
+<div class="box001" style="display:none;" id="no_items">
+    <div class="post-box">
+	There aren't any entries
+    </div>
+</div>
+
+{else}
+<div class="box001">
+    <div class="post-box">
+	{if IS_USER}There aren't any entries{else}No Access{/if}
+    </div>
+</div>
+{/if}
+{/if}

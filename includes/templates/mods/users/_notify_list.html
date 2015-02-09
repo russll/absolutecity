@@ -1,0 +1,65 @@
+		{config_load file="notify.conf"}
+		{if !$ajax}<h2><span id="ntypeName">All notifications</span>  {if $cnt_ar_notify}<span>{$cnt_ar_notify}</span>{/if}</h2>{/if}
+			<div id="id_notify_mlist" class="main_notify">
+			{if $ar_notify}
+			{foreach key=k item=i from=$ar_notify}
+				{assign var=ntype value="nf_"|cat:$i.wtype|cat:"_"|cat:$i.type}
+                                {assign var=fname value=$i.first_name|cat:" "|cat:$i.last_name}
+
+				
+				<div class="notific" swtype="{$i.wtype}" sntype="{$i.type}" {if 50 == $i.type && IS_USER} n_frid="{$i.uid}" {/if} style="min-height: 80px;">
+					<div class="notific-box">
+						{if 3 == $i.wtype || 4 == $i.wtype}
+						{assign var=p_img value=$i.img}
+						{assign var=v_img value=$i.video_img}
+						
+							{if $p_img.img || $i.video_img}
+							<div class="notific-right">
+								{if $p_img.img}
+									<span><a href="{$siteAdr}id{$p_img.uid}/albums/id{$p_img.aid}/id{$p_img.id}"><img src="{$fImgDir}{if 2 == $p_img.atype}{if 'Wall' == $p_img.aname}wall/{elseif 'Journal' == $p_img.aname}journal/{elseif 'Mission' == $p_img.name}mission/wall/{elseif 'Ward' == $p_img.aname}wards/wall/{/if}{else}albums/{/if}{$p_img.fpath}/a/a_{$p_img.img}"  style="max-width: 99px; max-height: 66px;"  /></a></span>
+								{elseif $v_img.video_img}
+									<span><a href="{$siteAdr}id{$v_img.uid}/valbums/id{$v_img.aid}/id{$v_img.id}"><img src="{$v_img.video_img}"  style="max-width: 99px; max-height: 66px;"  /></a></span>
+								{/if}
+							</div>
+							{/if}
+						{/if}
+						<div class="b-awatar"><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>
+
+                                                {if !$i.to_uid}
+                                                    <div class="notific-title"><a href="{$siteAdr}id{$i.uid}"><b>{$i.first_name} {$i.last_name}</b></a> {$smarty.config.$ntype} {if $i.link && $i.link_txt} <a href="{$i.link}"> {$i.link_txt|truncate:50:"...":true}</a> {/if}</div>
+						{else}
+                                                    {assign var=ntype_ext value="enf_1"|cat:"_"|cat:$i.type}
+                                                    <div class="notific-title">
+                                                        <a href="{$siteAdr}id{$i.uid}"><b>{$i.first_name} {$i.last_name}</b></a> {$smarty.config.$ntype_ext} <a href="{$siteAdr}id{$i.to_uid}{if $i.notify_pos==2}/journal/{/if}">{$i.to_first_name|truncate:25:"..."} {$i.to_last_name|truncate:25:"..."}</a> {if $i.notify_pos==2}journal{else}wall{/if} {if $i.link && $i.link_txt} <a href="{$i.link}"> {$i.link_txt|truncate:10:"...":true}</a> {/if}
+                                                    </div>
+                                                {/if}
+
+                                                {if 50 == $i.type && IS_USER}
+                                                        <div id="i_frid{$i.uid}" style="padding-left: 90px; padding-top:10px;">
+								<div class="notific-txt2">&nbsp;</div>
+								<div class="notific-button">
+									<span class="notific-button02"><a href="javascript: void(0);" onclick="var ntxt = $('#id_ntxt').val(); if (!ntxt) ntxt = ''; else ntxt = ntxt.replace('\'', ''); oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 1, \''+ntxt+'\' );', 'Please confirm you would like to add {html_str_format str=$fname} into your friends list?', 'Accept' );">Accept</a></span>
+									<span class="notific-button01"><a href="javascript: void(0);" onclick="var ntxt = $('#id_ntxt').val(); if (!ntxt) ntxt = ''; else ntxt = ntxt.replace('\'', ''); oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 2, \''+ntxt+'\' );', 'Please confirm you want to reject invitation from {html_str_format str=$fname}?' );">Decline</a></span>
+									{*<input id="id_ntxt" type="text" value="Write message" onclick="this.value='';" />*}
+                                                                        <input type="hidden" name="id_ntxt" id="id_ntxt" value="" />
+								</div>
+                                                        </div>
+						{else}
+							<div class="notific-txt">
+								{$i.info|truncate:255:"...":true}
+								<span>{html_tmpl_time val=$i.dt type=1}</span>
+							</div>
+						{/if}
+					</div>
+				<div class="clear">&nbsp;</div>	
+				</div>
+			{/foreach}	
+			</div>
+			
+			{if ($pcnt+$rcnt) < $cnt_ar_notify}
+			<div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+				<a href="javascript: void(0);" onclick="oUsers.GetNotifyList( '{$pcnt+$rcnt}', '{$rcnt}' );">More <img src="/i/arr01.gif"  /></a>
+			</div>
+			{/if}
+			
+			{/if}

@@ -1,0 +1,62 @@
+<h2>Contact Us</h2>
+<div class="reg-form" >
+    {if $send}
+        <p>Thank you for feedback. We will review your message and get back to you.</p>
+    {else}
+
+    Thank you for your interest in inZion.  So we can better serve you, please fill in the required fields in the form below before submitting your request.
+    <br /><br />
+    <form method="post" action="{$siteAdr}contact_us.html">
+    <div class="reg-form" style="margin-left:35px;">
+    {if $errs}
+        <font color="red">
+            {foreach key=k item=i from=$errs}
+                - {$i}<br />
+            {/foreach}
+        </font>
+    {/if}
+    <table style="width:350px;">
+        <tr>
+            <td colspan="2"></td>
+        </tr>
+		<tr>
+            <td colspan="2">* denotes required fields</td>
+        </tr>
+
+		<tr>
+            <td>Email*<br /><input style="width:180px;" type="text" class="txt" name="fm[email]" value="{$fm.email}" /></td>
+            <td>Name*<br /><input style="width:180px;" type="text" class="txt" name="fm[name]" value="{$fm.name}" /></td>
+        </tr>
+        <tr>
+            <td>Occupation: (optional)<br /><input type="text" style="width:180px;" name="fm[occupation]" value="{$fm.occupation}" /></td>
+            <td>Organization: (optional)<br /><input type="text" style="width:180px;" name="fm[organization]" value="{$fm.organization}" /></td>
+        </tr>
+
+		<tr>
+            <td>Country: (optional)<br /><select name="fm[country]" style="width:180px;">
+            {foreach key=k item=i from=$countries}
+                <option value="{$k}"{if $fm.country==$k} selected="selected"{/if}>{$i}</option>
+            {/foreach}
+            </select></td>
+
+            <td align="right">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                Message*:<br />
+                <textarea class="txt" name="fm[mesg]" style="width:400px;">{$fm.mesg}</textarea>
+            </td>
+        </tr>
+        
+        <tr>
+            <td>&nbsp;</td>
+            
+            <td align="right"><br /><input type="submit" id="send" value="Send" style="width: 100px;" /></td>
+        </tr>
+        
+    </table>
+    </div>
+    </form>
+    {/if}
+</div>

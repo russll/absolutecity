@@ -1,0 +1,34 @@
+					<p><b>Загрузка файлов:</b></p>
+					
+                    {if $fa}
+                    <p>
+                    <span id="lfile_wait"><!-- --></span>
+                    <div id="lfile" style="margin:0px; padding: 0px;">
+                       {include file="js_upload/files_list.html"}
+                    </div>
+                    <div style="clear:both; height:8px"><!-- --></div>
+                    </p>
+                    {/if}
+					<br />
+                    <p>
+					    <div id="SWFUploadTarget" style="display: block;">
+		                   	<p>Файл1: <input type="file" name="fm[file1]" /></p>
+                            <p>Файл2: <input type="file" name="fm[file2]" /></p>
+                            <p>Файл3: <input type="file" name="fm[file3]" /></p>
+                            <p>Файл4: <input type="file" name="fm[file4]" /></p>
+                            <p>Файл5: <input type="file" name="fm[file5]" /></p>
+                            <p><font color="red" style="size: 11px;"><i>Для более удобной загрузки файлов Вы должны включить Javascript и Flash</i></font></p>
+	                    </div>
+	                    
+	                    <div id="hdb" style="display: none;">
+	                        <div class="fieldset flash" id="fsUploadProgress"">
+		                  	    <span class="legend">Очередь загрузки</span>
+			                </div>
+	      	                <div id="divStatus">0 файлов загружено</div>
+	      	                <div style="clear:both; height:8px"><!-- --></div> 
+			                <div>
+			                    <div id="plh"></div>  
+			                    <input id="btnCancel" type="button" value="Отменить все загрузки" onclick="swfu.cancelQueue();" disabled="disabled" style="display:none;font-size: 9pt; height: 24px;" />
+			                </div>
+			            </div>    
+					</p>

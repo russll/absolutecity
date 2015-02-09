@@ -1,0 +1,53 @@
+/* HTML tags : start */
+html, body, p, h1, h2, h3, h4, a, img, form, table, tr, td {
+        margin: 0;
+        padding: 0;
+        border: 0}
+html {height:100%;}
+body{width:100%;font-family:Arial, Helvetica, sans-serif;color:#333333;font-size:12px;position:relative;min-height:100%;background:#efeadb}
+*html body{height:100%}
+body{behavior:url("/j/csshover.htc");}
+/* HTML tags */
+h1{}
+
+.main-container{background:url(/i/top_bg.gif) top repeat-x;}
+.main-box{width:966px;margin:0 auto;position:relative}
+
+a{color:#324373;text-decoration:none}
+a:hover{text-decoration:underline;}
+
+/* header */
+.header3{height:64px;padding:0 13px}
+.logo{float:left;width:120px;padding:9px 0 0 42px}
+.comm-txt{font-size:16px;color:#fff;font-weight:bold;padding:22px 0 0 0}
+/* header */
+
+/* top-map */
+.top-map{background:url(/i/top_map.png) center no-repeat;height:120px;width:966px;position:relative;color:#5f646c;font-size:13px;padding-top:73px}
+/* top-map */
+
+.notify-box{background:url(/i/notify_bg.gif) no-repeat;width:475px;height:91px;margin:0 auto;padding:12px 0 0 17px}
+.notify-box h2{color:#333333;font-size:22px;font-weight:normal}
+.notify-box p{color:#333333;font-size:14px;padding:5px 0 3px 0}
+.notify-box div span{float:left;background:url(/i/com_in.gif) no-repeat;width:367px;height:27px;margin-right:5px;padding-top:7px}
+.notify-box div span input{width:350px;padding:0 0 0 10px;color:#808080;font-size:14px;font-family:Arial, Helvetica, sans-serif;border:0;background:transparent}
+
+.content{padding:0 30px 0 30px;background:url(/i/content_bg.gif) top center repeat-y; background-color:#efeadb}
+.carcass{width:635px;border-collapse:collapse;margin:0 auto}
+.c-center{vertical-align:top;}
+
+.sing-title{font-size:22px;font-weight:normal;padding:8px 15px;text-align:center}
+.sing-title a{color:#808080;}
+
+.sbox01_com{float:left;width:159px;background:url(/i/box_bot_bg.gif) bottom repeat-x;text-align:center;margin:0 25px 25px 25px;padding-top:10px}
+.sbox01_com p{padding:20px 0 5px 0;font-size:14px}
+
+/* Footer */
+#footer{height:156px;width:100%;clear:both}
+.footer{background:url(/i/footer_bg.png) no-repeat;width:966px;height:156px;margin:0 auto;}
+.footer p{text-align:center;padding:40px 0 0 0}
+.footer p img{vertical-align:middle;margin-right:5px}
+.footer p a{text-decoration:none;color:#cae5ff;font-size:14px;font-weight:bold}
+
+.clear{clear:both;font-size:1px;height:1px;}
+

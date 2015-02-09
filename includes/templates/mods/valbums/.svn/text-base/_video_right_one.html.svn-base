@@ -1,0 +1,27 @@
+<li>
+    <p><b>Share</b></p>
+    <p><a href="javascript: void(0);">as a message</a></p>
+    <p><a href="javascript: void(0);">via email</a></p>
+    <p><a href="javascript: void(0);">as a public link</a></p>
+</li>
+<li>
+    <p><b>People in this photo</b></p>
+    <p><a href="javascript: void(0);">Add a person</a></p>
+</li>
+<li>
+    <p><b>Tags</b></p>
+    <div><a href="javascript: void(0);"><img src="{$imgDir}add_b3.gif"  /></a><input type="text" value="" /></div>
+    <p><b>Info</b></p>
+    <ul>
+        <li>Photo taken on {$vi.dt|date_format:"%b %d, %Y"}</li>
+        <li>Uploaded on {$vi.dt|date_format:"%b %d, %Y"}</li>
+        <li>Viewed 4 times</li>
+    </ul>
+
+    {if $IS_USER}
+	{if 2 != $ai.type}
+        <p><b><a href="javascript: void(0);" onclick="oAlbums.SHChngPopup( 1, 'id_chng_album_popup' );">{if $ai.type == 2}Copy{else}Replace{/if} this photo [{$ai.type}]</a></b></p>
+        <p><b><a href="javascript: void(0);" onclick="oAlbums.SHConfirmPopup( 1, 'id_confirm_albums_popup' );">Delete</a></b></p>
+	{/if}
+    {/if}
+</li>

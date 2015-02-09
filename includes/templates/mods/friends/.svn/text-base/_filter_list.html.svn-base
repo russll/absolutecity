@@ -1,0 +1,17 @@
+{if $ar_filt_user}
+{foreach item=i key=k from=$ar_filt_user}
+<li>
+    <div class="box003">
+        <div class="post-box">
+            <div class="b-awatar"><a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" alt="" /></a></div>
+            <div class="post-title2"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a></div>
+            <p>{if $i.city}{$i.city},{/if} {if $i.country}{$i.country}{/if}</p>
+        </div>
+    </div>
+</li>
+{/foreach}
+{elseif 4 != $ptype}
+<li>
+    There aren't any members
+</li>
+{/if}

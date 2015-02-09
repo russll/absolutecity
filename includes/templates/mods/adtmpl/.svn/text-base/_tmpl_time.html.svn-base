@@ -1,0 +1,17 @@
+{if 0 == $mins}
+	{if 2 == $type}
+		<span style="color:green">Now</span>
+	{else}
+		less than 1 min ago
+	{/if}
+{elseif 60 > $mins}
+	{$mins} min{if 1< $mins}s{/if} ago
+{elseif 24 > $hours}
+	{$hours} hour{if 1< $hours}s{/if} ago
+{elseif 10 > $days}
+	{$days} day{if 1< $days}s{/if} ago
+{elseif $dt >= TODAY_TIME - 86400 &&  $dt < TODAY_TIME}
+	yesterday at {$dt|date_format:"%H:%M"}
+{elseif $dt >= TODAY_TIME}
+	{$dt} today at {$dt|date_format:"%H:%M"}{else}{$dt|date_format:"%b %e, %Y %H:%M"}
+{/if}

@@ -1,0 +1,24 @@
+{*<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />*}
+<div class="content">
+	<div id="leftbar">
+	  <h1>Профиль пользователя</h1>
+		
+	</div>
+	<div id="rightbar">
+	  <div class="infobox">
+		
+        <p><b>Логин</b> {$fm.login}</p>
+		<p><b>Статус</b>
+		{if 0 == $fm.status}Администратор{elseif 1 == $fm.status}Модератор{elseif 2 == $fm.status}Пользователь{/if}
+		</p>
+		<p><b>Фамилия</b> {$fm.lname}</p>
+		<p><b>Имя</b> {$fm.name}</p>
+		<p><b>Отчество</b> {$fm.mname}</p>
+		<p><b>E-mail</b> {$fm.email}</p>
+		<br />
+
+		<a href="{$siteAdr}security/users/" style="color: #004A79;">Перейти к списку</a>
+	  </div>
+	  
+	</div>
+</div>

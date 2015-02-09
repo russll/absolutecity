@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/ssergy/InZion/!svn/ver/719/siteadmin/includes/classes/Model/Security
+END
+Modules.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Security/Modules.class.php
+END
+Rc4.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Security/Rc4.class.php
+END
+Users.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/ssergy/InZion/!svn/ver/719/siteadmin/includes/classes/Model/Security/Users.class.php
+END

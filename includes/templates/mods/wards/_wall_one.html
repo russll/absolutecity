@@ -1,0 +1,137 @@
+                <div id="id_wall_mes_{$mai.id}" mid="{$mai.id}" class="box001 cl_wall_mes" onmouseover="$('#tl_{$mai.id}').show();" onmouseout="$('#tl_{$mai.id}').hide();">
+			<div class="post-box">
+				<div class="post-box-bg00" style="min-height: 68px">
+				
+				<div class="b-awatar"><a href="javascript: void(0);" onclick="$('#id_dropbox_{$mai.id}').slideToggle('slow');"><img src="{if $mai.image}{$fImgDir}users/{$mai.fpath}/s/s_{$mai.image}{else}{$imgDir}no_photo_m66.jpg{/if}" {if $mai.uid == $UserInfo.uid}class="small_avatar"{/if} alt="" /></a>
+				<!-- Drop00 -->
+				{if $mai.uid != $UserInfo.uid}
+				<div id="id_dropbox_{$mai.id}" class="dropbox00">
+					<div class="dropbox00-left">
+					<div class="dropbox00-right">
+						<ul><li><a href="{$siteAdr}id{$mai.uid}">Send a message</a></li></ul>
+						<p>{if !$mai.relations.im_friend}<a href="javascript: void(0);" onclick="oFriends.GetFrAjax('{$mai.uid}', 0)">Add as Friend</a>{else}<a href="javascript: void(0);" onclick="oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$mai.uid}')">Unfriend</a>{/if}</p>
+						{*<p><a href="#">Hide member’s entries</a></p>*}
+						<p><a class="user_report" href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$mai.uid}');">Report this user</a></p>
+					</div>
+					</div>
+				</div>
+				{/if}
+			<!-- Drop00 -->
+					</div>
+					{if 2 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a> is going to {if $mai.ev_title}{$mai.ev_title}{/if}</div>
+						<div class="event-txt">
+							<img src="{$imgDir}event_ico.gif" alt="" />{$mai.ev_where}, {$mai.ev_dt|date_format:"%B %d, %I:%M %p"}
+							{if $mai.story}<p>{$mai.story|nl2br}</p>{/if}
+						</div>
+						<br />
+						{include file="mods/wards/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+                    {elseif 3 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p>&nbsp;<a href="{$mai.l_url}" target="_blank">{if $mai.l_url_label}{$mai.l_url_label}{else}{$mai.l_url}{/if}</a></p>
+						<br />
+						{include file="mods/wards/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+                    {elseif 4 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{if $mai.p_url}<em><a href="{$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id}"><img src="{$mai.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+							{if $mai.p_path}
+								{if $mai.p_img_1}<em><a href="{if $mai.p_img_aid && $mai.p_img_1_id}{$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id}{else}javascript: void(0);{/if}" {if !$mai.p_img_1_id} style="cursor: default;" {/if}><img src="{$fImgDir}wards/wall/{$mai.p_path}/{$mai.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+								{if $mai.p_img_2}<em><a href="{if $mai.p_img_aid && $mai.p_img_2_id}{$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_2_id}{else}javascript: void(0);{/if}" {if !$mai.p_img_2_id} style="cursor: default;" {/if}><img src="{$fImgDir}wards/wall/{$mai.p_path}/{$mai.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+								{if $mai.p_img_3}<em><a href="{if $mai.p_img_aid && $mai.p_img_3_id}{$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_3_id}{else}javascript: void(0);{/if}" {if !$mai.p_img_3_id} style="cursor: default;" {/if}><img src="{$fImgDir}wards/wall/{$mai.p_path}/{$mai.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+					        {/if}
+						</p>
+						
+						<br />
+						{include file="mods/wards/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+                    {elseif 5 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{if $mai.v_code}<object width="200" height="150">{$mai.v_code}</object>{/if}
+						</p>
+						<br />
+						{include file="mods/wards/_wall_actions_one.html"}
+
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+
+                       {elseif $mai.sub_mtype == 1}
+                                                <div class="post-title-badge">
+                                                    <a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                                                    {if $mai.uid != $mai.uid3 && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$i.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                                                    {if $mai.uid != $mai.uid4 && ($mai.first_name4 || $mai.last_name4)} to <a href="{$siteAdr}id{$i.uid4}"><b>{$mai.first_name4} {$mai.last_name4}</b></a>{/if}
+                                                    <p>{html_tmpl_time val=$mai.pdate type=1}</p>
+                                                    <table class="post-badge">
+                                                        <td>
+                                                            <img class="badge_img" src="{$imgDir}/badges/{$mai.b_img_name}.png" alt="{$mai.b_img_name}"/>
+                                                        </td>
+                                                        <td>
+                                                            <span class="story_badge">{if $mai.story}{$mai.story|nl2br|dlong}{/if}</span>
+                                                        </td>
+                                                    </table>
+                                                <br/>
+                                                {include file="mods/wards/_wall_actions_one.html"}
+                                                <br/>
+                                                </div>
+                       {else}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						
+						<br />
+						{include file="mods/wards/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+					{/if}
+
+					<p>
+                        {if 1==$mai.ptype} for stake  {elseif 0==$mai.ptype} for ward {/if}
+					    {if $mai.stype && $prhs[$mai.stype]} ({$prhs[$mai.stype]})
+                        {elseif $mai.stype==5}
+                            {if $uclasses_index[$mai.pclass]} {$uclasses_index[$mai.pclass]} {else} classmates {/if}
+                        {/if}
+					</p>
+			    </div>
+				
+				<ul id="id_mes_answ_list_{$mai.id}" class="recomment">
+				{if $mai.answers}
+					{assign var=answ value=$mai.answers}
+					{section name=si loop=$mai.answers}
+					<li><a href="{$siteAdr}id{$answ[si].uid}"><img src="{if $answ[si].image}{$fImgDir}users/{$answ[si].fpath}/s/s_{$answ[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}" {if $mai.uid == $UserInfo.uid}class="small_avatar"{/if} alt="" style="width: 56px; height: 56px;" /></a>
+						<div>
+						<p><a href="{$siteAdr}id{$answ[si].uid}">{if $answ[si].first_name || $answ[si].last_name}{$answ[si].first_name} {$answ[si].last_name}{else}{$answ[si].public_name}{/if}</a> {if $answ[si].story}{$answ[si].story|nl2br}{/if}</p>
+						<p><span>{html_tmpl_time val=$answ[si].pdate type=1}</span></p>
+						</div>
+					</li>
+					{/section}
+				{/if}
+				</ul>
+				
+				{if 2 < $mai.cnt_answ}<div id="id_div_show_more_answ_{$mai.id}" class="tools-link"><a href="javascript: void(0);" onclick="oWWall.GetAnswList( '{$wid}', '{$mai.id}', 2, '' );">View all comments</a></div>{/if}
+				
+				{if $CAN_EDIT}
+				<div id="id_add_new_answ_inp_{$mai.id}" class="add-comment-in"><input class="cl_add_answ_inp" mid="{$mai.id}" type="text" value="Add comment" /></div>
+				<form id="id_frm_add_mes_answ_{$mai.id}" action="{$siteAdr}wards/id{$wid}/wall/geteditansw" method="post">
+				<input type="hidden" name="SI[mes_id]" value="{$mai.id}" /><br />
+					<div id="id_add_new_answ_txtar_{$mai.id}" class="add-comment-in2" style="display: none;">
+						<img src="{if $UserInfo.image}{$fImgDir}users/{$UserInfo.fpath}/a/a_{$UserInfo.image}{else}{$imgDir}no_photo_m56.jpg{/if}" alt="" style="width: 56px; height: 56px;" />
+						<textarea id="id_add_new_answ_txtar_b_{$mai.id}"class="cl_answ_story" name="WI[story]" maxlength="480"></textarea>
+						<div class="add_smile_tab"><a class="nav_attach_smile" onclick="oWWall.AddSmileTab('{$mai.id}');" mtype="smile" style="cursor: pointer;"><img src="{$imgDir}smile_main.gif" alt="" /></a></div>
+                                                <div class="share-white-b" style="margin-bottom: 3px; margin-top: 2px;"><a href="javascript: void(0);" onclick="oWWall.AddMesAnsw( '{$mai.id}' );"><img src="{$imgDir}add_b3_act.gif" alt="" /></a></div>
+					</div>
+                                        {assign var="type_smile" value="just_comment"}
+                                        <div id="show_smile_tab_comment_{$mai.id}" class="smiley_comment" style="display: none;">
+                                        {include file="top_blocks/_smile.html"}
+                                        </div>
+
+				</form>
+				{/if}
+			</div>
+		</div>

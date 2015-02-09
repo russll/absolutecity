@@ -1,0 +1,34 @@
+{strip}
+<div class="logo"><a href="{$siteAdr}" title="Back To My Feed"><img src="{$imgDir}logo.png" alt="Back To My Feed" /></a></div>
+<div class="find-box">
+	{*<!--p><input id="id_main_srch_edit" type="text" value="{if $glsrch}{$glsrch}{/if}" onkeypress="javascript: if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) Go('{$siteAdr}base/search?glsrch='+$('#id_main_srch_edit').val()+'&glsrchsubfilt='+$('.cl_glsrchsubfilt_links[subfilt]').attr('subfilt'));" /></p><a href="javascript: void(0);" onclick="javascript: Go('{$siteAdr}base/search?glsrch='+$('#id_main_srch_edit').val()+'&glsrchsubfilt='+$('.cl_glsrchsubfilt_links[subfilt]').attr('subfilt'));"><img src="{$imgDir}find_b.gif"  /></a><a href="javascript: void(0);" onclick="javascript: $('#id_search_drop').slideToggle();"><img src="{$imgDir}search_b.gif"  /></a-->*}
+	<p><input id="id_main_srch_edit" type="text" value="{if $glsrch}{$glsrch}{else}Search for friends, missions, wards etc{/if}" {if $glsrch}style="color:black;"{else}style="color:gray;"{/if} onclick="if ('Search for friends, missions, wards etc' == jQuery.trim(this.value)) this.value=''; $('#id_main_srch_edit').attr('style','color:black;');" onkeypress="javascript: if((event.keyCode == 0x0D) || ((event.ctrlKey) && ((event.keyCode == 0xA) || (event.keyCode == 0x0D) || (event.keyCode == 0xD)))) Go('{$siteAdr}base/search?glsrch='+(jQuery.trim($('#id_main_srch_edit').val())=='Search for friends, missions, wards etc' ? '' : $('#id_main_srch_edit').val())+'&glsrchsubfilt='+$('.cl_glsrchsubfilt_links[subfilt]').attr('subfilt'));" /><a href="javascript: void(0);" onclick="Go('{$siteAdr}base/search?glsrch='+(jQuery.trim($('#id_main_srch_edit').val())=='Search for friends, missions, wards etc' ? '' : $('#id_main_srch_edit').val())+'&glsrchsubfilt='+$('.cl_glsrchsubfilt_links[subfilt]').attr('subfilt'));"><img src="{$imgDir}findh_b.gif" alt="Search" /></a></p>
+
+        <div id="id_search_drop" class="sdrop_new">
+		<ul>
+            {*
+            <li><a class="cl_glsrchsubfilt_links" sfname="Web" style="cursor: pointer;">Web</a></li>
+			*}
+            <li><a class="cl_glsrchsubfilt_links" sfname="People" style="cursor: pointer;" >People</a></li>
+			<li><a class="cl_glsrchsubfilt_links" sfname="Singles" style="cursor: pointer;" >Singles</a></li>
+			<li><a class="cl_glsrchsubfilt_links" sfname="Journals" style="cursor: pointer;" >Journals</a></li>
+			<li><a class="cl_glsrchsubfilt_links" sfname="Missions" style="cursor: pointer;" >Missions</a></li>
+			<li><a class="cl_glsrchsubfilt_links" sfname="Stake/Wards" style="cursor: pointer;" >Stakes/Wards</a></li>
+			<li><a class="cl_glsrchsubfilt_links" sfname="All results" style="display: none;" >All results</a></li>
+		</ul>
+	</div>
+</div>
+
+<div class="mmenu">
+	<ul>
+		<li {if 'wall' == $m_page} class="act" {/if}><a href="{$siteAdr}id{$ui.uid}">Home</a></li>
+		<li {if 'journal' == $m_page} class="act" {/if}><a href="{$siteAdr}id{$ui.uid}/journal">Journal</a></li>
+		<li {if 'mission_wall' == $m_page || 'mission_list' == $m_page} class="act" {/if}><a href="{$siteAdr}id{$ui.uid}/mission">Mission</a></li>
+		<li {if 'wards_wall' == $m_page || 'wards_list' == $m_page} class="act" {/if} ><a href="{$siteAdr}id{$ui.uid}/wards/">Ward</a></span></li>
+		<li {if 'inbox' == $m_page} class="act" {/if}><a href="{$siteAdr}inbox">Chat</a></span>{if $cnt_inbox_mes}<span><a href="{$siteAdr}inbox">{$cnt_inbox_mes}</a></span>{/if}</li>
+		<li>{$mpage}</li>
+	</ul>
+</div>
+{/strip}
+{* header color="#2d3d5a"*}
+{* blue_letters color="#cae5ff"*}

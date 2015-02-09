@@ -1,0 +1,5 @@
+<tr>
+    <td width="150"><label>Name</label></td>
+    <td>{$uinfo.first_name} {$uinfo.mid_name} {$uinfo.last_name}</td>
+    <td width="10"><a href="javascript:oUsers.OptionsEdit('name');"><img src="{$imgDir}arr05.gif" alt="" /></a></td>
+</tr>

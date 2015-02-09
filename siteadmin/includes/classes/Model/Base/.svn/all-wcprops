@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/ssergy/InZion/!svn/ver/729/siteadmin/includes/classes/Model/Base
+END
+Notify.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ssergy/InZion/!svn/ver/764/siteadmin/includes/classes/Model/Base/Notify.class.php
+END
+Valbums.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ssergy/InZion/!svn/ver/429/siteadmin/includes/classes/Model/Base/Valbums.class.php
+END
+Friends.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ssergy/InZion/!svn/ver/521/siteadmin/includes/classes/Model/Base/Friends.class.php
+END
+IzExcept.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/ssergy/InZion/!svn/ver/377/siteadmin/includes/classes/Model/Base/IzExcept.class.php
+END
+Stat.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/ssergy/InZion/!svn/ver/610/siteadmin/includes/classes/Model/Base/Stat.class.php
+END
+Ward.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/ssergy/InZion/!svn/ver/529/siteadmin/includes/classes/Model/Base/Ward.class.php
+END
+Reports.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ssergy/InZion/!svn/ver/522/siteadmin/includes/classes/Model/Base/Reports.class.php
+END
+Inbox.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/ssergy/InZion/!svn/ver/682/siteadmin/includes/classes/Model/Base/Inbox.class.php
+END
+Mission.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/ssergy/InZion/!svn/ver/496/siteadmin/includes/classes/Model/Base/Mission.class.php
+END
+Albums.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/ssergy/InZion/!svn/ver/602/siteadmin/includes/classes/Model/Base/Albums.class.php
+END
+Langs.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/ssergy/InZion/!svn/ver/20/siteadmin/includes/classes/Model/Base/Langs.class.php
+END

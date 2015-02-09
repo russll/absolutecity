@@ -1,0 +1,73 @@
+{if 'search' == $m_page}
+
+    {include file="top_blocks/_search.html"}
+
+{elseif 'friends_list' == $m_page}
+
+    {include file="top_blocks/_friends_list.html"}
+
+{elseif 'wards_wall' == $m_page}
+
+    {include file="top_blocks/_wards_wall.html"}
+
+{elseif 'wards_list' == $m_page}
+
+    {include file="top_blocks/_wards_list.html"}
+
+{elseif 'mission_wall' == $m_page}
+
+    {include file="top_blocks/_mission_wall.html"}
+
+{elseif 'mission_list' == $m_page}
+
+    {include file="top_blocks/_mission_list.html"}
+
+{elseif 'albums_list' == $m_page}
+
+    {include file="top_blocks/_albums_list.html"}
+
+{elseif 'albums_photos' == $m_page}
+
+    {include file="top_blocks/_albums_photos.html"}
+
+{elseif 'albums_photo' == $m_page}
+
+    {include file="top_blocks/_albums_photo.html"}
+
+{elseif 'valbums_list' == $m_page}
+
+    {include file="top_blocks/_valbums_list.html"}
+
+{elseif 'valbums_videos' == $m_page}
+
+    {include file="top_blocks/_valbums_videos.html"}
+
+{elseif 'valbums_video' == $m_page}
+
+    {include file="top_blocks/_valbums_video.html"}
+
+{elseif 'tags_list' == $m_page}
+
+    {include file="top_blocks/_tags_list.html"}
+
+{elseif 'tags_mes' == $m_page}
+
+    {include file="top_blocks/_tags_mes.html"}
+
+{elseif 'journal' == $m_page}
+
+    {include file="top_blocks/_journal.html"}
+
+{elseif 'inbox' == $m_page}
+
+    {include file="top_blocks/_inbox.html"}
+
+{elseif 'notify_list' == $m_page}
+
+    {include file="top_blocks/_notify_list.html"}
+
+{else}
+
+    {include file="top_blocks/_main.html"}
+    
+{/if}

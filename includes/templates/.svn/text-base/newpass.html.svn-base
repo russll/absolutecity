@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Restore your inZion password</title>
+</head>
+<body>
+<br />
+
+To restore your password, please click on the link below or<br />
+copy and paste it into the Address or Location field of your<br />
+browser.  This will allow you to complete the confirmation process.<br />
+<br />
+<a href="http://{$DOMEN}/security/users/forgot?code={$code}">http://{$DOMEN}/security/users/forgot?code={$code}</a><br />
+<br />
+(Note: This link is valid for three days.)<br /><br />
+
+Thank you for using inZion!<br /><br />
+
+Customer Support<br />
+inZion.com<br />
+http://www.inzion.com<br />
+<br />
+Please do not reply to this email.<br /><br />
+</body>
+</html>

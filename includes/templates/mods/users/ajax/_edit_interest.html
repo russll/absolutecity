@@ -1,0 +1,25 @@
+<form method="post" id="interest_info_form">
+<table class="t-edit">
+    {foreach key=k item=i from=$interests_list}
+    <tr><td width="150"><label>{$i}</label></td><td><textarea name="fm[interests_list][{$k}]">{$fm.interests_list.$k.story}</textarea></td><td style="width:30px;">&nbsp;</td></tr>
+    {/foreach}
+    <tbody id="interest_list">
+    {foreach key=k item=i from=$interests}
+    <tr{if 1==$interests|@count && ''==$fm.interests.0|trim} style="display:none;"{/if}>
+        <td width="150" style="text-align:right"><input class="txt2" name="fm[interests][]" type="text" value="{$fm.interests.$k}" /></td>
+        <td><textarea name="fm[interests_story][]">{$fm.interests_story.$k}</textarea></td>
+        <td style="vertical-align:middle;padding-right:10px;"><a href="javascript:void(0);" onclick="oUsers.SettingsInterestDel( $(this).parent().parent() );"><img src="/i/close_ico3.gif" /></a></td></tr>
+    {/foreach}
+    </tbody>
+    <tr><td width="150"></td><td><a href="javascript:void(0);" onclick="oUsers.SettingsInterestAdd();">Add another interest</a></td><td>&nbsp;</td></tr>
+
+    <tr style="height:50px;">
+        <td colspan="2" align="right">
+            <div class="aj-button">
+                <span class="aj-button01"><a href="javascript:void(0);" id="basic_cancel" onclick="oUsers.SettingsInterestCnl();">Cancel</a></span>
+                <span class="aj-button02"><a href="javascript:void(0);" id="basic_save" onclick="oUsers.SettingsInterestSubm();">Save</a></span>
+            </div>
+        </td>
+    </tr>
+</table>
+</form>

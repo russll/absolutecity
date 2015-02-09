@@ -1,0 +1,4 @@
+<span class="edit-info" id="talk_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsTalk();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+    <tr><td width="150"><label>A place for all my talks</label></td><td>&nbsp;</td></tr>
+</table>

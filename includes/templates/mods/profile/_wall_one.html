@@ -1,0 +1,219 @@
+		<div id="id_wall_mes_{$mai.com_parent}" mid="{$mai.com_parent}" class="box001 cl_wall_mes" onmouseover="$('#tl_{$mai.com_parent}').show();" onmouseout="$('#tl_{$mai.com_parent}').hide();">
+			<div class="post-box">
+				<div class="post-box-bg{if 5==$mai.ptype}04{elseif 4==$mai.ptype}05{elseif 3==$mai.ptype}02{elseif 2==$mai.ptype}03{elseif 1==$mai.ptype}01{else}00{/if}" style="min-height: 68px">
+				{if !empty($mai.ptype)}<em><img src="{$imgDir}ico{if 5==$mai.ptype}07_{elseif 4==$mai.ptype}06{elseif 3==$mai.ptype}05_{elseif 2==$mai.ptype}04_{elseif 1==$mai.ptype}03{/if}.png"  /></em>{/if}
+
+				<div class="b-awatar"><a href="javascript: void(0);" onclick="$('#id_dropbox_{$mai.com_parent}').slideToggle('slow');"><img src="{if $mai.image}{$fImgDir}users/{$mai.fpath}/s/s_{$mai.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  {if $mai.uid == $UserInfo.uid}class="small_avatar"{/if}/></a>
+				<!-- Drop00 -->
+				{if $mai.uid != $UserInfo.uid}
+				<div id="id_dropbox_{$mai.com_parent}" class="dropbox00">
+					<div class="dropbox00-left">
+					<div class="dropbox00-right">
+						<ul><li><a href="{$siteAdr}id{$mai.uid}">Send a message</a></li></ul>
+						<p>{if !$mai.relations.im_friend}<a href="javascript: void(0);" onclick="oFriends.GetFrAjax('{$mai.uid}', 0)">Add as Friend</a>{else}<a href="javascript: void(0);" onclick="oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$mai.uid}')">Unfriend</a>{/if}</p>
+						{*<p><a href="#">Hide member’s entries</a></p>*}
+						<p><a  class="user_report" href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$mai.uid}');">Report this user</a></p>
+					</div>
+					</div>
+				</div>
+				{/if}
+			<!-- Drop00 -->
+					</div>
+					{if 2 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a> is going to {if $mai.ev_title}{$mai.ev_title}{/if}</div>
+						<div class="event-txt">
+							<img src="{$imgDir}event_ico.gif"  />{$mai.ev_dt|date_format:"%B %d, %I:%M %p"} <br><br>
+							<div>
+								{if $mai.ev_where}<span style="text-align:left; display:block; height: 20px;">{$mai.ev_where}</span>{/if}
+								{if $mai.ev_img != 'none' && $mai.ev_img != ''}<img src="{$siteAdr}files/images/wall/{$mai.fpath}/t/{$mai.ev_img}"  align="left"/>{/if}
+								{if $mai.ev_descr}<span style="text-align:left; font-style: italic; display:block; height: 20px;">{$mai.ev_descr}</span>{/if}
+							</div>
+                            <p>{if $mai.story}{$mai.story|nl2br}{/if}</p>
+						</div>
+						
+						<br />
+						{include file="mods/profile/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>					
+				    {elseif 3 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>{if $mai.uid != $mai.uid3 && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$mai.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p>&nbsp;<a href="{$mai.l_url}" target="_blank">{if $mai.l_url_label}{$mai.l_url_label}{else}{$mai.l_url}{/if}</a></p>
+						
+						<br />
+						{include file="mods/profile/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>                    
+				    {elseif 4 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>{if $mai.uid != $mai.uid3  && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$mai.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{*if $mai.p_url}<em><a href="javascript: void(0);"><img src="{$mai.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if*}
+                                                        {if $mai.p_url}<em><a href="{$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id}"><img src="{$mai.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+							{if $mai.p_path}
+								{if $mai.p_img_1}<a href=" {if $mai.p_img_aid && $mai.p_img_1_id} {$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_1_id} {else} javascript: void(0); {/if} " {if !$mai.p_img_1_id} style="cursor: default;" {/if}><img src="{$fImgDir}wall/{$mai.p_path}/{$mai.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a>{/if}
+								{if $mai.p_img_2}<a href=" {if $mai.p_img_aid && $mai.p_img_2_id} {$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_2_id} {else} javascript: void(0); {/if} " {if !$mai.p_img_2_id} style="cursor: default;" {/if}><img src="{$fImgDir}wall/{$mai.p_path}/{$mai.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a>{/if}
+								{if $mai.p_img_3}<a href=" {if $mai.p_img_aid && $mai.p_img_3_id} {$siteAdr}id{$mai.uid}/albums/id{$mai.p_img_aid}/id{$mai.p_img_3_id} {else} javascript: void(0); {/if} " {if !$mai.p_img_3_id} style="cursor: default;" {/if}><img src="{$fImgDir}wall/{$mai.p_path}/{$mai.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a>{/if}
+							{/if}
+						</p>
+						
+						<br />
+						{include file="mods/profile/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>                    
+					{elseif 5 == $mai.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>{if $mai.uid != $mai.uid3  && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$mai.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{if $mai.v_code}<object width="200" height="150">{$mai.v_code}</object>{/if}
+						</p>
+						
+						<br />
+						{include file="mods/profile/_wall_actions_one.html"}
+						
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>					
+					{elseif $mai.sub_mtype == 1}
+                                                <div class="post-title-badge">
+                                                    <a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>
+                                                    {if $mai.uid != $mai.uid3 && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$i.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                                                    {if $mai.uid != $mai.uid4 && ($mai.first_name4 || $mai.last_name4)} to <a href="{$siteAdr}id{$i.uid4}"><b>{$mai.first_name4} {$mai.last_name4}</b></a>{/if}
+                                                    <p>{html_tmpl_time val=$mai.pdate type=1}</p>
+                              			            <p>
+                                                    {if 5==$mai.ptype}
+                                                            private
+                                                        {elseif 4==$mai.ptype}
+                                                            only for {if $u3.first_name && $u3.last_name} {$u3.first_name} {$u3.last_name} {else} ... {/if}
+                                                        {elseif 3==$mai.ptype}
+                                                            For family
+                                                        {elseif 2==$mai.ptype}
+                                                            For friends {if $mai.pstype} ( {if $mai.pstype == 5} {if $uclasses_index[$mai.pclass]} {$uclasses_index[$mai.pclass]} {else} Classmates {/if} {elseif $mai.pstype == 1} Aaronic priesthood {elseif $mai.pstype == 2} Young man {elseif $mai.pstype == 3} Priesthood holders {elseif $mai.pstype == 4} Melchizedek priesthood {elseif $mai.pstype == 7} high priest {elseif $mai.pstype == 12} Young woman {elseif $mai.pstype == 100} {if $UserInfo.ward_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $mai.pstype == 101} {if $UserInfo.stake_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                                                        {elseif 1==$mai.ptype}
+                                                            For friends and followers {if $mai.pstype} ( {if $mai.pstype == 5} {if $uclasses_index[$mai.pclass]} {$uclasses_index[$mai.pclass]} {else} Classmates {/if} {elseif $mai.pstype == 1} Aaronic priesthood {elseif $mai.pstype == 2} Young man {elseif $mai.pstype == 3} Priesthood holders {elseif $mai.pstype == 4} Melchizedek priesthood {elseif $mai.pstype == 7} high priest {elseif $mai.pstype == 12} Young woman {elseif $mai.pstype == 100} {if $UserInfo.ward_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $mai.pstype == 101} {if $UserInfo.stake_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                                                        {elseif 0==$mai.ptype}
+                                                            For everyone {if $mai.first_name3 && $mai.last_name3 && $mai.uvid} except <a href="{$siteAdr}id{$mai.uid3}">{$mai.first_name3} {$mai.last_name3}</a> {/if}
+                                                    {/if}
+                                                    </p>
+                                                    <table class="post-badge">
+                                                        <td>
+                                                            <img class="badge_img" src="{$imgDir}/badges/{$mai.b_img_name}.png" alt="{$mai.b_img_name}"/>
+                                                        </td>
+                                                        <td style="max-width: 280px;">
+                                                            <span class="story_badge">{if $mai.story}{$mai.story|nl2br|dlong:35}{/if}</span>
+                                                        </td>
+                                                    </table>
+                                                <br/>
+                                                {include file="mods/profile/_wall_actions_one.html"}
+                                                <br/>
+                                                </div>
+                                        
+					{else}
+						<div class="post-title"><a href="{$siteAdr}id{$mai.uid}"><b>{if $mai.first_name || $mai.last_name}{$mai.first_name} {$mai.last_name}{else}{$mai.public_name}{/if}</b></a>{if $mai.uid != $mai.uid3  && $mai.ptype == 4 && ($mai.first_name3 || $mai.last_name3)} to <a href="{$siteAdr}id{$mai.uid3}"><b>{$mai.first_name3} {$mai.last_name3}</b></a>{/if}
+                            {if $mai.story}<p>{$mai.story|nl2br}</p>{/if}
+                                                </div>
+
+						<br />
+						{include file="mods/profile/_wall_actions_one.html"}
+
+						<p>{html_tmpl_time val=$mai.pdate type=1}</p>
+					{/if}
+                                        
+                                        {if !isset($mai.sub_mtype)}
+						<p>
+                                                    {if 5==$mai.ptype}
+                                                            private
+                                                        {elseif 4==$mai.ptype}
+                                                            only for {if $u3.first_name && $u3.last_name} {$u3.first_name} {$u3.last_name} {else} ... {/if}
+                                                        {elseif 3==$mai.ptype}
+                                                            For family
+                                                        {elseif 2==$mai.ptype}
+                                                            For friends {if $mai.pstype} ( {if $mai.pstype == 5} {if $uclasses_index[$mai.pclass]} {$uclasses_index[$mai.pclass]} {else} Classmates {/if} {elseif $mai.pstype == 1} Aaronic priesthood {elseif $mai.pstype == 2} Young man {elseif $mai.pstype == 3} Priesthood holders {elseif $mai.pstype == 4} Melchizedek priesthood {elseif $mai.pstype == 7} high priest {elseif $mai.pstype == 12} Young woman {elseif $mai.pstype == 100} {if $UserInfo.ward_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $mai.pstype == 101} {if $UserInfo.stake_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                                                        {elseif 1==$mai.ptype}
+                                                            For friends and followers {if $mai.pstype} ( {if $mai.pstype == 5} {if $uclasses_index[$mai.pclass]} {$uclasses_index[$mai.pclass]} {else} Classmates {/if} {elseif $mai.pstype == 1} Aaronic priesthood {elseif $mai.pstype == 2} Young man {elseif $mai.pstype == 3} Priesthood holders {elseif $mai.pstype == 4} Melchizedek priesthood {elseif $mai.pstype == 7} high priest {elseif $mai.pstype == 12} Young woman {elseif $mai.pstype == 100} {if $UserInfo.ward_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $mai.pstype == 101} {if $UserInfo.stake_id == $mai.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+                                                        {elseif 0==$mai.ptype}
+                                                            For everyone {if $mai.first_name3 && $mai.last_name3 && $mai.uvid} except <a href="{$siteAdr}id{$mai.uid3}">{$mai.first_name3} {$mai.last_name3}</a> {/if}
+                                                    {/if}
+                                                </p>
+                                         {/if}
+				</div>
+                                <ul id="id_mes_sts_list_{$mai.com_parent}" class="sm-stat">
+                                {if $mai.status}
+                                    {assign var=stats value=$mai.status}
+                                    {foreach key=ssk item=ssi from=$stats}
+                                    <li>
+                                        <div class="sm-stat-main">
+                                            <img src="{$imgDir}smile/{$ssk}.png" />&nbsp;
+                                            {if $ssi.cnt==1}<span id="text_hide_{$ssk}_{$mai.com_parent}"><a href="javascript:void(0);" onclick="$('#popup_user_{$ssk}_{$mai.com_parent}').show();$('#text_hide_{$ssk}_{$mai.com_parent}').hide();">{$ssi.cnt} person</a> {$status.$ssk.1}</span>
+                                            {else}<span><a href="javascript:void(0)" onclick="if ($('#popup_users_{$ssk}_{$mai.com_parent}').css('display')=='none') $('#popup_users_{$ssk}_{$mai.com_parent}').show(); else $('#popup_users_{$ssk}_{$mai.com_parent}').hide();">{$ssi.cnt} persons</a> {$status.$ssk.2}</span>
+                                            {/if}
+                                        </div>
+                                    <div id="popup_user_{$ssk}_{$mai.com_parent}" class="popup_person" onmouseover="$('#popup_user_{$ssk}_{$mai.com_parent}').show();$('#text_hide_{$ssk}_{$mai.com_parent}').hide();" onmouseout="$('#popup_user_{$ssk}_{$mai.com_parent}').hide();$('#text_hide_{$ssk}_{$mai.com_parent}').show();" style="display:none;">
+                                        <img src="{if $ssi.0.image}{$fImgDir}users/{$ssi.0.fpath}/s/s_{$ssi.0.image}{else}{$imgDir}no_photo_m56.jpg{/if}" style="padding: 0 0 5px 2px;"/>&nbsp;
+                                        <span><a href="{$siteAdr}id{$ssi.0.suid}">{$ssi.0.first_name}{$ssi.0.last_name}</a> {$status.$ssk.1}</span>
+                                    </div>
+                                    <div id="popup_users_{$ssk}_{$mai.com_parent}" class="popup_persons" onmouseover="$('#popup_users_{$ssk}_{$mai.com_parent}').show();" onmouseout="$('#popup_users_{$ssk}_{$mai.com_parent}').hide();" style="display:none;">
+                                    {if ($ssi.cnt>5)}
+                                        <div class="popup_persns_header" style="color:#808080;">People who {$status.$ssk.2} <i>(last 5 persons)</i></div>
+                                    {else}
+                                        <div class="popup_persns_header" style="color:#808080;">People who {$status.$ssk.2}</div>
+                                    {/if}
+                                    <ul class="popup_persns_content">
+                                    {assign var=cnt_stat value=$ssi.cnt}
+                                    {if ($cnt_stat-1)<5}
+                                        {foreach key=ssname item=ssindex from=$ssi}
+                                        {if is_array($ssindex)}
+                                        <li>
+                                            <img src="{if $ssindex.image}{$fImgDir}users/{$ssindex.fpath}/s/s_{$ssindex.image}{else}{$imgDir}no_photo_m56.jpg{/if}" style="padding: 0 0 5px 2px;"/>&nbsp;
+                                            <span><a href="{$siteAdr}id{$ssindex.suid}">{$ssindex.first_name}&nbsp;{$ssindex.last_name}</a></span>
+                                        </li>
+                                        {/if}
+                                       {/foreach}
+                                   {else}
+                                        {section start=$cnt_stat-6 name=ssindex max=5 loop=$ssi}
+                                        <li>
+                                            <img src="{if $ssindex.image}{$fImgDir}users/{$ssi[ssindex].fpath}/s/s_{$ssi[ssindex].image}{else}{$imgDir}no_photo_m56.jpg{/if}" style="padding: 0 0 5px 2px;"/>&nbsp;
+                                            <span><a href="{$siteAdr}id{$ssi[ssindex].suid}">{$ssi[ssindex].first_name}&nbsp;{$ssi[ssindex].last_name}</a></span>
+                                        </li>
+                                        {/section}
+                                   {/if}
+                                   </ul>
+                                   </div>
+                                   </li>
+                            {/foreach}
+                            {/if}
+                            </ul>
+
+                               <ul id="id_mes_answ_list_{$mai.com_parent}" class="recomment">
+				{if $mai.answers}
+					{assign var=answ value=$mai.answers}
+					{section name=si loop=$mai.answers}
+					<li><a href="{$siteAdr}id{$answ[si].uid}"><img src="{if $answ[si].image}{$fImgDir}users/{$answ[si].fpath}/a/a_{$answ[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+						<div>
+						<p><a href="{$siteAdr}id{$answ[si].uid}">{if $answ[si].first_name || $answ[si].last_name}{$answ[si].first_name} {$answ[si].last_name}{else}{$answ[si].public_name}{/if}</a> {if $answ[si].story}{$answ[si].story|nl2br}{/if}</p>
+						<p><span>{html_tmpl_time val=$answ[si].pdate type=1}</span></p>
+						</div>
+					</li>
+					{/section}
+				{/if}
+				</ul>
+
+				{if 2 < $mai.cnt_answ}<div id="id_div_show_more_answ_{$mai.com_parent}" class="tools-link"><a href="javascript: void(0);" onclick="oWall.GetAnswList( '{$mai.uid}', '{$i.com_parent}', 2, '' );">View all comments</a></div>{/if}
+				
+				<div id="id_add_new_answ_inp_{$mai.com_parent}" class="add-comment-in"><input class="cl_add_answ_inp" mid="{$mai.com_parent}" type="text" value="Add comment" /></div>
+				<form id="id_frm_add_mes_answ_{$mai.com_parent}" action="{$siteAdr}id{$ui.uid}/wall/geteditansw" method="post">
+				<input type="hidden" name="SI[mes_id]" value="{$mai.com_parent}" /><br />
+					<div id="id_add_new_answ_txtar_{$mai.com_parent}" class="add-comment-in2" style="display: none;">
+						<img src="{if $UserInfo.image}{$fImgDir}users/{$UserInfo.fpath}/a/a_{$UserInfo.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" />
+						<textarea id="id_add_new_answ_txtar_b_{$mai.com_parent}" class="cl_answ_story" name="WI[story]" maxlength="480"></textarea>
+
+                                                <div class="add_smile_tab"><a class="nav_attach_smile" onclick="oWall.AddSmileTab('{$mai.com_parent}');" mtype="smile" style="cursor: pointer;"><img src="{$imgDir}smile_main.gif" alt="" /></a></div>
+                                                <div class="share-white-b" style="margin-bottom: 3px; margin-top: 2px;"><a href="javascript: void(0);" onclick="oWall.AddMesAnsw( '{$mai.com_parent}' );"><img src="{$imgDir}add_b3_act.gif"  /></a></div>
+					</div>
+                                        {assign var="type_smile" value="just_comment"}
+                                        <div id="show_smile_tab_comment_{$mai.com_parent}" class="smiley_comment" style="display: none;">
+                                        {include file="top_blocks/_smile.html"}
+                                        </div>
+
+				</form>
+
+			</div>
+		</div>

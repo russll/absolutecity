@@ -1,0 +1,31 @@
+<span class="edit-info" id="basic_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsBasic();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+{if $ui.gender}
+    <tr><td width="150"><label>Gender</label></td><td>{if 1==$ui.gender}Male{elseif 2==$ui.gender}Female{/if}</td></tr>
+{/if}
+{if $ui.dob && !$ui.no_dob}
+    <tr><td width="150"><label>Birthday</label></td><td>{if $ui.dob != '0000-00-00'}{$ui.dob|date_format:"%B %e, %Y"}{else}not specified{/if}</td></tr>
+{/if}
+{if $ui.was_born}
+    <tr><td width="150"><label>I was born in</label></td><td>{$ui.was_born}</td></tr>
+{/if}
+{if $ui.live_in}
+    <tr><td width="150"><label>I currently live in</label></td><td>{$ui.live_in}</td></tr>
+{/if}
+{if $ui.fam}
+    <tr><td width="150"><label>Family</label></td><td>
+    {foreach key=k item=i name=n from=$ui.fam}
+        {assign var="ov" value=$i.rel_status}
+        {if !$smarty.foreach.n.first}<br />{/if}{$relations.$ov}: {$i.name}
+    {/foreach}
+    </td></tr>
+{/if}
+{if $ui.rel_status}
+    <tr><td width="150"><label>Relationship status</label></td><td> {assign var="ov" value=$ui.rel_status}{$rel_statuses.$ov}</td></tr>
+{/if}
+{if $ui.langs}
+     <tr><td width="150"><label>Spoken languages</label></td><td>
+     {foreach key=k item=i name=n from=$ui.langs}{if !$smarty.foreach.n.first}, {/if}{$spoken_langs.$i}{/foreach}
+     </td></tr>
+{/if}
+</table>

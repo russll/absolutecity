@@ -1,0 +1,31 @@
+{assign var=stats value=$status_new}
+{foreach key=ssk item=ssi from=$stats}
+<li>
+    <div class="sm-stat-main">
+    <img src="{$imgDir}smile/{$ssk}.png" />&nbsp;
+    {if $ssi.cnt==1}<span id="text_hide_{$ssk}_{$i.com_parent}"><a href="javascript:void(0);" onclick="$('#popup_user_{$ssk}_{$i.com_parent}').show();$('#text_hide_{$ssk}_{$i.com_parent}').hide();">{$ssi.cnt} person</a> {$status.$ssk.1}</span>
+                        {else}<span><a href="javascript:void(0)" onclick="if ($('#popup_users_{$ssk}_{$i.com_parent}').css('display')=='none') $('#popup_users_{$ssk}_{$i.com_parent}').show(); else $('#popup_users_{$ssk}_{$i.com_parent}').hide();">{$ssi.cnt} persons</a> {$status.$ssk.2}</span>
+    {/if}
+    </div>
+
+    <div id="popup_user_{$ssk}_{$i.com_parent}" class="popup_person" onmouseover="$('#popup_user_{$ssk}_{$i.com_parent}').show();$('#text_hide_{$ssk}_{$i.com_parent}').hide();" onmouseout="$('#popup_user_{$ssk}_{$i.com_parent}').hide();$('#text_hide_{$ssk}_{$i.com_parent}').show();" style="display:none;">
+        <img src="{if $ssi.0.image}{$fImgDir}users/{$ssi.0.fpath}/s/s_{$ssi.0.image}{else}{$imgDir}no_photo_m56.jpg{/if}" style="padding: 0 0 5px 2px;"/>&nbsp;
+        <span><a href="{$siteAdr}id{$ssi.0.suid}">{$ssi.0.first_name}{$ssi.0.last_name}</a> {$status.$ssk.1}</span>
+    </div>
+
+    <div id="popup_users_{$ssk}_{$i.com_parent}" class="popup_persons" onmouseover="$('#popup_users_{$ssk}_{$i.com_parent}').show();" onmouseout="$('#popup_users_{$ssk}_{$i.com_parent}').hide();" style="display:none;">
+    <div class="popup_persns_header">People who {$status.$ssk.2}</div>
+    <ul class="popup_persns_content">
+        {foreach key=ssname item=ssindex from=$ssi}
+        {if is_array($ssindex)}
+        <li>
+            <img src="{if $ssindex.image}{$fImgDir}users/{$ssindex.fpath}/s/s_{$ssindex.image}{else}{$imgDir}no_photo_m56.jpg{/if}" style="padding: 0 0 5px 2px;"/>&nbsp;
+            <span><a href="{$siteAdr}id{$ssindex.suid}">{$ssindex.first_name}{$ssindex.last_name}</a></span>
+        </li>
+        {/if}
+        {/foreach}
+    </ul>
+    </div>
+
+ </li>
+ {/foreach}

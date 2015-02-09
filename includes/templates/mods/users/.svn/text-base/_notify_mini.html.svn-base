@@ -1,0 +1,23 @@
+{config_load file="notify.conf"}
+{foreach key=k item=i from=$ar_notify_mini}
+    {assign var=ntype value="nf_"|cat:$i.wtype|cat:"_"|cat:$i.type}
+    {assign var=fname value=$i.first_name|cat:" "|cat:$i.last_name}
+    {if !$i.to_uid}
+    <p class="cl_top_mini_notify" {if 50 == $i.type} n_frid="{$i.uid}" id="i_frid{$i.uid}"{/if} style="min-height: 30px;"> {if 50 == $i.type} <span><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 1 );', 'Please confirm you would like to add {html_str_format str=$fname} into your friends list?', 'Accept' );"><img src="{$imgDir}ok_b.gif" alt="" /></a> <a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 2 );', 'Please confirm you want to reject invitation from {html_str_format str=$fname}?' );"><img src="{$imgDir}del_b.gif" alt="" /></a></span> {/if}
+        <a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}" style="width: 30px; height: 30px;" alt="" /></a> <a href="{$siteAdr}id{$i.uid}">{$fname|truncate:25:"..."}</a> {$smarty.config.$ntype} {if $i.link && $i.link_txt} <a href="{$i.link}"> {$i.link_txt|truncate:10:"...":true}</a> {/if} {if $i.info && !$i.link && !$i.link_txt && ( 50 != $i.type )} "{$i.info|truncate:10:"...":true}" {/if}
+    </p>
+    {else}
+    {assign var=ntype_ext value="enf_1"|cat:"_"|cat:$i.type}
+    <p class="cl_top_mini_notify" {if 50 == $i.type} n_frid="{$i.uid}" id="i_frid{$i.uid}" {/if} style="min-height: 30px;"> {if 50 == $i.type} <span><a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 1 );', 'Please confirm you would like to add {html_str_format str=$fname} into your friends list?', 'Accept' );"><img src="{$imgDir}ok_b.gif" alt="" /></a> <a href="javascript: void(0);" onclick="oSystem.SConfPopup( 'oFriends.InviteActAjax( {$i.uid}, 2 );', 'Please confirm you want to reject invitation from {html_str_format str=$fname}?' );"><img src="{$imgDir}del_b.gif" alt="" /></a></span> {/if}
+    <a href="{$siteAdr}id{$i.uid}"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m42.jpg{/if}" style="width: 30px; height: 30px;" alt="" /></a> <a href="{$siteAdr}id{$i.uid}">{$fname|truncate:25:"..."}</a> {$smarty.config.$ntype_ext} <a href="{$siteAdr}id{$i.to_uid}{if $i.notify_pos==2}/journal/{/if}">{$i.to_first_name|truncate:25:"..."} {$i.to_last_name|truncate:25:"..."}</a> {if $i.notify_pos==2}journal{else}wall{/if} {if $i.link && $i.link_txt} <a href="{$i.link}"> {$i.link_txt|truncate:10:"...":true}</a> {/if} {if $i.info && !$i.link && !$i.link_txt && ( 50 != $i.type )} "{$i.info|truncate:10:"...":true}"
+    {/if}
+    </p>
+    {/if}
+{/foreach}
+
+{assign var=ncnt value=$ar_notify_mini|@count}
+{if 3 > $ncnt*1.0}
+    {section name=i loop=3 start=$ncnt}
+    <p style="{if 1 == $ncnt} margin-top:5px; {/if} width: 30px; height: 30px;"> <a href="javascript: void(0);"> &nbsp </a> </p>
+    {/section}
+{/if}

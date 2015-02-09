@@ -1,0 +1,159 @@
+<h2>Mission entries</h2>
+<input id="mission_id" name="mission_id" type="hidden" value="{$mission_id}" />
+<div id="id_mes_list" style="word-wrap: break-word; overflow: hidden; max-width:  500px; width: 500px; display: block;">
+{if $mai}
+{foreach key=k item=i from=$mai}
+		<div id="id_wall_mes_{$i.id}" mid="{$i.id}" class="box001 cl_wall_mes" onmouseover="$('#tl_{$i.id}').show();" onmouseout="$('#tl_{$i.id}').hide();">
+			<div class="post-box">
+				<div class="post-box-bg00" style="min-height: 68px">
+				
+				<div class="b-awatar"><a href="javascript: void(0);" onclick="$('#id_dropbox_{$i.id}').slideToggle('slow');"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" {if $i.uid == $UserInfo.uid}class="small_avatar"{/if}  /></a>
+				<!-- Drop00 -->
+				{if $i.uid != $UserInfo.uid}
+				<div id="id_dropbox_{$i.id}" class="dropbox00">
+					<div class="dropbox00-left">
+					<div class="dropbox00-right">
+						<ul><li><a href="{$siteAdr}id{$i.uid}">Send a message</a></li></ul>
+						<p>{if !$i.relations.im_friend}<a href="javascript: void(0);" onclick="oFriends.GetFrAjax('{$i.uid}', 0)">Add as Friend</a>{else}<a href="javascript: void(0);" onclick="oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$i.uid}')">Unfriend</a>{/if}</p>
+						{*<p><a href="#">Hide member’s entries</a></p>*}
+						<p><a href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$i.uid}');" class="user_report">Report this user</a></p>
+					</div>
+					</div>
+				</div>
+				{/if}
+			<!-- Drop00 -->
+		        </div>
+					{if 2 == $i.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a> is going to {if $i.ev_title}{$i.ev_title}{/if}</div>
+						<div class="event-txt">
+							<img src="{$imgDir}event_ico.gif"  />{$i.ev_where}, {$i.ev_dt|date_format:"%B %d, %I:%M %p"}
+						</div>
+						<br />
+						{include file="mods/mission/_wall_actions.html"}
+						<p>{html_tmpl_time val=$i.pdate type=1} </p>
+					
+					{elseif 3 == $i.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                            {if $i.story}<p>{$i.story|nl2br}</p>{/if}</div>
+						<p>&nbsp;<a href="{$i.l_url}" target="_blank">{if $i.l_url_label}{$i.l_url_label}{else}{$i.l_url}{/if}</a></p>
+						
+						<br />
+						{include file="mods/mission/_wall_actions.html"}
+						<p>{html_tmpl_time val=$i.pdate type=1}</p>
+                    {elseif 4 == $i.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                            {if $i.story}<p>{$i.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{if $i.p_url}<em><a href="{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}"><img src="{$i.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+							{if $i.p_path}
+								{if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}" {if !$i.p_img_1_id} style="cursor: default;" {/if}><img src="{$fImgDir}mission/wall/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+								{if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}" {if !$i.p_img_2_id} style="cursor: default;" {/if}><img src="{$fImgDir}mission/wall/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+								{if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}" {if !$i.p_img_3_id} style="cursor: default;" {/if}><img src="{$fImgDir}mission/wall/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+							{/if}
+						</p>
+						<br />
+						{include file="mods/mission/_wall_actions.html"}
+						<p>{html_tmpl_time val=$i.pdate type=1} </p>
+
+
+                    {elseif 5 == $i.mtype}
+						<div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                            {if $i.story}<p>{$i.story|nl2br}</p>{/if}</div>
+						<p style="float: left; margin: none; padding: none;" align="left">
+							{if $i.v_code}<object width="200" height="150">{$i.v_code}</object>{/if}
+						</p>
+						<br />
+                        {include file="mods/mission/_wall_actions.html"}
+						<p>{html_tmpl_time val=$i.pdate type=1} </p>
+                    {elseif $i.sub_mtype == 1}
+
+                <div class="post-title-badge">
+                    <a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                    {if $i.uid != $i.uid3 && $i.ptype == 4 && ($i.first_name3 || $i.last_name3)} to <a href="{$siteAdr}id{$i.uid3}"><b>{$i.first_name3} {$i.last_name3}</b></a>{/if}
+                    {if $i.uid != $i.uid4 && ($i.first_name4 || $i.last_name4)} to <a href="{$siteAdr}id{$i.uid4}"><b>{$i.first_name4} {$i.last_name4}</b></a>{/if}
+                    <p>{html_tmpl_time val=$i.pdate type=1}</p>
+                            <table class="post-badge">
+                                <td>
+                                    <img class="badge_img" src="{$imgDir}/badges/{$i.b_img_name}.png" alt="{$i.b_img_name}"/>
+                                </td>
+                                <td>
+                                    <span class="story_badge" >{if $i.story}{$i.story|nl2br|dlong:39}{/if}</span>
+                                </td>
+                            </table>
+                    <br/>
+                {include file="mods/mission/_wall_actions.html"}
+                <br/>
+                </div>
+
+                    {else}
+						<div class="post-title"><a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                            {if $i.story}<p>{$i.story|nl2br}</p>{/if}</div>
+						
+						<br />
+						{include file="mods/mission/_wall_actions.html"}
+	
+						{if $i.ltype}<p style="color: #5fb0fc">[{$ar_nloc_places[$i.ltype]}]</p>{/if}
+						<p>{html_tmpl_time val=$i.pdate type=1} </p>
+                    {/if}
+				</div>
+				
+				<ul id="id_mes_answ_list_{$i.id}" class="recomment">
+				{if $i.answers}
+					{assign var=answ value=$i.answers}
+					{section name=si loop=$answ}
+					<li><a href="{$siteAdr}id{$answ[si].uid}"><img src="{if $answ[si].image}{$fImgDir}users/{$answ[si].fpath}/s/s_{$answ[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}" {if $i.uid == $UserInfo.uid}class="small_avatar"{/if}  style="width: 56px; height: 56px;" /></a>
+						<div>
+						<p><a href="{$siteAdr}id{$answ[si].uid}">{if $answ[si].first_name || $answ[si].last_name}{$answ[si].first_name} {$answ[si].last_name}{else}{$answ[si].public_name}{/if}</a> {if $answ[si].story}{$answ[si].story|nl2br}{/if}</p>
+						<p><span>{html_tmpl_time val=$answ[si].pdate type=1}</span></p>
+						</div>
+					</li>
+					{/section}
+				{/if}
+				</ul>
+				
+				{if 2 < $i.cnt_answ}<div id="id_div_show_more_answ_{$i.id}" class="tools-link"><a href="javascript: void(0);" onclick="oMWall.GetAnswList( '{$mission_id}', '{$i.id}', 2, '' );">View all comments</a></div>{/if}
+				
+				{if $CAN_EDIT}
+				<div id="id_add_new_answ_inp_{$i.id}" class="add-comment-in"><input class="cl_add_answ_inp" mid="{$i.id}" type="text" value="Add comment" /></div>
+				<form id="id_frm_add_mes_answ_{$i.id}" action="{$siteAdr}mission/id{$mission_id}/wall/geteditansw" method="post">
+				<input type="hidden" name="SI[mes_id]" value="{$i.id}" /><br />
+					<div id="id_add_new_answ_txtar_{$i.id}" class="add-comment-in2" style="display: none;">
+						<img src="{if $UserInfo.image}{$fImgDir}users/{$UserInfo.fpath}/a/a_{$UserInfo.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" />
+						<textarea id="id_add_new_answ_txtar_b{$i.id}" name="WI[story]" class="expand40-500 cl_answ_story" maxlength="480"></textarea>
+
+                                                <div class="add_smile_tab"><a class="nav_attach_smile" onclick="oMWall.AddSmileTab('{$i.id}');" mtype="smile" style="cursor: pointer;"><img src="{$imgDir}smile_main.gif" alt="" /></a></div>
+                                                <div class="share-white-b" style="margin-bottom: 3px; margin-top: 2px;"><a href="javascript: void(0);" onclick="oMWall.AddMesAnsw( '{$i.id}' );"><img src="{$imgDir}add_b3_act.gif"  /></a></div>
+					</div>
+
+                                        {assign var="type_smile" value="comment"}
+                                        <div id="show_smile_tab_comment_{$i.id}" class="smiley_comment" style="display: none;">
+                                        {include file="top_blocks/_smile.html"}
+                                        </div>
+
+				</form>
+				{/if}
+			</div>
+		</div>
+{/foreach}
+{else}
+<div class="box001" id="id_div_empty_mes">
+	<div class="post-box">
+		There aren't any entries
+	</div>
+</div>
+{/if}
+
+
+{if !$show_item}
+    {if ($pcnt+$rcnt) < $cnt_mes}
+    <div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+	    <a href="javascript: void(0);" onclick="oMWall.GetList( '{$mission_id}', $('.box001:last').attr('mid'), '{$sf_type}', '{$sf}', 1 );">More <img src="/i/arr01.gif"  /></a>
+    </div>
+    {/if}
+{else}
+    <div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+	    <a href="javascript: void(0);" onclick="$('#id_mes_list').html(''); oMWall.GetList( '{$mission_id}', '0', '{$sf_type}', '{$sf}', 1 );">Show all <img src="/i/arr01.gif"  /></a>
+    </div>
+{/if}
+
+</div>

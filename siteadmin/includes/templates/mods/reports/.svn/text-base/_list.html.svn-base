@@ -1,0 +1,48 @@
+{*<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />*}
+
+<div class="content">
+	<div id="leftbar">
+	  <h1 style="font-size: 14px;">&nbsp;Reports</h1>
+	{*	<div class="menu">
+		    <ul>
+				<li><a href="{$siteAdr}base/reports/">1</a></li>
+				<li><a href="{$siteAdr}base/reports/">2</a></li>
+			</ul>
+		</div> *}  
+	</div>
+	<div id="rightbar">
+	    <form method="post" action="{$siteAdr}base/reports/">
+				
+		<h1 style="font-size: 14px;">List</h1><br />
+		{if $pl}
+		<table class="table01">
+			<tr>
+				<th width="1%" align="center">#</th>
+				<th ></th>
+				<th width="1%">Where</th>
+{*				<th width="1%">How many</th> *}
+				<th width="1%">When</th>
+				<th width="5%" colspan="3">Actions</th>
+			</tr>
+
+			{foreach key=k item=i from=$pl name="frch1"}
+			{assign var="pli" value=$smarty.foreach.frch1.index}
+			<tr class="td01">
+				<td class="green-txt" align="center"><b>{math equation="1 + x*(y-1) + z" x=$pcnt y=$page z=$pli}</b></td>
+				<td class="green-txt">
+					<b><a href="/id{$i.uid}">{$i.who}</a></b> on <b><a href="/id{$i.uid_to}">{$i.who2}</a></b></td>
+				<td class="green-txt"><a href="{$i.url}">{$i.url}</a></td>
+			{*	<td class="green-txt">{$i.cnt}</td> *}
+				<td class="green-txt">{$i.pdate}</td>
+				<td class="green-txt"><a onclick="javascript: CGo('{$siteAdr}base/reports/del/?id={$i.id}', 'Sure?');" style="cursor:pointer;"><img src="{$imgDir}ico/icon_del.gif" alt="Delete" /></a></td>
+			</tr>
+            {/foreach}
+		</table>
+                <div style="margin-left:150px;">{$pagging}</div>
+                {else}
+		    No data
+		{/if}
+
+		</form>
+	</div>
+</div>

@@ -1,0 +1,42 @@
+<div id="id_div_search_people">
+				{if $srch_res.people}
+					{assign var=people value=$srch_res.people}
+					{assign var=cnt_people value=$cnt_all.people}
+					<div btype="People" class="cl_srch_list">
+					<h2><span>{if 3000 < $cnt_people}>3000{elseif 1000 < $cnt_people && 3000 > $cnt_people}>1000{else}{$cnt_people}{/if}</span>People</h2>
+					{if 1000 < $cnt_people}
+						<div class="attention-box">More than {if 3000 < $cnt_people}3000{elseif 1000 < $cnt_people && 3000 > $cnt_people}1000{/if} people found, you can use filters to refine your search</div>
+					{/if}
+					{foreach item=p from=$people key=pk}
+					<div class="box002">
+						<div class="post-box">
+							<div class="post-box-bg00" style="min-height: 40px">
+								<div class="b-awatar"><a href="{$siteAdr}id{$p.uid}"><img src="{if $p.image}{$fImgDir}users/{$p.fpath}/s/s_{$p.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>
+
+								<div class="post-title2">{if $p.mutual > 0}<span><a href="{$siteAdr}id{$p.uid}/friends?mutual=1">{$p.mutual} mutual friend(s)</a></span>{/if}<a href="{$siteAdr}id{$p.uid}"><b>{$p.first_name} {$p.last_name}</b></a></div>
+								<p>{if $p.city}{$p.city}{if $p.country}, {/if}{/if}{if $p.country}{$countries[$p.country]}{/if}</p>
+							</div>
+						</div>
+					</div>
+					{/foreach}
+                                        
+                                        {if !isset($all_res)}
+                                        <span id="pagging">
+                                            <div id="id_div_show_more_mes_people" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;" >
+						<a href="javascript: void(0);" class="cl_search_pagging" pname="people" pcnt=" {$pcnt.people+$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+                                            </div>
+                                        {$pagging_people}
+                                        </span>
+                                        {/if}
+
+					</div>
+                                       
+                                        {if isset($all_res)}
+					{if ($pcnt.people+$data_rcnt) < $cnt_people}
+					<div id="id_div_show_more_mes_people" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+						<a href="javascript: void(0);" class="cl_search_pagging_more" pname="people" pcnt=" {$pcnt.people+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+					</div>
+					{/if}
+                                        {/if}
+				{/if}
+				</div>

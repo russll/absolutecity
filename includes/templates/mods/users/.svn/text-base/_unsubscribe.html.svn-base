@@ -1,0 +1,33 @@
+<h2>Unsubscribe from inZion</h2>
+    {if !$send}
+        <div style="margin: 10px 0 0 10px;">
+            Enter your email address below.
+
+            {if $errs}
+            <div style="color:red;">
+                {foreach key=k item=i from=$errs}
+                    <br />-{$i}
+                {/foreach}
+            </div>
+            {/if}
+        </div>
+
+
+    <form id="ForgotForm" action="/security/users/unsubscribe" method="post">
+    <div class="reg-form">
+        <table style="margin: 0px; padding: 0px;">
+            <tr>
+                <td><label>Your email address:</label></td>
+                <td><p><input id="email" type="text" name="fm[email]" value="{$fm.email}" class="txt" /></p>
+
+                </td>
+                <td><input type="submit" id="p_save" value="Unsubscribe" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+    {else}
+        <div style="margin: 10px 0 0 10px;font-size:13px;">
+        Thank you your email was successfully submitted!<br />
+        </div>
+    {/if}

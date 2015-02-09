@@ -1,0 +1,38 @@
+<div id="id_div_search_wards">
+    {assign var=wards value=$srch_res.wards}
+    {assign var=cnt_wards value=$cnt_all.wards}
+
+    {if !$nwall}
+        <h2><span>{if 3000 < $cnt_messages}>3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}>1000{else}{$cnt_messages}{/if}</span>Wards/branches</h2>
+
+        {if 1000 < $cnt_messages}
+        <div class="attention-box">More than {if 3000 < $cnt_messages}3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}1000{/if} wards found, you can use filters to refine your searchå</div>
+        {/if}
+    {/if}
+    <div btype="Wards" class="cl_srch_list">
+        {foreach item=wa from=$wards key=mk}
+        <div class="box002">
+            <div class="post-box">
+                <div class="post-box-bg00" style="min-height: 40px">
+                    <div class="b-awatar"><a href="#"><img
+                                src="{if $wa.img}{$fImgDir}wards/{$wa.img}{else}{$imgDir}no_photo_ward_m66.png{/if}"/></a></div>
+                    <div class="post-title2">
+                        <b>
+                            <a href="{$siteAdr}wards/id{$wa.id}">{if !empty($wa.title)}{$wa.title} {else}{$wa.ward_title} {/if}</a>
+                            {if $wa.id != $UserInfo.stake_id && $wa.id != $UserInfo.ward_id}</a>
+                            (<a href="javascript: oWWall.SHConfirmPopup( 1, 'id_confirm_wards_popup', {$wa.id} );">Set as my ward</a>)
+                            {/if}
+                        </b>
+                    </div>
+                    <p>{if !empty($wa.id_parent)} {$wa.ward_title} {else} &nbsp {/if}</p></div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+
+    {if ($pcnt+$data_rcnt) < $cnt_wards}
+    <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+        <a href="javascript: void(0);" class="cl_search_pagging" pname="wards" pcnt=" {$pcnt+$data_rcnt}" rcnt="{$data_rcnt}">More <img src="/i/arr01.gif"/></a>
+    </div>
+    {/if}
+</div>

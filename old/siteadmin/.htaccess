@@ -1,0 +1,21 @@
+AddType application/zip .sql .txt 
+
+php_flag magic_quotes_gpc off
+php_flag magic_quotes_runtime off
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteBase /
+RewriteCond %{REQUEST_URI} !(includes|files|templates|\.php|\.js|\.swf|\.html|fck)/?
+
+RewriteRule ^i/(.+\.(gif|png|jpg))$ siteadmin/includes/templates/images/$1 [L]
+RewriteRule ^j/(.+\.js)$            siteadmin/includes/templates/js/$1     [L]
+RewriteRule ^s/(.+\.(css|stl))$     siteadmin/includes/templates/styles/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* siteadmin/index.php
+
+
+
+php_value upload_max_filesize    48M
+php_value memory_limit           48M

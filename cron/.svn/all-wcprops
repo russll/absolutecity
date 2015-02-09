@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/ssergy/InZion/!svn/ver/35/cron
+END
+enotify_send_all.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/ssergy/InZion/!svn/ver/32/cron/enotify_send_all.php
+END
+enotify_birthday.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/ssergy/InZion/!svn/ver/32/cron/enotify_birthday.php
+END

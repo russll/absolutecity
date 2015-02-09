@@ -1,0 +1,20 @@
+div.jHtmlArea .ToolBar ul li a.btn_save {
+    background: url(/i/adLibs/HtmlEditor/disk.png) no-repeat;
+    background-position: 0 0;
+}
+
+div.jHtmlArea .ToolBar ul li a.btn_smile {
+    background: url(/i/adLibs/HtmlEditor/smile.png) no-repeat;
+    background-position: 0 0;
+}
+
+div.jHtmlArea .ToolBar ul li a.forecolor {
+	#background: url(/i/adLibs/HtmlEditor/btn_color.png) no-repeat;
+	background-image: none;
+	background-color: #000;
+	border: 1px solid gray;
+	width: 25px;
+	height: 13px;
+}
+
+div.jHtmlArea { background: url(/i/adLibs/HtmlEditor/bcg_header.jpg) repeat-x; width: 100%; min-height: 20px;}

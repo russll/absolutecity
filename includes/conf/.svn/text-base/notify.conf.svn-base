@@ -1,0 +1,75 @@
+/**
+ * Notifications Configuration File
+ *
+ * @package    5dev Notify
+ * @version    1.0
+ * @since      12.05.2010
+ * @copyright  2010 5dev Team
+ * @link       http://5dev.com
+ */
+
+#Notify.conf
+	
+# (1) => News Feed activity
+	#-- profile wall
+
+		/* messages */
+		nf_1_1 = left a message on your wall 
+		nf_1_2 = left a message with photo on your wall 
+		nf_1_3 = left a message with video on your wall 
+		nf_1_4 = left a message with event on your wall 
+		nf_1_5 = left a message with link on your wall 
+		
+		/* comments */
+		nf_1_10 = commented on the post 
+
+		/* extern messages */
+		enf_1_1 = left a message on the
+		enf_1_2 = left a message with photo on the 
+		enf_1_3 = left a message with video on the 
+		enf_1_4 = left a message with event on the 
+		enf_1_5 = left a message with link on the
+
+		enf_1_10 = commented post on the 
+		
+	#-- friends
+		
+		/* frindship */
+		nf_1_50 = wants to be your friend 
+		nf_1_51 = is not your friend anymore 
+		nf_1_52 = ignore your friendship invitation 
+		nf_1_60 = confirmed your invitation to friends
+		nf_1_61 = declined your invitation to friends
+		nf_1_62 = ignored your invitation to friends
+
+# (2) => Ward activity
+	#-- wards wall
+	
+		/* messages */
+		nf_2_1 = left a message on the ward 
+		nf_2_2 = left a message with photo on the ward 
+		nf_2_3 = left a message with video on the ward 
+		nf_2_4 = left a message with event on the ward 
+		nf_2_5 = left a message with link on the ward 
+		
+		/* comments */
+		nf_2_10 = commented on the post of ward 
+		
+# (3) => Photo album activity
+	#-- album
+	
+		/* photo */
+		nf_3_1 = commented on that photo by 
+	
+
+# (4) => Videos activity
+	#-- album
+	
+		/* video */
+		nf_4_1 = commented on that video by 
+	
+
+# (5) => Events actvity  
+	#--
+	
+

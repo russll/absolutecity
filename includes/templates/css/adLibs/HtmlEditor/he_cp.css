@@ -1,0 +1,31 @@
+div.jHtmlAreaColorPickerMenu {border: solid 1px #bbb; background-color: #efefef; width: 114px; margin:3px; min-height:162px;}
+div.jHtmlAreaColorPickerMenu div {float: left; margin: 2px; width: 12px; height: 12px;margin-top: 2px;}
+div.jHtmlAreaColorPickerMenu div:hover {margin: 0px; border: dotted 2px gray;}
+
+div.jHtmlAreaColorPickerMenu div.automatic { width: 106px; height: 0px;}
+div.jHtmlAreaColorPickerMenu div.automatic div { width: 12px; height: 0px;}
+
+div.jHtmlArea .ToolBar ul li a.photo_button {
+    background: url(/i/photo_ico.gif) no-repeat; background-position: 0 0; width: 21px; height: 18px; margin-top: -1px; margin-left: -2px; border: 0px;
+}
+div.jHtmlArea .ToolBar ul li a.video_button {
+    background: url(/i/video_ico.gif) no-repeat; background-position: 0 0; width: 21px; height: 18px; margin-top: -1px; margin-left: -2px; border: 0px;
+}
+div.jHtmlArea .ToolBar ul li a.event_button {
+    background: url(/i/event_ico.gif) no-repeat; background-position: 0 0; width: 21px; height: 18px; margin-top: -1px; margin-left: -2px; border: 0px;
+}
+div.jHtmlArea .ToolBar ul li a.link_button {
+    background: url(/i/link_ico.gif) no-repeat; background-position: 0 0; width: 21px; height: 18px; margin-top: -1px; margin-left: -2px; border: 0px;
+}
+div.jHtmlArea .ToolBar ul li a.tag_button {
+    background: url(/i/stick_ico03.png) no-repeat; background-position: 0 0; width: 21px; height: 20px; margin-top: -1px; margin-left: 0px; border: 0px;
+}
+div.jHtmlArea .ToolBar ul li a.smile_button {
+    background: url(/i/smile_main.gif) no-repeat; background-position: 0 0; width: 30px; height: 20px; margin-top: -1px; margin-left: 0px; border: 0px;
+}
+
+div.jHtmlArea .ToolBar input {
+    border:1px solid #DEDCC7; color:#808080; font-family:Arial,Helvetica,sans-serif; font-size:12px; padding:2px; width:709px; margin-left:5px;
+    zoom:1 !important;
+}
+

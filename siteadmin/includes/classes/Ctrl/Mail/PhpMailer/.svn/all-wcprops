@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/PhpMailer
+END
+class.phpmailer.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/PhpMailer/class.phpmailer.php
+END
+class.smtp.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Ctrl/Mail/PhpMailer/class.smtp.php
+END

@@ -1,0 +1,49 @@
+{*<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />*}
+
+<div class="content">
+	<div id="leftbar">
+	  <h1 style="font-size: 14px;">&nbsp;Wards</h1>
+		<div class="menu">
+		    <ul>
+				<li><a href="{$siteAdr}base/ward/edit/">Add Stake/Ward</a></li>
+				<li><a href="{$siteAdr}base/ward/search/">Find Stake/Ward</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="rightbar">
+	    <form method="post" action="{$siteAdr}base/ward/">
+				
+		<h1 style="font-size: 14px;">Stakes</h1><br />
+		{if $pl}
+		<table class="table01">
+			<tr>
+				<th width="10%" align="center">Type</th>
+				<th width="30%">Title</th>
+				<th width="14%">Location</th>
+				<th width="10%">Information</th>
+				<th width="15%" colspan="3">Actions</th>
+			</tr>
+			{foreach key=k item=i from=$pl}
+			<tr class="td01">
+				<td class="green-txt" align="center"><b>{if $i.ward_type==1}S{else}W{/if}</b></td>
+				<td class="green-txt"><a href="{$siteAdr}base/ward/edit/?id={$i.id}">{$i.title}</a></td>
+				<td class="green-txt">({$i.city}{if $i.region}, {$i.region}{/if}, {$i.country})</td>
+				<td class="green-txt">{$i.more}</td>
+				
+				<td class="green-txt"><a href="{$siteAdr}base/ward/edit/?id={$i.id}"><img src="{$imgDir}ico/icon_edit.gif" alt="Change" /></a></td>
+				<td class="green-txt">
+					<a title="Moderate" style="cursor:pointer" onclick="$.ajax({ldelim}url: '{$siteAdr}base/ward/mod/?id={$i.id}', success: function(data){ldelim} $('#imstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '1' ? 'green' : 'green_l') +'.gif'); $('#rimstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '0' ? 'red' : 'red_l') +'.gif');{rdelim}{rdelim})"><img id="imstat{$i.id}" src="{$imgDir}ico/status_{if $i.moderated == 1}green{else}green_l{/if}.gif" alt="Change Moder" /></a>
+					<a title="Moderate" style="cursor:pointer" onclick="$.ajax({ldelim}url: '{$siteAdr}base/ward/mod/?id={$i.id}', success: function(data){ldelim} $('#imstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '1' ? 'green' : 'green_l') +'.gif'); $('#rimstat{$i.id}').attr('src', '{$imgDir}ico/status_'+(data == '0' ? 'red' : 'red_l') +'.gif'); {rdelim}{rdelim})"><img id="rimstat{$i.id}" src="{$imgDir}ico/status_{if $i.moderated == 0}red{else}red_l{/if}.gif"	alt="Change Moder" /></a>
+				</td>
+				<td class="green-txt"><a href="javascript: CGo('{$siteAdr}base/ward/del/?id={$i.id}', 'Do you want to delete page?');"><img src="{$imgDir}ico/icon_del.gif" alt="Delete" /></a></td>
+			</tr>
+            {/foreach}
+		</table>
+                <div style="margin-left:150px;">{$pagging}</div>
+                {else}
+		    No pages
+		{/if}
+
+		</form>
+	</div>
+</div>

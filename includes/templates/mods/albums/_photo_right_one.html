@@ -1,0 +1,32 @@
+		<li>
+			<p><b>Share</b></p>
+			<p><a href="javascript: void(0);" onclick="javascript: oAlbums.SHChngPopup( 1, 'id_album_photo_new_message' );">as a message</a></p>
+			<p><a href="mailto:?subject=Check out this photo&body=Hi! Check out this photo: {$siteUrl}id{$ui.uid}/albums/id{$ai.aid}/id{$pi.id}">via email</a></p>
+			<p><a href="javascript: void(0);" onclick="javascript: oAlbums.SHChngPopup( 1, 'id_album_photo_share' );">as a public link</a></p>
+		</li>
+		{*
+		<li>
+			<p><b>People in this photo</b></p>
+			<p><a href="javascript: void(0);">Add a person</a></p>
+		</li>
+		*}   
+		<li>
+
+			<p><b>Tags</b></p>
+			{if $IS_USER}<div><a href="javascript: void(0);"><img src="{$imgDir}add_b3.gif"  onClick="oAlbums.AddTagToPhoto( $('#albums_tag_input').val(), {$pi.id} );"/></a><input id="albums_tag_input" type="text" value="" /></div>{/if}
+                        <ul class="list02" id="rm_tag_list">
+                            {include file="mods/_ajax/tag_list.html"}
+                        </ul>
+
+			<p><b>Info</b></p>
+			<ul>
+				{if $pi.shot != '0000-00-00 00:00:00'}<li>Photo taken on {$pi.shot|date_format:"%b %d, %Y"}</li>{/if}
+				<li>Uploaded on {$pi.dt|date_format:"%b %d, %Y"}</li>
+				{if $pi.viewed}<li>Viewed {$pi.viewed} times</li>{/if}
+			</ul>
+
+			{if $IS_USER}
+				<p><b><a href="javascript: void(0);" onclick="javascript: oAlbums.SHChngPopup( 1, 'id_chng_album_popup');">{if $ai.type == 1}Move{elseif $ai.type == 2}Copy{/if} to another album</a></b></p>
+				<p><b><a href="javascript: void(0);" onclick="javascript: oAlbums.SHConfirmPopup( 1, 'id_confirm_albums_popup' );">Delete</a></b></p>
+			{/if}
+		</li>

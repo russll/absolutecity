@@ -1,0 +1,24 @@
+<div class="post-box" id="id_albums_el_1_{$alb_i.aid}" style="min-height: 45px">
+    <div class="b-awatar">
+		<a href="{$siteAdr}id{$alb_i.uid}/albums/id{$alb_i.aid}"><img src="{$imgDir}no_photo_m66.jpg" alt="{$alb_i.name}" /></a>
+	</div>
+
+	<div class="post-title2">
+		<b><a href="{$siteAdr}id{$alb_i.uid}/albums/id{$alb_i.aid}">{$alb_i.name}</a></b>
+	</div>
+
+	<p><b>Created:</b> {if $alb_i.created} {$alb_i.created} {else} &nbsp; {/if}</p>
+    {if $alb_i.descr|trim}<p><b>Description:</b> {$alb_i.descr}</p>{/if}
+    {if $alb_i.location}<p><b>Location:</b> {$alb_i.location}</p>{/if}
+    
+	{assign var=asname value=$i.name}
+
+    {if $IS_USER}
+		<span class="cl_del_link" style="margin-right: 5px;">
+			<a href="javascript: void(0);"
+			   onclick="javascript: oSystem.SConfPopup( 'oAlbums.DelAlbum( {$alb_i.aid}, {$alb_i.type} );', 'Please confirm you want to delete this album \'{html_str_format str=$alb_i.name|truncate:30}\'?' );">
+				&nbsp&nbsp&nbsp&nbsp
+			</a>
+		</span>
+	{/if}
+</div>

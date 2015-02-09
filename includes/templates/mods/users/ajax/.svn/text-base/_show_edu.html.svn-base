@@ -1,0 +1,38 @@
+<span class="edit-info" id="edu_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsEdu();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+    {if $ui.university || $ui.hschool || $ui.job}
+        {if $ui.university}
+            {foreach key=k item=i name=n from=$ui.university}
+            <tr>
+				<td width="150">
+					{if $smarty.foreach.n.first}<label>College/University</label>{/if}
+				</td>
+				<td>
+					{$i.university}{if $i.cyear}, {$i.cyear}{if $i.cyear2} - {$i.cyear2}{/if}{/if}{if $i.major}, {$i.major}{/if}{if $i.minor}, {$i.minor}{/if}
+				</td>
+			</tr>
+            {/foreach}
+        {/if}
+
+        {if $ui.hschool}
+            {foreach key=k item=i name=n from=$ui.hschool}
+            <tr>
+				<td width="150">
+					{if $smarty.foreach.n.first}<label>High school</label>{/if}
+				</td>
+				<td>
+					{$i.hschool}{if $i.hyear}, {$i.hyear}{if $i.hyear2} - {$i.hyear2}{/if}{/if}
+				</td>
+			</tr>
+            {/foreach}
+        {/if}
+
+        {if $ui.job}
+            {foreach key=k item=i name=n from=$ui.job}
+            <tr><td width="150">{if $smarty.foreach.n.first}<label>Job</label>{/if}</td><td>{assign var="ov" value=$i.estatus}{$estatuses.$ov} - {$i.employer}{if $i.pos}, {$i.pos}{/if}{if $i.descr}, {$i.descr}{/if}{if $i.fyear && $i.fmonth}, {$i.fmonth}/{$i.fyear}{elseif $i.fyear}, {$i.fyear}{/if}{if $i.present} - present{else}{if $i.tyear && $i.tmonth} - {$i.tmonth}/{$i.tyear}{elseif $i.tyear} - {$i.tyear}{/if}{/if}</td></tr>
+            {/foreach}
+        {/if}
+    {else}
+    <tr><td width="150"><label>None</label></td><td>&nbsp;</td></tr>
+    {/if}
+</table>

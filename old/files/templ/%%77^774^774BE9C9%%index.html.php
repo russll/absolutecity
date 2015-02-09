@@ -1,0 +1,102 @@
+<?php /* Smarty version 2.6.11, created on 2010-08-14 05:20:33
+         compiled from index.html */ ?>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>InZion.com</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/s/styles.css" rel="stylesheet" type="text/css" />
+<?php echo '
+<!--[if IE 6]>
+<script src="/j/png.js"></script>
+<script>
+	DD_belatedPNG.fix(\'div, a, img, *\');
+</script>
+<style type="text/css">
+BODY { behavior:url("/j/csshover.htc");}
+</style>
+<![endif]-->
+
+<script language="javascript">
+
+    function checkEmail(email) {
+        if (/^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$/.test(email)) {
+            return (true);
+        }
+        return (false);
+    }
+
+    function Send( email) {
+        if (email == "" || email.indexOf(\'@\', 0) == -1 || !checkEmail(email))
+        {
+            alert("An incorrect e-mail address!");
+        }
+        else
+        {
+            alert("Thank you for your interest!");
+            document.getElementById(\'seml\').submit();
+        }
+    }
+</script>
+'; ?>
+
+</head>
+<body class="bg001">
+<div class="main-container">
+<div class="main-box">
+
+<!-- Header -->
+<div class="header3">
+	<div class="logo"><a href="/"><img src="/i/logo.png" alt="InZion.com" /></a></div>
+	<div class="comm-txt">is coming soon</div>
+</div>
+<!-- Header -->
+
+<!-- top map -->
+<div class="top-map">
+	<div class="notify-box">
+		<h2>Be the first</h2>
+		<p>Enter your email address to be notified when we launch</p>
+                <form method="post" action="/" id="seml">
+                    <div><span><input type="text" name="email" id="email" value="Your email address" onclick="if (this.value=='Your email address') this.value='';" /></span> <a href="javascript:Send( document.getElementById('email').value );"><img src="/i/notify_b.gif" alt="Notify me" /></a></div>
+                </form>
+	</div>
+</div>
+<!-- top map -->
+
+<div class="content">
+<table class="carcass">
+	<tr>
+		<td class="c-center">
+		<div class="sing-title">The simple way to connect and share with your LDS friends.<br /> <a href="#">Anyone can join!</a></div>
+
+		<div class="sbox01_com">
+			<a href="javascript:void(0);"><img src="/i/icon01.png" alt="" /></a>
+			<p>Share thoughts, news, photos and videos</p>
+		</div>
+		<div class="sbox01_com">
+			<a href="javascript:void(0);"><img src="/i/icon02.png" alt="" /></a>
+			<p>Connect with your ward/stake members</p>
+		</div>
+		<div class="sbox01_com">
+			<a href="javascript:void(0);"><img src="/i/icon03.png" alt="" /></a>
+			<p>Keep in touch with  your friends in mission</p>
+		</div>
+		</td>
+	</tr>
+</table>
+
+</div>
+</div>
+
+<!-- Footer -->
+<div id="footer">
+<div class="footer">
+	<p><img src="/i/icon00.gif" alt="" /> <a href="http://twitter.com/inzioncom">Follow us on twitter</a></p>
+</div>
+</div>
+<!-- Footer -->
+</div>
+
+</body>
+</html>

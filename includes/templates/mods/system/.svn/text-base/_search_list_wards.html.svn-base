@@ -1,0 +1,122 @@
+<div id="id_div_search_wards">
+	{if $srch_res.wards}
+		{if $nwall}
+			{assign var=wards value=$srch_res.wards}
+			{assign var=cnt_wards value=$cnt_all.wards}
+			<div btype="Singels" class="cl_srch_list">
+				<h2><span>{if 3000 < $cnt_wards}>3000{elseif 1000 < $cnt_wards && 3000 > $cnt_wards}>1000{else}{$cnt_wards}{/if}</span>Stake/Wards</h2>
+				{if 1000 < $cnt_wards}
+					<div class="attention-box">More than {if 3000 < $cnt_wards}3000{elseif 1000 < $cnt_wards && 3000 > $cnt_wards}1000{/if} wards found, you can use filters to refine your search</div>
+				{/if}
+				{foreach item=wa from=$wards key=mk}
+
+					<div class="box002">
+						<div class="post-box">
+							<div class="post-box-bg00" style="min-height: 40px">
+								<div class="b-awatar"><a href="#"><img src="{if $wa.img}{$fImgDir}wards/{$wa.img}{else}{$imgDir}no_photo_ward_m66.png{/if}"  /></a></div>
+								<div class="post-title2">
+									<b>
+										<a href="{$siteAdr}wards/id{$wa.id}">
+											{if !empty($wa.title)}{$wa.title}{else}{$wa.ward_title}{/if}
+										</a>
+										{if $wa.id != $UserInfo.stake_id && $wa.id != $UserInfo.ward_id}
+											(<a href="javascript: oWWall.SHConfirmPopup( 1, 'id_confirm_wards_popup', {$wa.id} );">Set as my ward</a>)
+										{/if}
+									</b>
+								</div>
+								<p>{if !empty($wa.id_parent)} {$wa.ward_title} {else} &nbsp {/if}</p>
+							</div>
+						</div>
+					</div>
+				{/foreach}
+                            {if !isset($all_res)}
+                             <span id="pagging">
+                                <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+                                    <a href="javascript: void(0);" class="cl_search_pagging" pname="wards" pcnt=" {$pcnt.wards*$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+                                </div>
+                            {$pagging_wards}
+                            </span>
+                            {/if}
+
+			</div>
+
+                        {if isset($all_res)}
+                        {if ($pcnt.wards+$data_rcnt) < $cnt_wards}
+				<div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+					<a href="javascript: void(0);" class="cl_search_pagging_more" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+				</div>
+			{/if}
+                        {/if}
+                       
+                        <!--
+			{if ($pcnt.wards+$data_rcnt) < $cnt_wards}
+				<div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+					<a href="javascript: void(0);" class="cl_search_pagging{if $nwall}2{/if}" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+				</div>
+			{/if}
+                        -->
+		{else}
+			{assign var=wards value=$srch_res.wards}
+			{assign var=cnt_messages value=$cnt_all.wards}
+			<div btype="wards" class="cl_srch_list">
+				<h2><span>{if 3000 < $cnt_messages}>3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}>1000{else}{$cnt_messages}{/if}</span>Stake/Wards</h2>
+				{if 1000 < $cnt_messages}
+					<div class="attention-box">More than {if 3000 < $cnt_messages}3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}1000{/if} messages found, you can use filters to refine your search</div>
+				{/if}
+				{foreach item=mes from=$wards key=mk}
+					<div class="box002">
+						<div class="post-box">
+							<div class="post-box-bg00" style="min-height: 40px">
+								<div class="b-awatar"><a href="{$siteAdr}id{$mes.uid}"><img src="{if $mes.image}{$fImgDir}users/{$mes.fpath}/s/s_{$mes.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>
+								{if $mes.sub_mtype == 1}
+                                                                <div class="post-title-badge">
+                                                                    <a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> in <a href="{$siteAdr}id{$mes.uid}/mission/id{$mes.mission_id}"><i>{$mes.mission_name}</i></a><br>
+                                                                    <p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                                                                    <table class="post-badge">
+                                                                        <td>
+                                                                            <img class="badge_img" src="{$imgDir}/badges/{$mes.b_img_name}.png" alt="{$mes.b_img_name}"/>
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="story_badge" >{if $mes.story}{$mes.story|nl2br|dlong:39}{/if}</span>
+                                                                        </td>
+                                                                    </table>
+                                                                </div>
+                                                                {else}
+                                                                <div class="post-title"><a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> in <a href="{$siteAdr}wards/id{$mes.wid}"><i>{$mes.ward_name}</i></a><br> {$mes.story|dlong}</div>
+								<p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                                                                {/if}
+                                <p><a href="{$siteAdr}wards/id{$mes.wid}?{$mes.id}">show more</a></p>
+							</div>
+						</div>
+					</div>
+				{/foreach}
+                                
+                                {if !isset($all_res)}
+                                <span id="pagging">
+                                    <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+                                        <a href="javascript: void(0);" class="cl_search_pagging" pname="wards" pcnt=" {$pcnt.wards*$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+                                    </div>
+                                    {$pagging_wards}
+                                </span>
+                                {/if}
+
+			</div>
+                        
+                        {if isset($all_res)}
+                 	{if ($pcnt.wards+$data_rcnt) < $cnt_messages}
+				<div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+					<a href="javascript: void(0);" class="cl_search_pagging_more" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+				</div>
+
+                        {/if}
+                        {/if}
+                        <!--
+			{if ($pcnt.wards+$data_rcnt) < $cnt_messages}
+				<div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+					<a href="javascript: void(0);" class="cl_search_pagging" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+				</div>
+			{/if}
+                        -->
+		{/if}
+	{/if}
+</div>

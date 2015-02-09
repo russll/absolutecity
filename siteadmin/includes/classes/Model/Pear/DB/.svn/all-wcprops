@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB
+END
+mssql.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/mssql.php
+END
+sqlite.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/sqlite.php
+END
+oci8.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/oci8.php
+END
+storage.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/storage.php
+END
+mysql.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/mysql.php
+END
+odbc.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/odbc.php
+END
+fbsql.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/fbsql.php
+END
+mssqlm.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/mssqlm.php
+END
+msql.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/msql.php
+END
+mysqli.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/mysqli.php
+END
+dbase.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/dbase.php
+END
+ibase.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/ibase.php
+END
+sybase.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/sybase.php
+END
+pgsql.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/pgsql.php
+END
+ifx.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/ifx.php
+END
+common.php
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/DB/common.php
+END

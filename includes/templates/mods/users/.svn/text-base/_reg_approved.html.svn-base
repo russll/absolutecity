@@ -1,0 +1,7 @@
+<h2>Registration approved</h2>
+
+<div style="padding:5px;">
+    <p>An email with a registration code was sent to {$approve_email}.<br />
+       You should receive it shortly.<br />
+       Please follow the link in the email to activate your membership.</p>
+</div>

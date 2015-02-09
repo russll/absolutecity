@@ -1,0 +1,45 @@
+			
+			<h2>From <a href="{$siteAdr}id{$ui.uid}/valbums/id{$ai.vaid}">{$ai.name}</a></h2>
+			<div id="id_place_video_content">
+				<input id="vaid" type="hidden" value="{$vi.vaid}" />
+				<input id="vid" type="hidden" value="{$vi.id}" />
+				
+				<div class="gallery">
+					<div>
+						<ul>
+							<li style="width: 100%; text-align: center;"><object>{$vi.video}</object></li>
+							<li style="width: 100%; text-align: center; display: none;"><a href="javascript: void(0);"><img src="" />&nbsp</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<div class="gal-add">
+					<form id="id_video_com_frm" action="{$siteAdr}id{$ui.uid}/valbums/id{$ai.vaid}/id{$vi.id}/geteditvideoajax/?rtype=com" method="post">
+						<div><textarea id="id_video_com_text" style="color:black;" name="CI[text]"></textarea></div>
+						<p><a href="javascript: void(0);" onclick="oValbums.ReloadVideoBoxCom( 2, '{$ai.vaid}', '{$vi.id}' );"><img src="{$imgDir}btn_add_com.gif" /></a></p>
+					</form>
+				</div>
+				
+				<div class="gal-comment">
+					{if $cnt_video_com}<h2>{$cnt_video_com} comments</h2>{/if}
+					<ul id="id_video_box_com" class="recomment">
+					{if $ar_video_com}
+					{foreach item=i key=k from=$ar_video_com}
+						<li><a href="{$siteAdr}id{$i.user_id}"><img src="{if $i.image}{$fImgDir}users/{$i.user_fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" /></a>
+							<div>
+							    <p><b>{$i.first_name} {$i.last_name}</b> wrote:</p>
+                                <p>{$i.text}</p>
+							    <p style="font-size:10px;padding-top:5px;">{html_tmpl_time val=$i.dt type=1} ({$i.dt|date_format:"%b %d, %Y"})</p>
+							</div>
+						</li>
+					{/foreach}
+					<li>
+						<a class="prev" href="javascript: void(0);" onclick="oValbums.ReloadVideoBoxCom( 1, '{$ai.vaid}', '{$vi.id}', '{$fcnt}', 2 );" {if 0 == $fcnt} style="visibility: hidden;" {/if}>previous</a>
+						<a class="next" href="javascript: void(0);" onclick="oValbums.ReloadVideoBoxCom( 1, '{$ai.vaid}', '{$vi.id}', '{$fcnt}', 1 );" {if $cnt_video_com <= ($fcnt + $pcnt)} style="visibility: hidden;" {/if} >next</a>
+					</li>
+					{else}
+						<li>There aren't any comments</li>
+					{/if}
+					</ul>
+				</div>
+			</div>

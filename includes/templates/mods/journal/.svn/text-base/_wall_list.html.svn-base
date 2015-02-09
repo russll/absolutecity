@@ -1,0 +1,227 @@
+        {foreach key=k item=i from=$mai}
+		<div id="id_journal_mes_{$i.id}" mid="{$i.id}" class="box001 cl_wall_mes wall_mes_journal"  onMouseOver="$('#id_journal_mes_{$i.id} .tlink').show();" onMouseOut="$('#id_journal_mes_{$i.id} .tlink').hide();">
+			<div class="post-box">
+				<div class="post-box-bg{if 5==$i.ptype}04{elseif 4==$i.ptype}05{elseif 3==$i.ptype}02{elseif 2==$i.ptype}03{elseif 1==$i.ptype}01{else}00{/if}" style="min-height: 68px">
+				
+				{if !empty($i.ptype)}<em><img src="{$imgDir}ico{if 5==$i.ptype}07_{elseif 4==$i.ptype}06{elseif 3==$i.ptype}05_{elseif 2==$i.ptype}04_{elseif 1==$i.ptype}03{/if}.png" /></em>{/if}
+				
+				<div class="b-awatar"><a href="javascript: void(0);" onclick="$('#id_dropbox_{$i.id}').slideToggle('slow');"><img src="{if $i.image}{$fImgDir}users/{$i.fpath}/s/s_{$i.image}{else}{$imgDir}no_photo_m66.jpg{/if}" {if $i.uid == $UserInfo.uid}class="small_avatar"{/if}  /></a>
+				<!-- Drop00 -->
+				{if $i.uid != $UserInfo.uid}
+				<div id="id_dropbox_{$i.id}" class="dropbox00">
+					<div class="dropbox00-left">
+					<div class="dropbox00-right">
+						<ul><li><a href="{$siteAdr}id{$i.uid}">Send a message</a></li></ul>
+						<p>{if !$i.relations.im_friend}<a href="javascript: void(0);" onclick="oFriends.GetFrAjax('{$i.uid}', 0)">Add as Friend</a>{else}<a href="javascript: void(0);" onclick="oFriends.SHConfirmPopup(1, 'id_confirm_friends_popup', '{$i.uid}')">Unfriend</a>{/if}</p>
+						{*<p><a href="#">Hide member’s entries</a></p>*}
+						<p><a class="user_report" href="javascript:void(0);" onclick="oUsers.ReportUser($(this), '{$i.uid}');">Report this user</a></p>
+					</div>
+					</div>
+				</div>
+				{/if}
+			<!-- Drop00 -->
+					</div>
+                                
+            {if 2 == $i.mtype}
+            <div class="post-title">
+                <a href="{$siteAdr}id{$i.uid}">
+                    <b>
+                    {if $i.first_name || $i.last_name}
+                        {$i.first_name} {$i.last_name}
+                    {else}
+                        {$i.public_name}
+                    {/if}
+                    </b>
+                </a> is going to {if $i.ev_title}{$i.ev_title}{/if}
+            </div>
+            <div class="event-txt">
+                <img src="{$imgDir}event_ico.gif"  />{$i.ev_where}, <br/>{$i.ev_dt|date_format:"%B %d, %I:%M %p"} <br/>
+                <b id="id_journal_mes_subj_{$i.id}">{if $i.subj}{$i.subj}{/if}</b><br/>
+                {*
+                <span id="id_journal_mes_story_{$i.id}">{if $i.story}{$i.story}{/if}</span>
+                *}
+                    {if $i.story}
+                    <div style="width: 100%; clear:both; padding-top: 3px;" id="id_journal_mes_story_{$i.id}">
+                        <div id="mes_story_{$i.id}_s">{$i.story|html_substr:500|closetags}</div>
+                        <div id="mes_story_{$i.id}_l" style="display:none;">{$i.story}</div>
+
+			            {if $i.story|count_characters > 500}
+                        <p style="min-height:20px;"><a class="link_expander" sid="{$i.id}" style="cursor: pointer; float: right; padding-bottom: 20px;">read more...</a></p>
+		                {/if}
+                    </div>
+                    {else}
+                        <span id="id_journal_mes_story_{$i.id}"></span>
+		            {/if}
+
+            </div>
+            <br />
+            {include file="mods/journal/_wall_actions.html"}
+            <p>{html_tmpl_time val=$i.pdate type=1}</p>
+
+            {elseif 3 == $i.mtype}
+            <div class="post-title">
+                <a href="{$siteAdr}id{$i.uid}">
+                    <b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b>
+                </a>
+                <b id="id_journal_mes_subj_{$i.id}">{if $i.subj}{$i.subj}{/if}</b><br/>
+                {*
+                <span id="id_journal_mes_story_{$i.id}">{if $i.story}{$i.story}{/if}</span>
+                *}
+                    {if $i.story}
+                    <div style="width: 100%; clear:both; padding-top: 3px;" id="id_journal_mes_story_{$i.id}">
+                        <div id="mes_story_{$i.id}_s">{$i.story|html_substr:500|closetags}</div>
+                        <div id="mes_story_{$i.id}_l" style="display:none;">{$i.story}</div>
+
+			            {if $i.story|count_characters > 500}
+                        <p style="min-height:20px;"><a class="link_expander" sid="{$i.id}" style="cursor: pointer; float: right; padding-bottom: 20px;">read more...</a></p>
+		                {/if}
+                    </div>
+                    {else}
+                        <span id="id_journal_mes_story_{$i.id}"></span>
+		            {/if}
+            </div>
+            <p>&nbsp;<a href="{$i.l_url}" target="_blank">{if $i.l_url_label}{$i.l_url_label}{else}{$i.l_url}{/if}</a></p><br />
+
+            {include file="mods/journal/_wall_actions.html"}
+            <p>{html_tmpl_time val=$i.pdate type=1}</p>
+
+            {elseif 4 == $i.mtype}
+            <div class="post-title">
+                <a href="{$siteAdr}id{$i.uid}">
+                    <b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b>
+                </a>
+                <b id="id_journal_mes_subj_{$i.id}">{if $i.subj}{$i.subj}{/if}</b><br/>
+                {*
+                <span id="id_journal_mes_story_{$i.id}">{if $i.story}{$i.story}{/if}</span>
+                *}
+                    {if $i.story}
+                    <div style="width: 100%; clear:both; padding-top: 3px;" id="id_journal_mes_story_{$i.id}">
+                        <div id="mes_story_{$i.id}_s">{$i.story|html_substr:500|closetags}</div>
+                        <div id="mes_story_{$i.id}_l" style="display:none;">{$i.story}</div>
+
+			            {if $i.story|count_characters > 500}
+                        <p style="min-height:20px;"><a class="link_expander" sid="{$i.id}" style="cursor: pointer; float: right; padding-bottom: 20px;">read more...</a></p>
+		                {/if}
+                    </div>
+                    {else}
+                        <span id="id_journal_mes_story_{$i.id}"></span>
+		            {/if}
+            </div>
+
+            <p style="float: left; margin: none; padding: none;" align="left">
+                {if $i.p_url}<em><a href="{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}"><img src="{$i.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+                {if $i.p_path}
+                    {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}" {if !$i.p_img_1_id} style="cursor: default;" {/if}><img src="{$fImgDir}journal/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+                    {if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_2_id}{else}javascript: void(0);{/if}" {if !$i.p_img_2_id} style="cursor: default;" {/if}><img src="{$fImgDir}journal/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+                    {if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$i.juid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}" {if !$i.p_img_3_id} style="cursor: default;" {/if}><img src="{$fImgDir}journal/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+                {/if}
+            </p>
+            <br />
+            {include file="mods/journal/_wall_actions.html"}
+
+            <p>{html_tmpl_time val=$i.pdate type=1}</p>
+
+            {elseif 5 == $i.mtype}
+            <div class="post-title">
+                <a href="{$siteAdr}id{$i.uid}">
+                    <b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b>
+                </a>
+                <b id="id_journal_mes_subj_{$i.id}">{if $i.subj}{$i.subj}{/if}</b><br/>
+                {*
+                <span id="id_journal_mes_story_{$i.id}">{if $i.story}{$i.story}{/if}</span>
+                *}
+                    {if $i.story}
+                    <div style="width: 100%; clear:both; padding-top: 3px;" id="id_journal_mes_story_{$i.id}">
+                        <div id="mes_story_{$i.id}_s">{$i.story|html_substr:500|closetags}</div>
+                        <div id="mes_story_{$i.id}_l" style="display:none;">{$i.story}</div>
+
+			            {if $i.story|count_characters > 500}
+                        <p style="min-height:20px;"><a class="link_expander" sid="{$i.id}" style="cursor: pointer; float: right; padding-bottom: 20px;">read more...</a></p>
+		                {/if}
+                    </div>
+                    {else}
+                        <span id="id_journal_mes_story_{$i.id}"></span>
+		            {/if}
+            </div>
+            <p style="float: left; margin: none; padding: none;" align="left">
+                {if $i.v_code}<object width="200" height="150">{$i.v_code}</object>{/if}
+            </p>
+            <br />
+            {include file="mods/journal/_wall_actions.html"}
+            <p>{html_tmpl_time val=$i.pdate type=1}</p>
+
+            {else}
+            <div class="post-title">
+                <a href="{$siteAdr}id{$i.uid}"><b>{if $i.first_name || $i.last_name}{$i.first_name} {$i.last_name}{else}{$i.public_name}{/if}</b></a>
+                <b id="id_journal_mes_subj_{$i.id}">{if $i.subj}{$i.subj}{/if}</b>
+
+                    {if $i.story}
+                    <div style="width: 100%; clear:both; padding-top: 3px;" id="id_journal_mes_story_{$i.id}">
+                        <div id="mes_story_{$i.id}_s">{$i.story|html_substr:500|closetags}</div>
+                        <div id="mes_story_{$i.id}_l" style="display:none;">{$i.story}</div>
+
+			            {if $i.story|count_characters > 500}
+                        <p style="min-height:20px;"><a class="link_expander" sid="{$i.id}" style="cursor: pointer; float: right; padding-bottom: 20px;">read more...</a></p>
+		                {/if}
+                    </div>
+                    {else}
+                        <span id="id_journal_mes_story_{$i.id}"></span>
+		            {/if}
+            </div>
+            <br />
+            {include file="mods/journal/_wall_actions.html"}
+            <p>
+                {html_tmpl_time val=$i.pdate type=1}
+            </p>
+            {/if}
+
+
+                                        <p>{if 5==$i.ptype}private{elseif 4==$i.ptype}only for {if $i.first_name3 && $i.last_name3} <a href="{$siteAdr}id{$i.uid3}">{$i.first_name3} {$i.last_name3}</a> {else} ... {/if}
+		   				{elseif 3==$i.ptype}for family{elseif 2==$i.ptype}for friends {if $i.pstype} ( {if $i.pstype == 5} {if $uclasses_index[$i.pclass]} {$uclasses_index[$i.pclass]} {else} classmates {/if} {elseif $i.pstype == 1} aaronic priesthood {elseif $i.pstype == 2} young man {elseif $i.pstype == 3} priesthood holders {elseif $i.pstype == 4} melchizedek priesthood {elseif $i.pstype == 7} high priest {elseif $i.pstype == 12} young woman {elseif $i.pstype == 100} {if $UserInfo.ward_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $i.pstype == 101} {if $UserInfo.stake_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+		   				{elseif 1==$i.ptype}for friends and followers {if $i.pstype} ( {if $i.pstype == 5} {if $uclasses_index[$i.pclass]} {$uclasses_index[$i.pclass]} {else} classmates {/if} {elseif $i.pstype == 1} aaronic priesthood {elseif $i.pstype == 2} young man {elseif $i.pstype == 3} priesthood holders {elseif $i.pstype == 4} melchizedek priesthood {elseif $i.pstype == 7} high priest {elseif $i.pstype == 12} young woman {elseif $i.pstype == 100} {if $UserInfo.ward_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.ward_id}">{$UserInfo.ward}</a> {else} prev ward {/if} {elseif $i.pstype == 101} {if $UserInfo.stake_id == $i.uvid} <a href="{$siteAdr}wards/id{$UserInfo.stake_id}">{$UserInfo.stake}</a> {else} prev stake {/if} {/if} ) {/if}
+		   				{elseif 0==$i.ptype}for everyone {if $i.first_name3 && $i.last_name3 && $i.uvid && $i.uid != $i.uvid} except <a href="{$siteAdr}id{$i.uid3}">{$i.first_name3} {$i.last_name3}</a> {/if}
+		   				{/if}
+                                        </p>
+				</div>
+				
+				<ul id="id_mes_answ_list_{$i.id}" class="recomment">
+				{if $i.answers}
+					{assign var=answ value=$i.answers}
+					{section name=si loop=$i.answers}
+					<li><a href="{$siteAdr}id{$answ[si].uid}"><img src="{if $answ[si].image}{$fImgDir}users/{$answ[si].fpath}/s/s_{$answ[si].image}{else}{$imgDir}no_photo_m56.jpg{/if}" {if $i.uid == $UserInfo.uid}class="small_avatar"{/if}  style="width: 56px; height: 56px;" /></a>
+						<div>
+						<p><a href="{$siteAdr}id{$answ[si].uid}">{if $answ[si].first_name || $answ[si].last_name}{$answ[si].first_name $answ[si].last_name}{else}{$answ[si].public_name}{/if}</a> {if $answ[si].story}{$answ[si].story|nl2br}{/if}</p>
+						<p><span>{html_tmpl_time val=$answ[si].pdate type=1}</span></p>
+						</div>
+					</li>
+					{/section}
+				{/if}
+				</ul>
+
+				{if 2 < $i.cnt_answ}<div id="id_div_show_more_answ_{$i.id}" class="tools-link"><a href="javascript: void(0);" onclick="oJournal.GetAnswList( '{$i.uid}', '{$i.id}', 2, '' );">View all comments</a></div>{/if}
+				
+				<div id="id_add_new_answ_inp_{$i.id}" class="add-comment-in"><input class="cl_add_answ_inp" mid="{$i.id}" type="text" value="Add comment" style="width: 100%;" /></div>
+				<form id="id_frm_add_mes_answ_{$i.id}" action="{$siteAdr}id{$ui.uid}/journal/geteditansw" method="post">
+				<input type="hidden" name="SI[mes_id]" value="{$i.id}" /><br />
+					<div id="id_add_new_answ_txtar_{$i.id}" class="add-comment-in2" style="display: none;">
+						<img src="{if $UserInfo.image}{$fImgDir}users/{$UserInfo.fpath}/a/a_{$UserInfo.image}{else}{$imgDir}no_photo_m56.jpg{/if}"  style="width: 56px; height: 56px;" />
+						<textarea id="id_add_new_answ_txtar_b{$i.id}" class="expand40-500 cl_answ_story" name="WI[story]" style="width: 85%;"></textarea>
+						<div class="add_smile_tab"><a class="nav_attach_smile" onclick="oJournal.AddSmileTab('{$i.id}');" mtype="smile" style="cursor: pointer;"><img src="{$imgDir}smile_main.gif" alt="" /></a></div>
+                                                <div class="share-white-b" style="margin-bottom: 3px; margin-top: 2px;"><a href="javascript: void(0);" onclick="oJournal.AddMesAnsw( '{$i.id}' );"><img src="{$imgDir}add_b3_act.gif"  /></a></div>
+					</div>
+                                        {assign var="type_smile" value="comment"}
+                                        <div id="show_smile_tab_comment_{$i.id}" class="smiley_comment" style="display: none;">
+                                        {include file="top_blocks/_smile.html"}
+                                        </div>
+
+				</form>
+
+			</div>
+		</div>
+{/foreach}
+
+{if $show_more}
+<div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+	<a href="javascript: void(0);" onclick="oJournal.GetList( '{$ui.uid}', $('.box001:last').attr('mid') );">More <img src="/i/arr01.gif" alt=""  /></a>
+</div>
+{/if}

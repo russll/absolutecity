@@ -1,0 +1,69 @@
+{if $srch_res.wards}
+{assign var=wards value=$srch_res.wards}
+{assign var=cnt_messages value=$cnt_all.wards}
+
+<div btype="wards" class="cl_srch_list">
+    {if !isset($all_res)}
+    {*if !$pcnt.wards*}
+        <h2><span>{if 3000 < $cnt_messages}>3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}>1000{else}{$cnt_messages}{/if}</span>Stake/Wards</h2>
+	{if 1000 < $cnt_messages}
+            <div class="attention-box">More than {if 3000 < $cnt_messages}3000{elseif 1000 < $cnt_messages && 3000 > $cnt_messages}1000{/if} missions found, you can use filters to refine your search</div>
+	{/if}
+    {*/if*}
+    {/if}
+    
+    {foreach item=mes from=$wards key=mk}
+    <div class="box002">
+        <div class="post-box">
+            <div class="post-box-bg00" style="min-height: 40px">
+                <div class="b-awatar"><a href="{$siteAdr}id{$mes.uid}"><img src="{if $mes.image}{$fImgDir}users/{$mes.fpath}/s/s_{$mes.image}{else}{$imgDir}no_photo_m66.jpg{/if}"  /></a></div>
+		{if $mes.sub_mtype == 1}
+                    <div class="post-title-badge">
+                        <a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> in <a href="{$siteAdr}id{$mes.uid}/mission/id{$mes.mission_id}"><i>{$mes.mission_name}</i></a><br>
+                        <p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                        <table class="post-badge">
+                            <td>
+                                <img class="badge_img" src="{$imgDir}/badges/{$mes.b_img_name}.png" alt="{$mes.b_img_name}"/>
+                            </td>
+                            <td>
+                                <span class="story_badge" >{if $mes.story}{$mes.story|nl2br|dlong:39}{/if}</span>
+                            </td>
+                        </table>
+                    </div>
+                {else}
+                <div class="post-title"><a href="{$siteAdr}id{$mes.uid}"><b>{$mes.first_name} {$mes.last_name}</b></a> in <a href="{$siteAdr}wards/id{$mes.wid}"><i>{$mes.ward_name}</i></a> <br> {$mes.story|dlong}</div>
+                <p>{html_tmpl_time val=$mes.pdate type=1}</p>
+                {/if}
+                <p><a href="{$siteAdr}wards/id{$mes.wid}?{$mes.id}">show more</a></p>
+            </div>
+        </div>
+    </div>
+    {/foreach}
+    
+{if !isset($all_res)}
+    <span id="pagging">
+        <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+            <a href="javascript: void(0);" class="cl_search_pagging" pname="wards" pcnt=" {$pcnt.wards*$data_rcnt}" rcnt="{$data_rcnt}" ></a>
+        </div>
+        {$pagging_wards}
+    </span>
+{/if}
+</div>
+
+{if isset($all_res)}
+    {if ($pcnt.wards+$data_rcnt) < $cnt_messages}
+    <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+        <a href="javascript: void(0);" class="cl_search_pagging_more" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+    </div>
+    {/if}
+{/if}
+
+<!--
+    {if ($pcnt.wards+$data_rcnt) < $cnt_messages}
+    <div id="id_div_show_more_mes_wards" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px;">
+        <a href="javascript: void(0);" class="cl_search_pagging{if $nwall}2{/if}" pname="wards" pcnt=" {$pcnt.wards+$data_rcnt}" rcnt="{$data_rcnt}" >More <img src="/i/arr01.gif"  /></a>
+    </div>
+    {/if}
+
+-->
+{/if}

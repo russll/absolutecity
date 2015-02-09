@@ -1,0 +1,103 @@
+{if $fr_info}
+<h2 id="id_fr_name">
+    <font class="inbox_text">
+    {if $fr_info}{$fr_info.first_name} {$fr_info.last_name} {else} Select a friend {/if}
+    </font>
+
+    <span class="block_a" style="margin-top:0px; padding-top: 0px; float:right;">
+        <a id="blockFr{$fr_info.uid}" href="javascript: void(0);" onclick="javascript: oFriends.EditFrActive( {$fr_info.uid}, 3 );" {if 1 != $fr_info.active}style="display:none"{/if}>Block user</a>
+        <a id="unblockFr{$fr_info.uid}" href="javascript: void(0);" onclick="javascript: oFriends.EditFrActive( {$fr_info.uid}, 1 );" {if 3 != $fr_info.active}style="display:none"{/if}>UnBlock user</a>
+    </span>
+</h2>
+{/if}
+
+{assign var=fname value=$fr_info.first_name|cat:" "|cat:$fr_info.last_name}
+{assign var=fname value=$fname}
+
+<script type="text/javascript">
+    var m_page = '{$m_page}';
+{literal}
+var he = new Object();
+	he.delay   = {/literal}{if $he_delay}{$he_delay}{else}0{/if}{literal};
+	he_type=''+'extended';
+        //he.type    = {/literal}{$he_type}{literal};
+	he.ad_coef = {/literal}{if $he_ad_coef}{$he_ad_coef}{else}''{/if}{literal};
+
+$(document).ready(function() {
+	if (setTimeout( 'oSystem.SetHE( \'' + he + '\', \'' + m_page + '\' )', he.delay ))
+        {
+{/literal}
+            {if 'inbox' == $m_page}
+            setTimeout( 'oIWall._initInterface()', 300 );
+            {/if}
+{literal}
+        }
+
+});
+{/literal}
+</script>
+{*include file='mods/system/_init_html_editor.html' he_delay=0 he_type=''+'extended'*}
+
+<div class="del-message"{if $fshow} style="display:none"{/if}>
+   <a href="{$siteAdr}id{$fr_info.uid}"> <img src="{if $fr_info.image}{$fImgDir}users/{$fr_info.fpath}/s/s_{$fr_info.image}{else}{$imgDir}no_photo_m42.jpg{/if}"  style="width: 42px; height: 42px; float:left;"  /> </a>
+    <a href="javascript: void(0);" class="del-message-link" style="float:right;" {if !$mai} style="display:none"{/if} onclick="javascript: oSystem.SConfPopup( 'oIWall.DelMes(\'\', {$fr_info.uid} );', 'Please confirm you want to delete all messages from \'{html_str_format str=$fname}\'?' );">Delete all messages</a>
+</div>
+
+<div id="id_div_show_more_mes" class="more-box" align="center" style="margin-left: 0px; padding-left: 0px; {if !(($pcnt+$rcnt) < $cnt_mes)} display:none;{/if}">
+     <!--a href="javascript: void(0);" onclick="oIWall.GetListMore('{$fr_info.uid}');">More <img src="/i/arr01.gif" alt=""  /></a-->
+     <a href="javascript: void(0);" onclick="oIWall.GetListMore('{$fr_info.uid}');" style="float:left;">View older messages<!--img src="/i/arr01.gif" alt=""  /--></a>
+</div>
+<div id="id_mes_list" class="more_mes_list" {if $mai && !$fshow} style="overflow-y:scroll;width:100%;max-height:800px; margin-bottom:10px; margin-top:10px;"{/if} style="position:relative;">
+    {if $mai && !$fshow}
+    {foreach key=k item=i from=$mai}
+    {assign var="last_id" value=$i.id}
+    <div id="id_wall_mes_{$i.id}">
+        <div class="message-box" aid="{$i.id}">
+            <p><span>{html_tmpl_time val=$i.pdate type=1} </span></p>
+            {if $UserInfo.uid == $i.uid}
+                <i class="snoska_own"><img src="{$imgDir}snoska_own.gif" alt=""/></i>
+            {/if}
+            <div{if $UserInfo.uid != $i.uid} class="light"{/if}>
+                   <!--i><img src="{$imgDir}snoska.gif" alt=""  /></i-->
+                {if $UserInfo.uid != $i.uid}
+                  <i class="snoska_other"><img src="{$imgDir}snoska_other.gif" alt=""  /></i>
+                {/if}
+
+                {if $i.story} {$i.story|dlong} {/if}
+
+		{if 3 == $i.mtype}
+                <p>&nbsp;<a href="{$i.l_url}" target="_blank">{if $i.l_url_label}{$i.l_url_label}{else}{$i.l_url}{/if}</a></p>
+		{elseif 4 == $i.mtype}
+                <p style="vertical-align: top; margin: none; padding: none;">
+                    {if $i.p_url}<em><a href="{$siteAdr}id{$ui.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}"><img src="{$i.p_url}" style="max-width: 200px; max-height: 200px;" /></a></em>{/if}
+		    {if $i.p_path}
+		        {if $i.p_img_1}<em><a href="{if $i.p_img_aid && $i.p_img_1_id}{$siteAdr}id{$ui.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_1_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$i.p_path}/{$i.p_img_1}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+			{if $i.p_img_2}<em><a href="{if $i.p_img_aid && $i.p_img_2_id}{$siteAdr}id{$ui.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$i.p_path}/{$i.p_img_2}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+			{if $i.p_img_3}<em><a href="{if $i.p_img_aid && $i.p_img_3_id}{$siteAdr}id{$ui.uid}/albums/id{$i.p_img_aid}/id{$i.p_img_3_id}{else}javascript: void(0);{/if}"><img src="{$fImgDir}inbox/{$i.p_path}/{$i.p_img_3}" style="max-width: 300px; max-height: 200px;" /></a></em>{/if}
+		    {/if}
+                </p>
+		{elseif 5 == $i.mtype}
+                <p style="" align="left">
+		    {if $i.v_code}<object width="200" height="150">{$i.v_code}</object>{/if}
+                </p>
+		{/if}
+            </div>
+        </div>
+    </div>
+    {/foreach}
+    {else}
+    <div id="id_div_empty_mes">
+        <div class="box001" id="">
+            <div class="post-box">
+		There aren't any entries
+            </div>
+        </div>
+    </div>
+    {/if}
+
+</div>
+    <i class="snoska_own"><img src="{$imgDir}snoska_own.gif" alt="" style="margin-left:15px;" /></i>
+    <div class="inbox_bot">
+        {include file="mods/inbox/_editor_inbox.html"}
+    </div>
+

@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/ssergy/InZion/!svn/ver/361/min/lib/Minify
+END
+ImportProcessor.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/ImportProcessor.php
+END
+Lines.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/Lines.php
+END
+Build.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/Build.php
+END
+Logger.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/Logger.php
+END
+CommentPreserver.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/CommentPreserver.php
+END
+Source.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/Source.php
+END
+YUICompressor.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/YUICompressor.php
+END
+HTML.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/HTML.php
+END
+Packer.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/Packer.php
+END
+CSS.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/ssergy/InZion/!svn/ver/361/min/lib/Minify/CSS.php
+END

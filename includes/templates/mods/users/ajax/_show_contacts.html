@@ -1,0 +1,34 @@
+<span class="edit-info" id="contacts_edit" style="display:none;"> {if $IS_USER} <a href="javascript:oUsers.SettingsContacts();">Edit</a> {else} &nbsp {/if}</span>
+<table>
+    <tr><td width="150"><label>Real name</label></td><td>{$ui.first_name} {$ui.last_name}</td></tr>
+    <tr><td width="150"><label>Email</label></td><td>{$ui.email}</td></tr>
+    {if $ui.im}
+    <tr><td width="150" valign="top"><label>IM Screen name</label></td><td>
+    {foreach key=k item=i name=n from=$ui.im}
+        {assign var="ov" value=$i.im_type}
+        {if !$smarty.foreach.n.first}<br />{/if}{$ims.$ov}: {$i.im_name}
+    {/foreach}
+        </td></tr>
+    {/if}
+    {if $ui.mob_phone}
+    <tr><td width="150"><label>Mobile phone</label></td><td>{$ui.mob_phone}</td></tr>
+    {/if}
+    {if $ui.land_phone}
+    <tr><td width="150"><label>Land phone</label></td><td>{$ui.land_phone}</td></tr>
+    {/if}
+    {if $ui.address}
+    <tr><td width="150"><label>Address</label></td><td>{$ui.address}</td></tr>
+    {/if}
+    {if $ui.city}
+    <tr><td width="150"><label>City/town</label></td><td>{$ui.city}</td></tr>
+    {/if}
+    {if $ui.state}
+        <tr><td width="150"><label>State/Province</label></td><td>{$ui.state}</td></tr>
+    {/if}
+    {if $ui.zip}
+    <tr><td width="150"><label>Zip</label></td><td>{$ui.zip}</td></tr>
+    {/if}
+    {if $ui.country}
+    <tr><td width="150"><label>Country</label></td><td>{assign var="ov" value=$ui.country}{$countries.$ov}</td></tr>
+    {/if}
+</table>

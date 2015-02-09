@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command
+END
+Mirror.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Mirror.php
+END
+Package.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Package.php
+END
+Remote.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Remote.php
+END
+Build.php
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Build.php
+END
+Auth.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Auth.php
+END
+Config.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Config.php
+END
+Install.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Install.php
+END
+Common.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Common.php
+END
+Registry.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/ssergy/InZion/!svn/ver/11/siteadmin/includes/classes/Model/Pear/PEAR/Command/Registry.php
+END

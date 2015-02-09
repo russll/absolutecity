@@ -1,0 +1,52 @@
+
+reg1 = 'Please enter your username'
+reg2 = 'Login must contain at least 3 characters'
+reg3 = 'Username too long'
+reg4 = 'Username may only consist of letters and numbers'
+reg5 = 'This username is already in use'
+
+reg6 = 'Please enter the email'
+reg7 = 'Please enter a valid email'
+reg8 = 'Email is too long'
+reg9 = 'A user with this e-mail already exists'
+
+reg10 = 'Please enter a name'
+reg11 = 'First name should contain a minimum of 2 symbols'
+reg12 = 'First name is too long'
+reg13 = 'Please enter the last name'
+reg15 = 'Last name is too long'
+
+reg16 = 'Please enter your password. "
+reg17 = 'Password is too long'
+reg18 = 'Your password do not match'
+
+reg19 = 'To change the e-mail addresses you enter the password'
+
+
+reg29 = 'entered the current password is wrong'
+reg30 = 'Please enter your current password'
+reg31 = 'Please specify "old password" for change email'
+
+reg32 = 'Please enter a new password. "
+reg33 = 'New password is too long'
+reg34 = 'Your password do not match'
+reg35 = 'code for confirmation of registration entered is not true'
+
+
+lgn1 = 'Enter username'
+lgn2 = 'Enter password'
+lgn3 = 'Invalid username or password'
+
+
+fgt1 = 'Not specified e-mail'
+fgt2 = 'We are given no valid e-mail'
+fgt3 = 'Address not found'
+fgt4 = 'Your password has been sent to the specified e-mail address. "
+
+txr1 = 'Can not find user login c'
+txr2 = 'Wrong e-mail'
+
+adp1 = 'address is available! "
+adp2 = 'Address not specified'
+adp3 = 'Invalid characters in the address'
+adp4 = 'Address not available! "
